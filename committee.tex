@@ -18,8 +18,8 @@
 % per-section figure numbering
 \usepackage{chngcntr}
 \counterwithin{figure}{section}
-% use dash instead of dot and use arabic section numbering
-\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+% use arabic section numbering for figures
+\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
 
 % use roman number formatting for sections
 \renewcommand\thesection{\Roman{section}}
