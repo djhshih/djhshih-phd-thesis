@@ -9,10 +9,10 @@
 \captionsetup[figure]{labelfont=bf}
 \captionsetup[table]{labelfont=bf}
 
-
 \usepackage{sidecap}
 \sidecaptionvpos{figure}{c}
 
+\usepackage{setspace}
 
 % define new environments
 \usepackage{amsthm}
@@ -86,6 +86,9 @@ All aims have been completed.
 \clearpage
 
 
+\onehalfspacing
+
+
 \section*{Overview}
 
 Medulloblastoma is the most common solid childhood malignancy \citeref{mainprize00}. Current therapy for medulloblastoma --- including surgical resection, radiation of the entire brain and spinal cord, and aggressive chemotherapy --- yields five-year survival rates of 60-70\% \citeref{gajjar06}. Survivors are often left with significant neurological, intellectual, and physical disabilities secondary to the effects of these non-specific, cytotoxic therapies on the developing nervous system \citeref{spiegler04,mabbott05}.
@@ -142,6 +145,8 @@ A set of widely used classifiers (e.g. support-vector machine, linear discrimina
 	\label{fig:nanostr-valid}
 \end{figure}
 
+\clearpage
+
 The assay was validated on an external set of 130 non-overlapping medulloblastomas, and it achieved an accuracy of 98\% (\citefig{nanostr-valid}). Further, the assay yielded reproducible predictions when repeated in three independent laboratories \citeself{northcott12}. The clinical applicability of the assay was demonstrated by its predictive accuracy on FFPE samples of archival ages $\leq 8$ years (\citefig{nanostr-ffpe}). The accuracy decreased on older FFPE samples, presumably due to poorer RNA integrity, though standard measurements of RNA quality were not correlated with accuracy \citeself{northcott12}.
 
 \begin{figure}[ht]
@@ -177,48 +182,11 @@ Above all, a rapid, reliable, and reproducible assay was developed for assigning
 Each medulloblastoma molecular subgroup is characterized by specific genomic aberrations.
 \end{hypothesis}
 
-Copy-number profiles were generated on $> 1200$ medulloblastomas using the Affymetrix Genome-wide SNP6 platform. After quality control and clinical criteria filtering, copy-number profiles of $1087$ primary medulloblastomas were available for further analysis in identifying somatic copy-number aberrations (SCNAs): regions of aberrant gains and losses in the tumour genome. The tumours were stratified based on molecular subgroups, as determined by the method described in \textbf{Aim I}. The copy-number and cytogenetic profiles of medulloblastoma subgroups were highly divergent, demonstrating that medulloblastoma subgroups are genomically heterogeneous (\citefig{cn-heatmap}--\citefig{broad-events}). Indeed, when the cohort was analyzed by each subgroup independently, an increased number of SCNAs were identified, many of which were subgroup-enriched (\citefig{subgroup-specificity}).
-
-\begin{SCfigure}[5][t]
-	\centering
-	\includegraphics[width=0.3\textwidth]{fig/magic-cn/cn-heatmap.png}
-	\caption[Genome-wide copy-number profile of medulloblastoma subgroups]
-	{
-	Genome-wide copy-number profile of medulloblastoma subgroups.
-	Copy-number profiling was performed on 1087 non-overlapping primary medulloblastomas. Shown is a copy number heatmap for 827 cases classified according to medulloblastoma subgroup based on matched gene expression data.  Amplifications are shown in red and deletions in blue.
-	}
-	\label{fig:cn-heatmap}
-\end{SCfigure}
-
-\begin{SCfigure}[5][b]
-	\centering
-	\includegraphics[width=0.4\textwidth]{fig/magic-cn/broad-events.pdf}
-	\caption[Frequency and significance of broad cytogenetic events]
-	{
-	Frequency and significance of broad cytogenetic events across medulloblastoma subgroups.
-	Gains are plotted in red and deletions in blue, shaded according to significance ($q < 0.1$, binomial test).
-	}
-	\label{fig:broad-events}
-\end{SCfigure} 
-
-Among the recurrent high-level amplifications (copy-number $\geq 5$) identified (\citefig{high-level-amps}), the most prevalent events targeted members of the MYC family (\emph{MYCN}, \emph{MYC}, \emph{MYCL1}), with \emph{MYCN} predominantly amplified in SHH and Group~4, \emph{MYC} in Group~3, and \emph{MYCL1} in SHH medulloblastomas.
-The most common homozygous deletions targeted known tumour suppressors \emph{PTEN}, \emph{PTCH1}, and \emph{CDKN2A/B}, all of which were enriched in SHH tumours (\citefig{homo-del}). A selected set of genes were assessed using custom nanoString assays, and 90.9\% of events were verified (\citefig{nanostr-verification}). Additional genes were validated on external cohorts by interphase fluorescence \emph{in situ} hybridization (\citefig{mdm4-fish}, \citefig{acvr2b-fish}).
-
-The disparate genomic landscapes of medulloblastoma subgroups lead to the identification of a multitude of focal SCNAs that characterize each molecular subgroup (\citefig{shh-gistic}, \citefig{group3-gistic}, \citefig{group4-gistic}). Novel genes identified in this study include: \emph{PPM1D}, \emph{PIK3C2B}, and \emph{MDM4} in SHH (\citefig{shh-amps-igv}); \emph{ACVR2A}, \emph{ACVR2B}, and \emph{TGFBR1} in Group~3 (\citefig{group3-amps-igv}); and \emph{NFKBIA} and \emph{USP4} in Group~4 (\citefig{group4-dels-igv}). Conversely, WNT medulloblastoma have few recurrent SCNAs (\citefig{genome-coverage}). 
-
-SHH medulloblastoma, which is characterized by activation of Shh signaling \citeref{northcott11a,remke11,cho11,kool08,taylor12}, exhibit frequent SCNAs in the Shh pathway. Genes involved in focal SCNAs amplifications are significantly associated with SHH medulloblastoma signatures genes (\citefig{shh-signature}), suggesting that copy-number changes contribute in part to the altered expression signatures previously observed in SHH tumours. Accordingly, positive regulators of Shh signaling (\emph{MYCN} and \emph{GLI2}) were recurrently amplified, while a negative regulator of Shh signaling (\emph{PTCH1}) was recurrently lost. Consistent with their functions in the same pathway, these events were mutually exclusive; however, they lead to different clinical outcomes (\citefig{shh-me}). In additional to Shh signaling, other core pathways recurrently disrupted in SHH medulloblastoma are TP53 signaling and RTK/PI3K signaling (\citefig{shh-pathways}).
-
-The signaling pathways involved in Group~3 and Group~4 medulloblastomas are less well understood, as suggested by their names. Nonetheless, at the copy-number level, distinct pathways were dysregulated in Group~3 and Group~4 (\citefig{group3-vs-group4}). Group~3 tumours are characterized by amplification of \emph{MYC} and \emph{OTX2}, which occur in a mutually exclusive pattern (\citefig{group3-me}). This observation is consistent with the tendency of the two oncogenic transcription factors to bind the same promoter regions \citeref{bunt11}. Further, the TGF$\beta$ signaling pathway is frequently disrupted by SCNAs in Group~3. Conversely, the NF-$\kappa$B pathway appear to genetically targeted in Group 4 medulloblastomas.
-
-While \emph{MYC} amplification is a known pivotal player Group~3, our data indicated that others genes in close proximity to the \emph{MYC} locus may also play cooperative roles. This locus was frequently disrupted by a multitude of high-level amplicons (\citefig{chromothr_myc}) as well as massively genomic rearrangements (\citefig{chromothr_myc_wgs}). These genomic aberrations are reminiscent of chromothripsis (chromosome shattering), which has recently been implicated in cancer formation \citeref{stephens11,liu11,kloosterman11b,magrangeas11,crasta12,molenaar12}, as well as in medulloblastoma \citeself{rausch12}. As a consequence of these events, the adjacent \emph{PVT1} gene and miR-1204 are frequently co-amplified with \emph{MYC}. Moreover, amplifications of the \emph{MYC}/\emph{PVT1} locus frequently result in the formation of fusion transcripts. Concurrent with MYC-PTV1 fusion expression, miR-1204 (hosted in PTV1) is upregulated (\citefig{myc-fusion_mir-expr}). \emph{MYC}, \emph{PVT1}, and miR-1204 all have been previously shown to play independent functional roles in other tumours \citeref{guan07,carramusa07,huppi08,barsotti12}, and may synergistically promote tumourigenesis.
-
-The most prevalent focal gain (and previously neglected) in Group~4 was the somatic tandem duplication of the \emph{SNCAIP} gene (\citefig{sncaip-gain}). SNCAIP expression is highly elevated in Group~4 medulloblastomas (\citefig{sncaip-expr}). In fact, \emph{SNCAIP} duplication is further restricted to the Group~4$\alpha$ and may play a functional role in this medulloblastoma subtype (\citefig{group4-alpha-beta}). Another lab member, Vijay Ramaswamy, has begun functional characterization of this gene.
-
-In summary, medulloblastoma subgroups are characterized by distinct genomic aberrations that dysregulated disparate signaling pathways. Importantly, the amplified genes and activated pathways identified in this study could serve as potential targets for therapeutic development in medulloblastoma subgroups.
+Copy-number profiles were generated on $> 1200$ medulloblastomas using the Affymetrix Genome-wide SNP6 platform. After quality control and clinical criteria filtering, copy-number profiles of $1087$ primary medulloblastomas were available for further analysis in identifying somatic copy-number aberrations (SCNAs): regions of aberrant gains and losses in the tumour genome. The tumours were stratified based on molecular subgroups, as determined by the method described in \textbf{Aim I}. The copy-number and cytogenetic profiles of medulloblastoma subgroups were highly divergent, demonstrating that medulloblastoma subgroups are genomically heterogeneous (appendix figure not shown). Indeed, when the cohort was analyzed by each subgroup independently, an increased number of SCNAs were identified, many of which were subgroup-enriched (\citefig{subgroup-specificity}).
 
 \begin{SCfigure}[5]
 	\centering
-	\includegraphics[width=0.25\textwidth]{fig/magic-cn/subgroup-specificity.pdf}
+	\includegraphics[width=0.22\textwidth]{fig/magic-cn/subgroup-specificity.pdf}
 	\caption[Significant regions of focal SCNA identified by GISTIC2]
 	{
 	Significant regions of focal SCNA identified by GISTIC2 in pan-cohort or subgroup-stratified analyses.
@@ -227,6 +195,21 @@ In summary, medulloblastoma subgroups are characterized by distinct genomic aber
 	\label{fig:subgroup-specificity}
 \end{SCfigure}
 
+Among the recurrent high-level amplifications (copy-number $\geq 5$) identified (\citefig{high-level-amps}), the most prevalent events targeted members of the MYC family (\emph{MYCN}, \emph{MYC}, \emph{MYCL1}), with \emph{MYCN} predominantly amplified in SHH and Group~4, \emph{MYC} in Group~3, and \emph{MYCL1} in SHH medulloblastomas.
+The most common homozygous deletions targeted known tumour suppressors \emph{PTEN}, \emph{PTCH1}, and \emph{CDKN2A/B}, all of which were enriched in SHH tumours (\citefig{homo-del}). A selected set of genes were assessed using custom nanoString assays, and 90.9\% of events were verified (\citefig{nanostr-verification}). Additional genes were validated on external cohorts by interphase fluorescence \emph{in situ} hybridization (appendix figures not shown).
+
+The disparate genomic landscapes of medulloblastoma subgroups lead to the identification of a multitude of focal SCNAs that characterize each molecular subgroup (appendix figures not shown). Novel genes identified in this study include: \emph{PPM1D}, \emph{PIK3C2B}, and \emph{MDM4} in SHH (\citefig{shh-amps-igv}); \emph{ACVR2A}, \emph{ACVR2B}, and \emph{TGFBR1} in Group~3 (\citefig{group3-amps-igv}); and \emph{NFKBIA} and \emph{USP4} in Group~4 (\citefig{group4-dels-igv}). Conversely, WNT medulloblastoma have few recurrent SCNAs (\citefig{genome-coverage}). 
+
+\begin{SCfigure}[5][b]
+	\centering
+	\includegraphics[width=0.15\textwidth]{fig/magic-cn/nanostr-verification.pdf}
+	\caption[Verification of focal SCNAs by nanoString]
+	{
+	Verification of focal SCNAs by nanoString.
+	Genes inferred to be focally amplified by SNP6 were interrogated using a custom nanoString CodeSet across a set of 192 medulloblastomas selected from our cohort. Bar-plot shows the number of samples for which each gene is verified (red) or not (black). An overall verification rate of 90.9\% was achieved.
+	}
+	\label{fig:nanostr-verification}
+\end{SCfigure}
 
 \clearpage
 
@@ -254,122 +237,7 @@ In summary, medulloblastoma subgroups are characterized by distinct genomic aber
 
 \begin{SCfigure}[5]
 	\centering
-	\includegraphics[width=0.3\textwidth]{fig/magic-cn/nanostr-verification.pdf}
-	\caption[Verification of focal SCNAs by nanoString]
-	{
-	Verification of focal SCNAs by nanoString.
-	Genes inferred to be focally amplified by SNP6 were interrogated using a custom nanoString CodeSet across a set of 192 medulloblastomas selected from our cohort. Bar-plot shows the number of samples for which each gene is verified (red) or not (black). An overall verification rate of 90.9\% was achieved.
-	}
-	\label{fig:nanostr-verification}
-\end{SCfigure}
-
-\clearpage
-
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=\textwidth]{fig/magic-cn/shh-gistic.pdf}
-	\end{center}
-	\caption[Landscape of SCNAs in SHH medulloblastoma]
-	{
-	Landscape of SCNAs in SHH medulloblastoma.
-	GISTIC2 significance plot of amplifications (red) and deletions (blue) observed in the SHH subgroup is shown.
-	Labeled cytobands indicate significant regions that satisfied multiple criteria to qualify as a potential somatic event. The number of genes mapping to each significant region are shown in parentheses next to the cytoband label.  Regions over-represented in SHH are highlighted in red.
-	}
-	\label{fig:shh-gistic}
-\end{figure}
-
-\clearpage
-
-\begin{SCfigure}
-	\centering
-	\includegraphics[width=0.7\textwidth]{fig/magic-cn/shh-amps-igv.pdf}
-	\caption[Recurrent amplifications of \emph{PPMID}, \emph{MDM4}, and \emph{PIK3C2B} in SHH medulloblastoma]
-	{
-	Recurrent high-level amplifications of \emph{PPMID} and co-amplification of \emph{MDM4} and \emph{PIK3C2B} in SHH medulloblastoma.
-	Segmented copy-number tracks are shown for the amplified loci (17q23 and 1q23).
-	}
-	\label{fig:shh-amps-igv}
-\end{SCfigure}
-
-\begin{SCfigure}
-	\centering
-	\includegraphics[width=0.4\textwidth]{fig/magic-cn/mdm4-fish.jpg}
-	\caption[Validation of \emph{MDM4} amplification in medulloblastoma]
-	{
-	Validation of \emph{MDM4} amplification in medulloblastoma.
-	Interphase fluorescence \emph{in situ} hybridization (FISH) of the \emph{MDM4} locus confirmed amplification in 8.2\% (12/146) of external cases present on a medulloblastoma tissue microarray (work by Andrey Korshunov).
-	}
-	\label{fig:mdm4-fish}
-\end{SCfigure}
-
-\clearpage
-
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=\textwidth]{fig/magic-cn/group3-gistic.pdf}
-	\end{center}
-	\caption[Landscape of SCNAs in Group~3 medulloblastoma]
-	{
-	Landscape of SCNAs in Group~3 medulloblastoma.
-	GISTIC2 significance plot of recurrent amplifications and deletions in Group~3 is shown. Events highlighted in yellow are enriched in Group~3.
-	}
-	\label{fig:group3-gistic}
-\end{figure}
-
-\clearpage
-
-\begin{SCfigure}
-	\centering
-	\includegraphics[width=0.7\textwidth]{fig/magic-cn/group3-amps-igv.pdf}
-	\caption[Recurrent amplifications target receptors of the TGF$\beta$ superfamily in Group~3]
-	{
-	Recurrent amplifications target receptors of the TGF$\beta$ superfamily in Group~3.
-	Segmented copy-number tracks of Group~3 medulloblastomas show recurrent high-level amplifications affecting \emph{ACVR2A} (2q22), \emph{ACVR2B} (3p22), and \emph{TGFBR1} (9q22).
-	}
-	\label{fig:group3-amps-igv}
-\end{SCfigure}
-
-\begin{SCfigure}[3.0]
-	\centering
-	\includegraphics[width=0.3\textwidth]{fig/magic-cn/acvr2b-fish.jpg}
-	\caption[Validation of \emph{ACVR2B} amplification]
-	{
-	Validation of \emph{ACVR2B} amplification.
-	FISH of the \emph{ACVR2B} locus confirmed presence of amplification in an external cohort of medulloblastomas on a TMA (work by Andrey Korshunov).
-	}
-	\label{fig:acvr2b-fish}
-\end{SCfigure}
-
-\clearpage
-
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=\textwidth]{fig/magic-cn/group4-gistic.pdf}
-	\end{center}
-	\caption[Landscape of SCNAs in Group~4 medulloblastoma]
-	{
-	Landscape of SCNAs in Group~4 medulloblastoma.
-	GISTIC2 significance plot of amplification and deletion regions in Group~4 is shown. Events highlighted in green are enriched in Group~4.
-	}
-	\label{fig:group4-gistic}
-\end{figure}
-
-\clearpage
-
-\begin{SCfigure}[2.0]
-	\centering
-	\includegraphics[width=0.3\textwidth]{fig/magic-cn/group4-dels-igv.pdf}
-	\caption[NF-$\kappa$B pathway is recurrently targeted in Group~4]
-	{
-	NF-$\kappa$B pathway is recurrently targeted in Group~4.
-	Recurrent focal deletions disrupt \emph{NFKBIA} and \emph{USP4}, negative regulators of the NF-$\kappa$B pathway, in Group~4 medulloblastoma.
-	}
-	\label{fig:group4-dels-igv}
-\end{SCfigure}
-
-\begin{SCfigure}[5]
-	\centering
-	\includegraphics[width=0.3\textwidth]{fig/magic-cn/genome-coverage}
+	\includegraphics[width=0.2\textwidth]{fig/magic-cn/genome-coverage}
 	\caption[WNT medulloblastomas sustain a paucity of recurrent focal SCNAs.]
 	{
 	WNT medulloblastomas sustain a paucity of recurrent focal SCNAs.
@@ -380,59 +248,46 @@ In summary, medulloblastoma subgroups are characterized by distinct genomic aber
 
 \clearpage
 
-\begin{figure}
+\begin{SCfigure}[1][t]
 	\centering
-	\includegraphics[width=0.8\textwidth]{fig/magic-cn/shh-me.pdf}
-	\caption[Mutually exclusivity and clinical significance of focal SCNAs in SHH medulloblastomas]
+	\includegraphics[width=0.5\textwidth]{fig/magic-cn/shh-amps-igv.pdf}
+	\caption[Recurrent amplifications of \emph{PPMID}, \emph{MDM4}, and \emph{PIK3C2B} in SHH medulloblastoma]
 	{
-	Mutually exclusivity and clinical significance of focal SCNAs in SHH medulloblastomas.
-	Mutual exclusivity analysis of focal SCNAs in SHH medulloblastoma reveals that the most prevalent events in this subgroup do not co-occur in the same sample and collectively contribute to 23\% of cases, suggesting functional redundancy of SCNAs. Nevertheless, the mutually exclusive events exhibit distinct clinical outcome. Patients exhibiting either \emph{MYCN} or \emph{GLI2} amplification have poor clinical outcomes, while those exhibiting focal \emph{PTCH1} deletion have improved overall survival.
+	Recurrent high-level amplifications of \emph{PPMID} and co-amplification of \emph{MDM4} and \emph{PIK3C2B} in SHH medulloblastoma.
+	Segmented copy-number tracks are shown for the amplified loci (17q23 and 1q23).
 	}
-	\label{fig:shh-me}
-\end{figure}
+	\label{fig:shh-amps-igv}
+\end{SCfigure}
 
-\begin{SCfigure}[5]
+\begin{SCfigure}[1][b]
 	\centering
-	\includegraphics[width=0.3\textwidth]{fig/magic-cn/shh-signature.pdf}
-	\caption[Overlap between SHH signature genes and genes targeted by focal SCNAs in SHH]
+	\includegraphics[width=0.45\textwidth]{fig/magic-cn/group3-amps-igv.pdf}
+	\caption[Recurrent amplifications target receptors of the TGF$\beta$ superfamily in Group~3]
 	{
-	Significant overlap between SHH signature genes and genes targeted by focal SCNAs in SHH.
-	Bar-plots show the overlap significance based on permutation tests between SHH signature genes reported in the Cho (\emph{left}) or Northcott (\emph{right}) studies and genes mapping to focal SCNAs in our dataset. Dashed line indicates significance threshold ($\alpha = 0.05$).
+	Recurrent amplifications target receptors of the TGF$\beta$ superfamily in Group~3.
+	Segmented copy-number tracks of Group~3 medulloblastomas show recurrent high-level amplifications affecting \emph{ACVR2A} (2q22), \emph{ACVR2B} (3p22), and \emph{TGFBR1} (9q22).
 	}
-	\label{fig:shh-signature}
+	\label{fig:group3-amps-igv}
 \end{SCfigure}
 
 \clearpage
 
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=0.8\textwidth]{fig/magic-cn/shh-pathways.pdf}
-	\end{center}
+SHH medulloblastoma, which is characterized by activation of Shh signaling \citeref{northcott11a,remke11,cho11,kool08,taylor12}, exhibit frequent SCNAs in the Shh pathway. Genes involved in focal SCNAs amplifications are significantly associated with SHH medulloblastoma signatures genes (appendix figure not shown), suggesting that copy-number changes contribute in part to the altered expression signatures previously observed in SHH tumours. Accordingly, positive regulators of Shh signaling (\emph{MYCN} and \emph{GLI2}) were recurrently amplified, while a negative regulator of Shh signaling (\emph{PTCH1}) was recurrently lost. Consistent with their functions in the same pathway, these events were mutually exclusive; however, they lead to different clinical outcomes (appendix figure not shown). In additional to Shh signaling, other core pathways recurrently disrupted in SHH medulloblastoma are TP53 signaling and RTK/PI3K signaling (\citefig{shh-pathways}).
+
+\begin{SCfigure}[5]
+	\centering
+	\includegraphics[width=0.6\textwidth]{fig/magic-cn/shh-pathways.pdf}
 	\caption[Core pathways genetically targeted in SHH medulloblastoma]
 	{
 	Core pathways genetically targeted in SHH medulloblastoma.
 	Summary of SCNAs affecting components of Shh signaling, TP53 signaling, and RTK/PI3K signaling are depicted. Colours reflect the frequency by which the respective genes are targeted by focal or broad events in SHH medulloblastomas (red for amplification, blue for deletion). Significance values indicate the prevalence with which each pathway is targeted in SHH vs. non-SHH cases (Fisher's exact test).
 	}
 	\label{fig:shh-pathways}
-\end{figure}
+\end{SCfigure}
 
-\clearpage
-
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=0.7\textwidth]{fig/magic-cn/group3-me.pdf}
-	\end{center}
-	\caption[Mutual exclusivity of \emph{MYC}, \emph{OTX2}, and \emph{DDX31} aberrations in Group~3]
-	{
-	Mutual exclusivity of \emph{MYC}, \emph{OTX2}, and \emph{DDX31} aberrations in Group~3.
-	Analysis of focal SCNAs reveals that \emph{MYC} amplification and \emph{OTX2} amplification are completely mutually exclusivity, and these events are prognostic significant: \emph{MYC} amplified cases show poorer overall survival.
-	}
-	\label{fig:group3-me}
-\end{figure}
-
-\begin{SCfigure}
+\begin{SCfigure}[5][b]
 	\centering
-	\includegraphics[width=0.4\textwidth]{fig/magic-cn/group3-pathways.pdf}
+	\includegraphics[width=0.3\textwidth]{fig/magic-cn/group3-pathways.pdf}
 	\caption[TGF$\beta$ signaling is recurrently disrupted by SCNAs in Group~3]
 	{
 	TGF$\beta$ signaling is recurrently disrupted by SCNAs in Group~3.
@@ -441,61 +296,34 @@ In summary, medulloblastoma subgroups are characterized by distinct genomic aber
 	\label{fig:group3-pathways}
 \end{SCfigure}
 
-\begin{SCfigure}
+\clearpage
+
+The signaling pathways involved in Group~3 and Group~4 medulloblastomas are less well understood, as suggested by their names. Nonetheless, at the copy-number level, distinct pathways were dysregulated in Group~3 and Group~4 (appendix figure not shown). Group~3 tumours are characterized by amplification of \emph{MYC} and \emph{OTX2}, which occur in a mutually exclusive pattern (appendix figure not shown). This observation is consistent with the tendency of the two oncogenic transcription factors to bind the same promoter regions \citeref{bunt11}. Further, the TGF$\beta$ signaling pathway is frequently disrupted by SCNAs in Group~3 (\citefig{group3-pathways}). Conversely, the NF-$\kappa$B pathway appear to genetically targeted in Group 4 medulloblastomas (\citefig{group4-dels-igv}).
+
+\begin{SCfigure}[2]
 	\centering
-	\includegraphics[width=0.5\textwidth]{fig/magic-cn/group3-vs-group4.pdf}
-	\caption[Aberrations disrupt distinct pathways in Group~3 and Group~4 medulloblastomas]
+	\includegraphics[width=0.2\textwidth]{fig/magic-cn/group4-dels-igv.pdf}
+	\caption[NF-$\kappa$B pathway is recurrently targeted in Group~4]
 	{
-	Aberrations disrupt distinct pathways in Group~3 and Group~4 medulloblastomas.
-	Enrichment plot of gene sets disrupted by SCNAs in Group~3 vs. Group~4 medulloblastomas.
+	NF-$\kappa$B pathway is recurrently targeted in Group~4.
+	Recurrent focal deletions disrupt \emph{NFKBIA} and \emph{USP4}, negative regulators of the NF-$\kappa$B pathway, in Group~4 medulloblastoma.
 	}
-	\label{fig:group3-vs-group4}
+	\label{fig:group4-dels-igv}
 \end{SCfigure}
+
+While \emph{MYC} amplification is a known pivotal player Group~3, our data indicated that others genes in close proximity to the \emph{MYC} locus may also play cooperative roles. This locus was frequently disrupted by a multitude of high-level amplicons (appendix figure not shown) as well as massively genomic rearrangements (\citefig{chromothr_myc_wgs}). These genomic aberrations are reminiscent of chromothripsis (chromosome shattering), which has recently been implicated in cancer formation \citeref{stephens11,liu11,kloosterman11b,magrangeas11,crasta12,molenaar12}, as well as in medulloblastoma \citeself{rausch12}. As a consequence of these events, the adjacent \emph{PVT1} gene and miR-1204 are frequently co-amplified with \emph{MYC}. Moreover, amplifications of the \emph{MYC}/\emph{PVT1} locus frequently result in the formation of fusion transcripts. Concurrent with MYC-PTV1 fusion expression, miR-1204 (hosted in PTV1) is upregulated (appendix figure not shown). \emph{MYC}, \emph{PVT1}, and miR-1204 all have been previously shown to play independent functional roles in other tumours \citeref{guan07,carramusa07,huppi08,barsotti12}, and may synergistically promote tumourigenesis.
+
+The most prevalent focal gain (and previously neglected) in Group~4 was the somatic tandem duplication of the \emph{SNCAIP} gene (appendix figure not shown). SNCAIP expression is highly elevated in Group~4 medulloblastomas (\citefig{sncaip-expr}). In fact, \emph{SNCAIP} duplication is further restricted to the Group~4$\alpha$ and may play a functional role in this medulloblastoma subtype (\citefig{group4-alpha-beta}). Another lab member, Vijay Ramaswamy, has begun functional characterization of this gene.
+
+In summary, medulloblastoma subgroups are characterized by distinct genomic aberrations that dysregulated disparate signaling pathways. Importantly, the amplified genes and activated pathways identified in this study could serve as potential targets for therapeutic development in medulloblastoma subgroups.
+
 
 \clearpage
 
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=0.9\textwidth]{fig/magic-cn/sncaip-gain.png}
-	\end{center}
-	\caption[Focal gains recurrently target \emph{SNCAIP} in Group~4]
-	{
-	Focal gains recurrently target \emph{SNCAIP} in Group~4.
-	\emph{Left}, Segmented copy-number tracks of 317 Group~4 tumours shows a highly recurrent region of focal gain at 5q23.2 targeting a single gene: \emph{SNCAIP}, observed in 10.4\% of Group~4 cases (33/137). Whole-genome sequencing confirms that \emph{SNCAIP} is tandemly duplicated\citeself{shih12}. \emph{Right}, Analysis of matched-germline confirms that \emph{SNCAIP} duplication is somatic.
-	}
-	\label{fig:sncaip-gain}
-\end{figure}
 
-\begin{figure}[h]
+\begin{figure}[t]
 	\begin{center}
-		\includegraphics[width=0.9\textwidth]{fig/magic-cn/sncaip-expr.pdf}
-	\end{center}
-	\caption[\emph{SNCAIP} is a Group~4 signature gene]
-	{
-	\emph{SNCAIP} is a Group~4 signature gene.
-	\emph{Left}, Box-plot depicting SNCAIP significant upregulation in Group~4 (Mann-Whitney test), as determined by expression analysis of a previously published cohort of 103 primary medulloblastoma \citeref{northcott11a}. SNCAIP ranks among the top 1\% of most highly expressed genes in Group~4 medulloblastoma (rank 39 out of 16758).
-	\emph{Right}, Validation of SNCAIP as a Group~4 signature gene across five published medulloblastoma expression datasets: Thompson \citeref{thompson06}, Kool \citeref{kool08}, Fattet, Cho \citeref{cho11}, and Remke \citeref{remke11}. Expression datasets total 396 cases on four different array platforms. In all datasets, SNCAIP exhibited highest expression in Group~4.
-	}
-	\label{fig:sncaip-expr}
-\end{figure}
-
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=\textwidth]{fig/magic-cn/group4-alpha-beta.pdf}
-	\end{center}
-	\caption[\emph{SNCAIP} duplication is restricted to one subtype of Group~4]
-	{
-	\emph{SNCAIP} duplication is restricted to one subtype of Group~4.
-	\textsf{a}, Non-negative matrix factorization (NMF) consensus clustering performed on expression profiles of Group~4 cases ($n = 188$) reveal two transcriptionally distinct subtypes of Group~4, designated $4\alpha$ and $4\beta$. SNCAIP duplicated is significantly enriched in the Group $4\alpha$ subtype (Fisher's exact test).
-	\textsf{b}, SNCAIP expression is significantly elevated in Group $4\alpha$ compared to $4\beta$ (Mann-Whitney test).
-	\textsf{c}, SNCAIP expression is copy number-driven in Group $4\alpha$. Group $4\alpha$ cases were stratified by \emph{SNCAIP} copy-number status. Samples harbouring SNCAIP duplication exhibit a significant \~1.5-fold increase in SNCAIP expression (Mann-Whitney test).
-	}
-	\label{fig:group4-alpha-beta}
-\end{figure}
-
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=\textwidth]{fig/magic-cn/chromothr_myc_ai.pdf}
+		\includegraphics[width=0.6\textwidth]{fig/magic-cn/chromothr_myc_ai.pdf}
 	\end{center}
 	\caption[A multitude of amplicons disrupt the \emph{MYC}/\emph{PVT1} locus]
 	{
@@ -505,7 +333,7 @@ In summary, medulloblastoma subgroups are characterized by distinct genomic aber
 	\label{fig:chromothr_myc}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[b]
 	\begin{center}
 		\includegraphics[width=0.7\textwidth]{fig/magic-cn/chromothr_myc_wgs.pdf}
 	\end{center}
@@ -519,29 +347,34 @@ In summary, medulloblastoma subgroups are characterized by distinct genomic aber
 	\label{fig:chromothr_myc_wgs}
 \end{figure}
 
-\begin{SCfigure}
-	\centering
-	\includegraphics[width=0.4\textwidth]{fig/magic-cn/chromothr-enrich.pdf}
-	\caption[Chromothripsis frequently disrupt chr8 in Group~3 medulloblastoma]
-	{
-	Chromothripsis frequently disrupt chr8 in Group~3 medulloblastoma.
-	Quantification of inferred chromothripsis across medulloblastoma subgroups reveal a significant enrichment of chromothripsis on chr8 in Group~3 ($q = 0.0004$, Fisher's exact test), as compared to the entire cohort. Samples exhibiting at least 10 copy-number state changes on a single chromosome were inferred to have undergone chromothripsis.
-	}
-	\label{fig:chromothr-enrich}
-\end{SCfigure}
+\clearpage
 
-\begin{figure}[h]
+\begin{figure}[t]
 	\begin{center}
-		\includegraphics[width=0.5\textwidth]{fig/magic-cn/myc-fusion_mir-expr.pdf}
+		\includegraphics[width=0.8\textwidth]{fig/magic-cn/sncaip-expr.pdf}
 	\end{center}
-	\caption[miR-1204 is upregulated in Group~3 cases harbouring PVT1-MYC fusions]
+	\caption[\emph{SNCAIP} is a Group~4 signature gene]
 	{
-	miR-1204 is upregulated in Group~3 cases harbouring PVT1-MYC fusions.
-	Quantitative RT-PCR analysis of microRNAs hosted by PVT1 confirms upregulation of miR-1204 in Group~3 cases harbouring PVT1-MYC fusions (Mann-Whitney test). Samples were categorized as MYC-balanced/fusion(-) ($n = 4$), MYC-amplified/fusion(-) ($n = 6$), or MYC-amplified/fusion(+) ($n = 8$). Expression of microRNAs in MYC-balanced/fusion(-) samples served as baselines for determining relative expressions of the respective microRNAs in the other groups. Experiments were performed by John Peacock.
+	\emph{SNCAIP} is a Group~4 signature gene.
+	\emph{Left}, Box-plot depicting SNCAIP significant upregulation in Group~4 (Mann-Whitney test), as determined by expression analysis of a previously published cohort of 103 primary medulloblastoma \citeref{northcott11a}. SNCAIP ranks among the top 1\% of most highly expressed genes in Group~4 medulloblastoma (rank 39 out of 16758).
+	\emph{Right}, Validation of SNCAIP as a Group~4 signature gene across five published medulloblastoma expression datasets: Thompson \citeref{thompson06}, Kool \citeref{kool08}, Fattet, Cho \citeref{cho11}, and Remke \citeref{remke11}. Expression datasets total 396 cases on four different array platforms. In all datasets, SNCAIP exhibited highest expression in Group~4.
 	}
-	\label{fig:myc-fusion_mir-expr}
+	\label{fig:sncaip-expr}
 \end{figure}
 
+\begin{figure}[b]
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{fig/magic-cn/group4-alpha-beta.pdf}
+	\end{center}
+	\caption[\emph{SNCAIP} duplication is restricted to one subtype of Group~4]
+	{
+	\emph{SNCAIP} duplication is restricted to one subtype of Group~4.
+	\textsf{a}, Non-negative matrix factorization (NMF) consensus clustering performed on expression profiles of Group~4 cases ($n = 188$) reveal two transcriptionally distinct subtypes of Group~4, designated $4\alpha$ and $4\beta$. SNCAIP duplicated is significantly enriched in the Group $4\alpha$ subtype (Fisher's exact test).
+	\textsf{b}, SNCAIP expression is significantly elevated in Group $4\alpha$ compared to $4\beta$ (Mann-Whitney test).
+	\textsf{c}, SNCAIP expression is copy number-driven in Group $4\alpha$. Group $4\alpha$ cases were stratified by \emph{SNCAIP} copy-number status. Samples harbouring SNCAIP duplication exhibit a significant \~1.5-fold increase in SNCAIP expression (Mann-Whitney test).
+	}
+	\label{fig:group4-alpha-beta}
+\end{figure}
 
 \clearpage
 
@@ -555,7 +388,7 @@ To stratify patients into risk groups based on clinical and molecular biomarkers
 Current medulloblastoma protocols stratify patients based on clinical features: patient age, metastatic stage, extent of resection, and histological variant. The stark prognostic and genetic differences between the subgroups observed in \textbf{Aim II} suggest that subgroup-specific molecular biomarkers could improve patient prognostication.
 
 \begin{SCfigure}[5][t]
-	\includegraphics[width=0.3\textwidth]{fig/magic-clin/meta_cyto-markers.pdf}
+	\includegraphics[width=0.25\textwidth]{fig/magic-clin/meta_cyto-markers.pdf}
 	\caption[Sample sizes of recent prognostic marker studies]
 	{
 	Sample sizes of recent prognostic marker studies.
@@ -569,7 +402,7 @@ To determine whether subgroup affiliation could support or supplant clinical var
 The analysis of $> 1000$ medulloblastoma patients clearly demonstrates that subgroup affiliation enhances prognostication with clinical biomarkers, and that the majority of published molecular biomarkers are only relevant in the setting of a single subgroup. The combination of clinical variables, subgroup affiliation, and six cytogenetic markers analyzed on FFPE tissues can achieve an unprecedented level of prognostic prediction for medulloblastoma patients that is practical, reliable, and reproducible.
 
 \begin{SCfigure}[5][b]
-	\includegraphics[width=0.35\textwidth]{fig/magic-clin/surv_mb-subgroups.pdf}
+	\includegraphics[width=0.28\textwidth]{fig/magic-clin/surv_mb-subgroups.pdf}
 	\caption[Overall survival curves for molecular subgroups of medulloblastoma]
 	{
 	Overall survival curves for molecular subgroups of medulloblastoma.
@@ -599,6 +432,8 @@ Many prior medulloblastoma biomarker publications were limited by sample size, a
 In order to assess long-term survivors, WNT patients were followed for up to 10 years, and only two deaths were observed, both late in the follow-up period and due to recurrence of medulloblastoma (\citefig{surv_ageg_mstat_wnt}, appendix table not shown).  Among the SHH tumors, there is a significantly better outcome in the adult patients as compared to children or infants (\citefig{surv_ageg_shh_group3_group4}).  There is a trend towards a worse outcome for infants with Group~3 tumors that is not statistically significant (\citefig{surv_ageg_shh_group3_group4}).  Infants with Group~4 tumors have a significantly worse outcome than children or adults (\citefig{surv_ageg_shh_group3_group4}), suggesting that radiation therapy is critical in the treatment of Group~4 medulloblastoma. There is no reproducible association between gender and prognosis in any of the four subgroups (appendix figure not shown). Desmoplastic histology portends a more favorable prognosis than classic histology, which is more favorable than anaplastic histology among SHH tumors (appendix figure not shown). Large cell/anaplastic histology has prognostic significance for Group~3 medulloblastomas in the discovery cohort, but does not validate as significant in the validation cohort.
 
 While metastatic status is not prognostic for patients with WNT medulloblastoma, macroscopic metastasis (M2/M3) is consistently associated with poor survival in all non-WNT subgroups, though the clinical effect is very slight among patients with Group~4 disease (\citefig{surv_mstat_shh_group3_group4}).  While the prognostic significance of M0 disease as compared to M2/3 disease is very clear across SHH, Group~3, and Group~4, the prognostic significance of isolated M1 disease is less clear (\citefig{surv_mstat_shh_group3_group4}, appendix figure not shown). Isolated M1 disease is associated with increased risk in Group~3 in the discovery cohort, but not the validation cohort, with the opposite pattern seen in the SHH patients. However, for both discovery and validation cohorts, there are no survival differences survival between M0 and M1 patients with Group~4 disease. There are no CNAs in any of the subgroups that are associated with an increased risk of leptomeningeal dissemination (appendix table not shown). Overall, many clinical biomarkers continue to exhibit prognostic significance when medulloblastoma is analyzed in a subgroup-specific fashion (appendix table not shown).
+
+\bigskip
 
 \begin{figure}[ht]
 	\begin{center}
@@ -721,6 +556,8 @@ Two additional stratification schemes were constructed using only clinical bioma
 
 In Group~3 patients, iso17q and \emph{MYC} amplification remain the only cytogenetic markers associated with poor survival, whereas chr8q loss and chr1q gain are the only good prognosis markers (\citefig{group3-markers}, appendix data not shown). In multivariate survival analyses, patients with metastasis, iso17q, or MYC amplification represent the high-risk group (\citefig{group3-risk-strat}\emphlab{a}). Critically, absence of these markers can identify a population of Group~3 patients who have a survivorship much longer than Group~3 taken as a whole. The risk groups are not associated with any clinical covariates, including age (\citefig{group3-risk-strat}\emphlab{a}, appendix figures not shown). Consistent with the findings in SHH patients, optimal risk stratification in Group~3 patients requires the use of both clinical and molecular prognostic markers, which have reduced or no prognostic value outside of Group~3 (\citefig{group3-risk-strat}\emphlab{b}, appendix figure not shown). Our proposed risk stratification scheme was validated on the non-overlapping validation cohort using three molecular biomarkers (\emph{MYC}, 17p, and 17q FISH) and metastatic status (\citefig{group3-risk-strat}\emphlab{c}).
 
+\bigskip
+
 \begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=\textwidth]{fig/magic-clin/group3-markers.pdf}
@@ -761,6 +598,8 @@ In Group~3 patients, iso17q and \emph{MYC} amplification remain the only cytogen
 
 Group~4 patients with whole chromosome loss of chr11 or gain of chr17 exhibit better survival under univariate Cox PH models (\citefig{group4-markers}\emphlab{a}), in addition to chr10p loss (\citefig{group4-markers}\emphlab{b}). There is no cytogenetic marker associated with poor prognosis (appendix data not shown). Specifically, neither \emph{MYCN} gain nor amplification is associated with poorer survival in Group~4, in stark contrast to SHH patients, reinforcing the distinction in their underlying biology (\citefig{group4-markers}\emphlab{b}, appendix figure not shown). Similarly, none of the cytogenetic biomarkers identified for Group~3 patients (e.g. iso17q) have any prognostic value in Group~4 (appendix table not shown). Following unbiased model selection, the consensus set of biomarkers results in a risk stratification scheme in which leptomeningeal dissemination identifies high-risk Group~4 patients, except in the context of chr11 loss or chr17 gain (\citefig{group4-risk-strat}\emphlab{a}). The biology underlying chr11 loss is not apparent as there is no obvious minimal common region of deletion (appendix figure not shown), nor are there any recurrent SNVs on chr11 reported in the recent medulloblastoma re-sequencing publications. Group~4 patients with either chr17 gain or chr11 loss, irrespective of their metastatic statuses exhibit survivorship that is characteristic of WNT patients in both the discovery and validation cohorts (\citefig{group4-risk-strat}\emphlab{a},\emphlab{c}), and the survival differences are not explainable by covariates (appendix figure not shown). Significantly, the low-risk Group~4 cohort also included some patients with anaplastic histology. Consistent with other subgroups, the risk stratification model using both clinical and molecular biomarkers achieve the highest accuracy (\citefig{group4-risk-strat}\emphlab{b}). Critically, the cytogenetic biomarkers identify low-risk Group~4 patients whom would be otherwise designated as high-risk by evidence of metastasis and/or anaplastic histology; this finding cannot be extrapolated to SHH and Group~3 patients (\citefig{group4-risk-strat}, appendix figure not shown).  We conclude that through the use of three molecular biomarkers (chr11, 17p, and 17q FISH) and metastatic status, we can accurately and reliably predict the prognosis of patients with Group~4 medulloblastoma.
 
+\bigskip
+
 \begin{figure}[h]
 	\begin{center}
 		\includegraphics{fig/magic-clin/group4-markers.pdf}
@@ -774,6 +613,8 @@ Group~4 patients with whole chromosome loss of chr11 or gain of chr17 exhibit be
 	}
 	\label{fig:group4-markers}
 \end{figure}
+
+\clearpage
 
 \begin{figure}[h]
 	\begin{center}
@@ -811,6 +652,8 @@ If the molecular subgroup information do not influence clinical treatment, howev
 Accordingly, we have addressed some of the challenges that face the treatment of patients with medulloblastoma and provided evidence that supports the classification of medulloblastoma by molecular subgroups in the clinical. By providing medical practitioners with both the means the motivation to realize the clinical potential of our discoveries, we strive to usher in a new era of medulloblastoma treatment based on individualized targeted therapy that enhances the quality of care and preserves the quality of life for the patients.
 
 \clearpage
+
+\singlespacing
 
 
 \begin{multicols}{2}
