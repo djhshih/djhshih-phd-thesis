@@ -1,0 +1,157 @@
+%% SUMMARY OF FEATURES:
+%%
+%% All environments, commands, and options provided by the `ut-thesis'
+%% class will be described below, at the point where they should appear
+%% in the document.  See the file `ut-thesis.cls' for more details.
+%%
+%% To explicitly set the pagestyle of any blank page inserted with
+%% \cleardoublepage, use one of \clearemptydoublepage,
+%% \clearplaindoublepage, \clearthesisdoublepage, or
+%% \clearstandarddoublepage (to use the style currently in effect).
+%%
+%% For single-spaced quotes or quotations, use the `longquote' and
+%% `longquotation' environments.
+
+
+%%%%%%%%%%%%         PREAMBLE         %%%%%%%%%%%%
+
+%%  - Default settings format a final copy (single-sided, normal
+%%    margins, one-and-a-half-spaced with single-spaced notes).
+%%  - For a rough copy (double-sided, normal margins, double-spaced,
+%%    with the word "DRAFT" printed at each corner of every page), use
+%%    the `draft' option.
+%%  - The default global line spacing can be changed with one of the
+%%    options `singlespaced', `onehalfspaced', or `doublespaced'.
+%%  - Footnotes and marginal notes are all single-spaced by default, but
+%%    can be made to have the same spacing as the rest of the document
+%%    by using the option `standardspacednotes'.
+%%  - The size of the margins can be changed with one of the options:
+%%     . `narrowmargins' (1 1/4" left, 3/4" others),
+%%     . `normalmargins' (1 1/4" left, 1" others),
+%%     . `widemargins' (1 1/4" all),
+%%     . `extrawidemargins' (1 1/2" all).
+%%  - The pagestyle of "cleared" pages (empty pages inserted in
+%%    two-sided documents to put the next page on the right-hand side)
+%%    can be set with one of the options `cleardoublepagestyleempty',
+%%    `cleardoublepagestyleplain', or `cleardoublepagestylestandard'.
+%%  - Any other standard option for the `report' document class can be
+%%    used to override the default or draft settings (such as `10pt',
+%%    `11pt', `12pt'), and standard LaTeX packages can be used to
+%%    further customize the layout and/or formatting of the document.
+
+
+\documentclass[12pt]{ut-thesis}
+
+\degree{Doctor of Philosophy}
+\department{Laboratory Medicine and Pathobiology}
+\gradyear{2015}
+\author{J. H. David Shih}
+\title{\textbf{Clinical Genomics of Medulloblastoma}}
+
+%% External formatting definitions
+\input{def}
+
+%% List only down to subsections in the table of contents;
+%% 0=chapter, 1=section, 2=subsection, 3=subsubsection, etc.
+\setcounter{tocdepth}{2}
+
+%% Make each page fill up the entire page.
+\flushbottom
+
+
+%%%%%%%%%%%%      MAIN  DOCUMENT      %%%%%%%%%%%%
+
+\begin{document}
+
+%% This sets the page style and numbering for preliminary sections.
+\begin{preliminary}
+
+%% This generates the title page from the information given above.
+\maketitle
+
+\cleardoublepage
+
+\begin{abstract}
+Medulloblastoma is the most common malignant brain tumour in children. Standard treatments cure 60-70\% of patients; however, survivors suffer long-term developmental deficits due to treatment-associated toxicity. Recent studies identified four subgroups of medulloblastoma with distinct expression patterns: WNT, SHH, Group3, and Group4. We believe these subgroups represent different molecular entities that arise through and rely on different oncogenic processes. Accordingly, we aim to improve prediction of patient survival by identifying prognostic markers for each subgroup, and we hope to abrogate non-specific cytotoxic treatments by discovering candidates for targeted intervention against each subgroup.
+
+Molecular subgroups of medulloblastoma tumours were determined with a trained classifier using select subgroup-specific marker expressions. DNA copy-number profiles ($n=1087$) were analyzed to identify somatic copy-number aberrations (SCNAs) and recurrently disrupted genes and pathways. Prognostic SCNAs were identified by Kaplan-Meier survival analyses on a discovery set ($n=673$), and the candidates were validated by FISH on a tissue microarray of validation samples ($n=453$).
+
+Tumours of each subgroup harbour recurrent SCNAs disrupting different pathways. WNT medulloblastoma is characterized by Beta-catenin mutation, SHH medulloblastoma by activated Gli signaling, Group3 medulloblastoma by Myc activation, and Group4 medulloblastoma by SNCAIP duplication. Further, patients of different subgroups exhibit differential response to standard treatments. Incorporating subgroup data into survival models significantly improved predictive performance. Using six FISH biomarkers on FFPE tissues, we reproducibly stratified patients into groups with distinct survivorships.
+
+The stark differences in genetic alterations among medulloblastoma subgroups suggest that each subgroup arises through different biological mechanisms. The molecular classification of medulloblastoma not only improved survival prediction but also revealed pathways for intervention. We have identified a panel of prognostic markers that can be used to select patients for therapy de-escalation in future trials, and we have also discovered candidates for the development of targeted therapy.    
+\end{abstract}
+
+%% Anything placed between the abstract and table of contents will
+%% appear on a separate page since the abstract ends with \newpage and
+%% the table of contents starts with \clearpage.  Use \cleardoublepage
+%% for anything that you want to appear on a right-hand page.
+
+\begin{dedication}
+\begin{center}
+\vspace{1in}
+\emph{To my mentor, Professor Hon Kwan.}
+\end{center}
+\end{dedication}
+
+\newpage
+
+\begin{acknowledgements}
+I would like to thank my advisors, Michael and Gary, for all their support and guidance throughout my studies. I would like to acknowledge the contributions of my thesis committee -- Dr.\ Meredith Irwin, Dr.\ Quaid Morris -- for their insightful inputs. I would also like to acknowledge all my labmates for their help and feedback. Most of all, I wish to thank Paul for his contribution to our collaborative pursuits.
+
+I must thank all members of the Medulloblastoma Advanced Genomics Consortium for their contributions, without which the studies described herein would not be possible. I am especially thankful for work done by Dr.\ Andrey Korshunov, Dr.\ Stefan Pfister, and their teams at the German Cancer Research Center.
+
+I would also like to thank all my teachers who imparted invaluable knowledge and expertise. I especially thank Dr.\ Derek Corneil, Dr.\ Geoffrey Hinton, Dr.\ Boris Steipe, and Dr.\ Reinhold Vieth at the University of Toronto. I would also like to highlight Massive Open Online Courses offered by Stanford University, Coursera, and edX, as well as course notes graciously made openly available by instructors at other institutions. I owe a debt of gratitude to inspirational teachers such as Dr.\ Andrew Ng (Stanford University), Dr.\ Daphne Koller (Stanford University), Dr.\ Robert Pich\'{e} (Tampere University of Technology), Dr.\ Brain Caffo (Johns Hopkins Bloomberg School of Public Health), Dr.\ Rafael Irizarry (Harvard School of Public Health), and Dr.\ Tom Mitchell (Carnegie Mellon University).
+
+I am grateful to open source software communities for openly sharing their work, including authors, contributors, and maintainers on CRAN, Bioconductor, PyPI, GitHub, and numerous other repositories. Their spirit of openness is infectious.
+
+This work is supported by the Frederick Banting and Charles Best Canada Graduate Scholarship, the Michael Smith Foreign Study Supplement, the Ontario Graduate Scholarship, and the University of Toronto Fellowship.
+\end{acknowledgements}
+
+
+\tableofcontents
+
+\listoftables
+
+\listoffigures
+
+\include{abbrev}
+
+%% End of the preliminary sections: reset page style and numbering.
+\end{preliminary}
+
+
+%% Chapter files
+
+\nociteself{shih14,shih12,northcott12,diaz12}
+
+\include{ch01}
+\include{ch02}
+\include{ch03}
+\include{ch04}
+\include{ch05}
+\include{ch06}
+
+%% Appendix
+
+\singlespacing
+\small
+
+\addcontentsline{toc}{chapter}{Publications Arising from Thesis}
+
+\vspace*{-10em}
+\bibliographystyleself{nature}
+\bibliographyself{self}
+\bigskip
+$^*$ These authors contributed equally.
+
+\clearpage
+
+\clearpage
+
+\addcontentsline{toc}{chapter}{References}
+
+\bibliographystyleref{nature}
+\bibliographyref{mb,tech,chromothr,cancer,array-qc}
+
+
+\end{document}

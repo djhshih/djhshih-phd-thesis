@@ -1,0 +1,61 @@
+\usepackage{graphicx}
+
+\usepackage{multicol}
+
+\usepackage[font={small,sf}]{caption}
+\captionsetup[figure]{labelfont=bf}
+\captionsetup[table]{labelfont=bf}
+
+\usepackage{sidecap}
+\sidecaptionvpos{figure}{c}
+
+\usepackage{setspace}
+
+% define new environments
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem*{hypothesis}{Hypothesis}
+\newtheorem*{objective}{Objective}
+
+% per-chapter figure numbering
+\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+% use arabic section numbering for figures
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+
+% use roman number formatting for sections
+\renewcommand\thesection{\Roman{section}}
+
+% disable subsection numbering
+\setcounter{secnumdepth}{1}
+
+\usepackage[super,sort&compress]{natbib}
+
+% define multiple reference lists
+\usepackage{multibib}
+\newcites{self,ref}{Publications Arising from Thesis,References}
+
+
+% emphasize author name
+\newcommand{\emphname}[1]{\underline{\textbf{#1}}}
+
+% emphasize label
+\newcommand{\emphlab}[1]{\textbf{\textsf{#1}}}
+
+% cite figure and table
+\newcommand{\citefig}[1]{\emphlab{Figure~\ref{fig:#1}}}
+\newcommand{\citetable}[1]{\emphlab{Table~\ref{tbl:#1}}}
+\newcommand{\citech}[1]{\emphlab{Chapter~\ref{ch:#1}}}
+
+% paragraph formatting
+\setlength{\parindent}{3em}
+\setlength{\parskip}{0.5em}
+
+% margins
+\geometry{headsep=0.4in, top=1.25in}
+
+\usepackage{sectsty}
+\chapternumberfont{\large}
+\chaptertitlefont{\LARGE}
+\sectionfont{\Large}
+\subsectionfont{\large}

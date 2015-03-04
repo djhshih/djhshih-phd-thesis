@@ -1,23 +1,20 @@
-all: committee
+all: thesis
 
-committee: self.bbl own.bbl ref.bbl
-	pdflatex committee.tex
+thesis: self.bbl ref.bbl
+	pdflatex thesis.tex
 
 self.bbl: self.aux
 	bibtex self
-
-own.bbl: own.aux
-	bibtex own
 
 ref.bbl: ref.aux
 	bibtex ref
 
 %.aux:
-	pdflatex committee.tex
+	pdflatex thesis.tex
 
 clean:
-	rm -rf self.aux own.aux ref.aux *.bbl
+	rm -rf self.aux ref.aux *.bbl
 
 purge:
-	rm -rf committee.pdf *.dvi *.aux *.blg *.bbl *.log
+	rm -rf thesis.pdf *.dvi *.aux *.blg *.bbl *.log
 
