@@ -2,6 +2,8 @@ all: thesis
 
 thesis: self.bbl ref.bbl
 	pdflatex thesis.tex
+	makeglossaries thesis
+	pdflatex thesis.tex
 
 self.bbl: self.aux
 	bibtex self

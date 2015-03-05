@@ -4,11 +4,64 @@
 
 Medulloblastoma is the most common solid childhood malignancy \citeref{mainprize00}. Current therapy for medulloblastoma --- including surgical resection, radiation of the entire brain and spinal cord, and aggressive chemotherapy --- yields five-year survival rates of 60-70\% \citeref{gajjar06}. Survivors are often left with significant neurological, intellectual, and physical disabilities secondary to the effects of these non-specific, cytotoxic therapies on the developing nervous system \citeref{spiegler04,mabbott05}.
 
-Recent evidence suggests that medulloblastoma in fact comprises a group of biologically distinct molecular entities whose clinical and genetic differences may require separate therapeutic strategies \citeref{thompson06,kool08,northcott11a,remke11,cho11}. Four principal subgroups\citeref{taylor12} of medulloblastoma have been identified: WNT, SHH, Group~3, and Group~4, and there is preliminary evidence for clinically significant subdivisions of the subgroups \citeref{northcott11a,cho11,remke11,taylor12,northcott11b}. Targeted therapies based on the genetics of the disease are not currently in use. However, inhibitors of the Sonic Hedgehog (Shh) pathway activator, Smoothened, have shown some early evidence of efficacy \citeref{rudin09}. With a deeper understanding of the genomics and biology of medulloblastoma subgroups, we hope to herald a new era of medulloblastoma treatment based on selective, specific, targeted therapy.
+\section{Epidemiology}
+
+
+
+\section{Genetic predisposition}
+
+Genetic disorder	mutated gene	medulloblastoma
+basal cell nevus syndrome (Gorlin's syndrome)	PTCH1, PTCH2,  SUFU	SHH
+DICER1 syndrome	DICER1
+Nijmegen breakage syndrome	NBN
+Turcot's syndrome	APC	WNT
+Fanconi anemia	BRCA2
+Li-Fraumeni	TP53
+neurofibromatosis type 1 (Von Recklinghausen's disease)	NF1
+Rubinstein-Taybi syndrome	CREBBP
+Fragile X	FMR1
+ataxia telangiectasia (Louis-Bar syndrome)	ATM
+
+\gls{atrt} and medulloblastoma are similar by histology\citeref{utsuki03}, and by \gls{mri} \citeref{koral08}.
+SMARCB1 (hSNF5/INI) mutation is indicative of \gls{atrt} instead of medulloblastoma \citeref{biegel00,kraus02}.
+
+\section{Histopathological classification}
+
+
+WHO currently classifies \gls{cns} tumours into 86 histopathological entities \citeref{who07}.
+
+
+\section{Molecular biology}
+
+
+
+\section{Molecular classification}
+
+
+\section{Targeted therapy}
+
+Rationale for targeted therapies in medulloblastoma \citeref{macdonald14}.
+
+Targeted treatment for \gls{shh}-dependent medulloblastoma \citeref{kieran14}.
+utility of smoothened inhibitors in cancer \citeref{amakye13}.
+
+Targeting \gls{shh}-dependent medulloblastoma through inhibition of auroa and polo-like kinases \citeself{markant13}.
+
+Survivin as a target in \gls{shh}-dependent medulloblastoma \citeref{brun14}.
+
+Sensitivity to anticancer therapies, likely due to preservation of Bax apoptotic pathway in medulloblastoma \citeref{crowther13}.
+In comparison, \citeref{cnspnet} responds poorly to standard treatment \citeref{who07}.
+
+BET bromodomain inhibition of MYC-amplified medulloblastoma \citeref{bandopadhayay14}. 
+
+
+Recent evidence suggests that medulloblastoma in fact comprises a group of biologically distinct molecular entities whose clinical and genetic differences may require separate therapeutic strategies \citeref{thompson06,kool08,northcott11a,remke11,cho11}. Four principal subgroups\citeref{taylor12} of medulloblastoma have been identified: WNT, SHH, Group~3, and Group~4, and there is preliminary evidence for clinically significant subdivisions of the subgroups \citeref{northcott11a,cho11,remke11,taylor12,northcott11b}. Targeted therapies based on the genetics of the disease are not currently in use. However, inhibitors of the \gls{shh} pathway activator, smoothened, have shown some early evidence of efficacy \citeref{rudin09}. With a deeper understanding of the genomics and biology of medulloblastoma subgroups, we hope to herald a new era of medulloblastoma treatment based on selective, specific, targeted therapy.
 
 Molecular subgroups are reproduced by collaborators.
-Attempt at molecular classification is not novel. Classification of CNS-PNET is not very robust \citeself{li09}.
+Attempt at molecular classification is not novel. Classification of \gls{cnspnet} is not very robust \citeself{li09}.
 Sometimes it helps guide diagnosis \citeself{merino15}.
+
+\section{Research objectives}
 
 My study will focus on the following three obstacles that hinders the development of targeted therapy against medulloblastoma molecular subgroups:
 
@@ -23,11 +76,12 @@ The objectives of my study are to provide viable solutions to these issues and t
 
 \subsection{Aim I: Molecular classification of medulloblastoma in clinical contexts}
 
-Although the retrospective classification of medulloblastoma has been scientifically informative, molecular subgrouping has not been applied in the context of a prospective clinical trial. One major obstacle is the lack of fresh-frozen samples for most clinical cases. Expression profiling, on which molecular classification was based, depends on the availability of high-quality RNA. In contrast, clinical samples are routinely subjected to formalin-fixation and paraffin-embedding (FFPE), which preserves tissue integrity but causes nucleic acid degradation. To facilitate the development of therapy specifically targeted against molecular subgroups, we sought to establish an molecular subgrouping assay that can be clinically applied on FFPE samples. I have established an analytic pipeline to molecular subgrouping using expression data generated by nanoString assays, and demonstrated its high classification accuracy on FFPE samples \citeself{northcott12}. To further make the assay clinically applicable, I have implemented several quality-control measures that identify cases which cannot be reliably assigned molecular subgroup, due to poor specimen quality or assay reaction failure.
+Although the retrospective classification of medulloblastoma has been scientifically informative, molecular subgrouping has not been applied in the context of a prospective clinical trial. One major obstacle is the lack of fresh-frozen samples for most clinical cases. Expression profiling, on which molecular classification was based, depends on the availability of high-quality RNA. In contrast, clinical samples are routinely subjected to formalin-fixation and paraffin-embedding, which preserves tissue integrity but causes nucleic acid degradation. To facilitate the development of therapy specifically targeted against molecular subgroups, we sought to establish an molecular subgrouping assay that can be clinically applied on \gls{ffpe} samples. I have established an analytic pipeline to molecular subgrouping using expression data generated by nanoString assays, and demonstrated its high classification accuracy on \gls{ffpe} samples \citeself{northcott12}. To further make the assay clinically applicable, I have implemented several quality-control measures that identify cases which cannot be reliably assigned molecular subgroup, due to poor specimen quality or assay reaction failure.
 
 \subsection{Aim II: Target identification by copy-number profiling of medulloblastoma}
 
-After having established a clinically applicable molecular classification methodology, I turned to the problem of identifying molecular targets in medulloblastoma. Unlike SHH medulloblastomas, actionable targets for WNT, Group~3, and Group~4 tumours have yet been identified. However, prior attempts may have been underpowered to discriminate the genomic differences among the four molecular subgroups. To this end, the Medulloblastoma Advanced Genomics International Consortium (MAGIC), consisting of scientists and physicians from 43 cities across the globe, has gathered $>1200$ medulloblastomas. Paul Northcott and I have analyzed the genomic copy-number profiles of the tumours by Single Nucleotide Polymorphism (SNP) arrays. We have identified genes and pathways that characterize each medulloblastoma subgroup \citeself{shih12}.
+After having established a clinically applicable molecular classification methodology, I turned to the problem of identifying molecular targets in medulloblastoma. Unlike SHH medulloblastomas, actionable targets for WNT, Group~3, and Group~4 tumours have yet been identified. However, prior attempts may have been underpowered to discriminate the genomic differences among the four molecular subgroups. To this end, the \gls{magic}, consisting of scientists and physicians from 43 cities across the globe, has gathered $>1200$ medulloblastomas. Paul Northcott and I have analyzed the genomic copy-number profiles of the tumours by \gls{snp} arrays. We have identified genes and pathways that characterize each medulloblastoma subgroup \citeself{shih12}.
+
 
 \subsection{Aim III: Clinical prognostication within medulloblastoma subgroups}
 

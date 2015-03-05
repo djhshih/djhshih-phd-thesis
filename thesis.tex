@@ -50,6 +50,7 @@
 
 %% External formatting definitions
 \input{def}
+\input{abbrev}
 
 %% List only down to subsections in the table of contents;
 %% 0=chapter, 1=section, 2=subsection, 3=subsubsection, etc.
@@ -107,6 +108,9 @@ I am grateful to open source software communities for openly sharing their work,
 This work is supported by the Frederick Banting and Charles Best Canada Graduate Scholarship, the Michael Smith Foreign Study Supplement, the Ontario Graduate Scholarship, and the University of Toronto Fellowship.
 \end{acknowledgements}
 
+{
+\singlespacing
+\small
 
 \tableofcontents
 
@@ -114,7 +118,9 @@ This work is supported by the Frederick Banting and Charles Best Canada Graduate
 
 \listoffigures
 
-\include{abbrev}
+\glsaddall
+\printglossary[type=\acronymtype,title=Abbreviations,nonumberlist]
+}
 
 %% End of the preliminary sections: reset page style and numbering.
 \end{preliminary}
@@ -133,6 +139,7 @@ This work is supported by the Frederick Banting and Charles Best Canada Graduate
 
 %% Appendix
 
+{
 \singlespacing
 \small
 
@@ -151,7 +158,8 @@ $^*$ These authors contributed equally.
 \addcontentsline{toc}{chapter}{References}
 
 \bibliographystyleref{nature}
-\bibliographyref{mb,tech,chromothr,cancer,array-qc}
+\bibliographyref{mb,tech,chromothr,cancer,array-qc,atrt,mb-therapy}
+}
 
 
 \end{document}

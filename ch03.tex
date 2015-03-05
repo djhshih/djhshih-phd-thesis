@@ -19,20 +19,22 @@ Current medulloblastoma protocols stratify patients based on clinical features: 
 \end{SCfigure}
 
 
-To determine whether subgroup affiliation could support or supplant clinical variables for prognostication in medulloblastoma patients and to determine the effects of subgroup affiliation on cytogenetic biomarkers, we assembled an international discovery cohort of 673 medulloblastomas through MAGIC, for which we had both clinical follow-up and copy number data (Affymetrix SNP 6.0). To begin, I identified subgroup-specific copy-number aberrations (CNAs) and integrated them with clinical variables to develop subgroup-specific risk models based on the discovery cohort. In order to validate the models and ensure that the technique was generalizable to routine pathology laboratories, our colloborators (Andrey Korshunov and Stefan Pfister) then studied a panel of six cytogenetic biomarkers (\emph{GLI2}, \emph{MYC}, 11, 14, 17p, and 17q) using interphase fluorescent in-situ hybridization (FISH) on an FFPE medulloblastoma tissue microarray (TMA) that includes a set of 453 medulloblastomas that were treated at a single center and does not overlap with the discovery cohort.
+To determine whether subgroup affiliation could support or supplant clinical variables for prognostication in medulloblastoma patients and to determine the effects of subgroup affiliation on cytogenetic biomarkers, we assembled an international discovery cohort of 673 medulloblastomas through MAGIC, for which we had both clinical follow-up and copy number data (Affymetrix SNP 6.0). To begin, I identified subgroup-specific copy-number aberrations (CNAs) and integrated them with clinical variables to develop subgroup-specific risk models based on the discovery cohort. In order to validate the models and ensure that the technique was generalizable to routine pathology laboratories, our colloborators (Andrey Korshunov and Stefan Pfister) then studied a panel of six cytogenetic biomarkers (\gene{GLI2}, \gene{MYC}, 11, 14, 17p, and 17q) using interphase \gls{fish} on an \gls{ffpe} medulloblastoma tissue microarray that includes a set of 453 medulloblastomas that were treated at a single center and does not overlap with the discovery cohort.
 
 
-The analysis of $> 1000$ medulloblastoma patients clearly demonstrates that subgroup affiliation enhances prognostication with clinical biomarkers, and that the majority of published molecular biomarkers are only relevant in the setting of a single subgroup. The combination of clinical variables, subgroup affiliation, and six cytogenetic markers analyzed on FFPE tissues can achieve an unprecedented level of prognostic prediction for medulloblastoma patients that is practical, reliable, and reproducible.
+The analysis of $> 1000$ medulloblastoma patients clearly demonstrates that subgroup affiliation enhances prognostication with clinical biomarkers, and that the majority of published molecular biomarkers are only relevant in the setting of a single subgroup. The combination of clinical variables, subgroup affiliation, and six cytogenetic markers analyzed on gls{ffpe} tissues can achieve an unprecedented level of prognostic prediction for medulloblastoma patients that is practical, reliable, and reproducible.
 
 \begin{SCfigure}[5][b]
 	\includegraphics[width=0.28\textwidth]{fig/magic-clin/surv_mb-subgroups.pdf}
 	\caption[Overall survival curves for molecular subgroups of medulloblastoma]
 	{
 	Overall survival curves for molecular subgroups of medulloblastoma.
-	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; hazard ratio estimates (HR) are derived from Cox proportional-hazards analyses.
+	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:surv_mb-subgroups}
 \end{SCfigure}
+
+In China, WNT Medulloblastoma continues to have superior survival compared to other medulloblastoma subgroups \citeref{zhang14}.
 
 \clearpage
 
@@ -51,7 +53,7 @@ Many prior medulloblastoma biomarker publications were limited by sample size, a
 	\caption[Ten-year overall survival curves for WNT medulloblastoma]
 	{
 	Ten-year overall survival curves for WNT medulloblastoma, split by age group or metastatic status.
-	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; hazard ratio estimates (HR) are derived from Cox proportional-hazards analyses.
+	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:surv_ageg_mstat_wnt}
 \end{figure}
@@ -69,7 +71,7 @@ While metastatic status is not prognostic for patients with WNT medulloblastoma,
 	\caption[Overall survival curves for age groups within SHH, Group~3, and Group~4 subgroups]
 	{
 	Overall survival curves for age groups within SHH, Group~3, and Group~4 subgroups.
-	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; hazard ratio estimates (HR) are derived from Cox proportional-hazards analyses.
+	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:surv_ageg_shh_group3_group4}
 \end{figure}
@@ -81,7 +83,7 @@ While metastatic status is not prognostic for patients with WNT medulloblastoma,
 	\caption[Overall survival curves for metastatic status within SHH, Group~3, and Group~4 subgroups]
 	{
 	Overall survival curves for metastatic status within SHH, Group~3, and Group~4 subgroups.
-	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; hazard ratio estimates (HR) are derived from Cox proportional-hazards analyses.
+	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:surv_mstat_shh_group3_group4}
 \end{figure}
@@ -90,7 +92,7 @@ While metastatic status is not prognostic for patients with WNT medulloblastoma,
 
 \subsection{Subgroup and metastatic status are the most powerful predictive prognostic biomarkers}
 
-Multivariate survival analyses were conducted in order to dissect the relative predictive value of clinical variables (age, gender, metastatic status, and histotype) and molecular subgroup affiliation. Stepwise Cox proportional-hazards (PH) regressions revealed that molecular subgroup significantly contributes to multivariate survival prediction, on top of a regression model already parameterized by clinical variables: gender, age, metastatic status, and histology (\citefig{subgroup-specific_cox}\emphlab{a}). Further, Cox PH models parameterized with both clinical biomarkers and molecular subgroup achieve higher prediction accuracy in time-dependent ROC analyses (\citefig{subgroup-specific_cox}\emphlab{b}, appendix figure not shown). In isolation, each biomarker has modest prediction accuracy (\citefig{subgroup-specific_cox}\emphlab{c}), compared to the complete multivariate model (\citefig{subgroup-specific_cox}\emphlab{b}). In the complete model, the removals of metastatic status and subgroup lead to the greatest decreases in predictive accuracy (\citefig{subgroup-specific_cox}\emphlab{d}). Taken together, these results suggest that subgroup affiliation and metastatic status are the most important predictive biomarkers, and that they make non-redundant contributions to the prediction of survival. We conclude that combining both clinical biomarkers (metastatic status) and molecular biomarkers (subgroup affiliation) will make the optimal tool for predicting survival of medulloblastoma patients.
+Multivariate survival analyses were conducted in order to dissect the relative predictive value of clinical variables (age, gender, metastatic status, and histotype) and molecular subgroup affiliation. Stepwise Cox proportional-hazards (PH) regressions revealed that molecular subgroup significantly contributes to multivariate survival prediction, on top of a regression model already parameterized by clinical variables: gender, age, metastatic status, and histology (\citefig{subgroup-specific_cox}\emphlab{a}). Further, Cox PH models parameterized with both clinical biomarkers and molecular subgroup achieve higher prediction accuracy in time-dependent \gls{roc} analyses (\citefig{subgroup-specific_cox}\emphlab{b}, appendix figure not shown). In isolation, each biomarker has modest prediction accuracy (\citefig{subgroup-specific_cox}\emphlab{c}), compared to the complete multivariate model (\citefig{subgroup-specific_cox}\emphlab{b}). In the complete model, the removals of metastatic status and subgroup lead to the greatest decreases in predictive accuracy (\citefig{subgroup-specific_cox}\emphlab{d}). Taken together, these results suggest that subgroup affiliation and metastatic status are the most important predictive biomarkers, and that they make non-redundant contributions to the prediction of survival. We conclude that combining both clinical biomarkers (metastatic status) and molecular biomarkers (subgroup affiliation) will make the optimal tool for predicting survival of medulloblastoma patients.
 
 \begin{figure}[h]
 	\begin{center}
@@ -129,7 +131,7 @@ Several cytogenetic biomarkers have been previously reported to be associated wi
 	\textbf{d}, Overall survival curves for chr17q status in Group~3 and Group~4 subgroups. 
 	\textbf{e}, Overall survival curves for chr10q status across the entire cohort.
 	\textbf{f}, Overall survival curves for chr10q status in SHH and non-SHH medulloblastomas.
-	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; hazard ratio estimates (HR) are derived from Cox proportional-hazards analyses.
+	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:subgroup-specific_eg}
 \end{figure}
@@ -138,9 +140,9 @@ Several cytogenetic biomarkers have been previously reported to be associated wi
 
 \subsection{SHH patients can be stratified into three distinct risk groups}
 
-We identified 11 CNAs that are prognostically significant in our SHH medulloblastoma discovery set (\citefig{shh-markers}, appendix figure not shown) in univariate survival analyses. Given the considerable number of candidates, the reproducibility of the identified biomarkers was assessed by cross-validation, and the expected sample sizes required for validation in future prospective trials were estimated to facilitate candidate prioritization (appendix table not shown). Specific amplifications but not broad gains encompassing GLI2 or MYCN are associated with bleak prognosis (\citefig{shh-markers}\emphlab{a--b}, appendix figure not shown). Loss of chr14q confers significantly inferior survival (\citefig{shh-markers}\emphlab{c}). There is no minimal region of deletion on chr14 in SHH patients (appendix figure not shown), and recent medulloblastoma re-sequencing efforts have not identified any recurrent SNVs on chr14 in SHH medulloblastoma . The presence of chromothripsis (chromosome shattering) is associated with worse survival in SHH patients (\citefig{shh-markers}\emphlab{d}).
+We identified 11 CNAs that are prognostically significant in our SHH medulloblastoma discovery set (\citefig{shh-markers}, appendix figure not shown) in univariate survival analyses. Given the considerable number of candidates, the reproducibility of the identified biomarkers was assessed by cross-validation, and the expected sample sizes required for validation in future prospective trials were estimated to facilitate candidate prioritization (appendix table not shown). Specific amplifications but not broad gains encompassing \gene{GLI2} or \gene{MYCN} are associated with bleak prognosis (\citefig{shh-markers}\emphlab{a--b}, appendix figure not shown). Loss of chr14q confers significantly inferior survival (\citefig{shh-markers}\emphlab{c}). There is no minimal region of deletion on chr14 in SHH patients (appendix figure not shown), and recent medulloblastoma re-sequencing efforts have not identified any recurrent SNVs on chr14 in SHH medulloblastoma . The presence of chromothripsis (chromosome shattering) is associated with worse survival in SHH patients (\citefig{shh-markers}\emphlab{d}).
 
-To integrate the individual biomarkers into a risk stratification model, multivariate Cox PH analyses were performed on all significant prognostic markers. Through multiple stepwise regression procedures, a consensus set of biomarkers was selected for inclusion in the model in an unbiased manner. The proposed risk stratification scheme represents the model that was most consistent with available data in the discovery cohort, from among many possible alternatives (\citefig{shh-risk-strat}\emphlab{a}, appendix data not shown). \emph{GLI2} amplification, 14q loss, and leptomeningeal dissemination (M+ disease) identify high and standard risk patients. Specifically, \emph{GLI2} amplification alone can identify patients with bleak prognosis (\citefig{shh-risk-strat}\emphlab{a}, appendix figure not shown). Absence of these markers demarcates a low-risk group of patients who exhibit survivorship reminiscent of WNT patients. Importantly, none of the covariates, particularly age and anaplastic histology, can explain the survival differences observed among risk groups (\citefig{shh-risk-strat}\emphlab{a}, appendix figures not shown). Direct application of the proposed risk stratification scheme on the independent validation cohort yields distinct survivorships for the three risk groups, thereby validating the model (\citefig{shh-risk-strat}\emphlab{c}).
+To integrate the individual biomarkers into a risk stratification model, multivariate Cox PH analyses were performed on all significant prognostic markers. Through multiple stepwise regression procedures, a consensus set of biomarkers was selected for inclusion in the model in an unbiased manner. The proposed risk stratification scheme represents the model that was most consistent with available data in the discovery cohort, from among many possible alternatives (\citefig{shh-risk-strat}\emphlab{a}, appendix data not shown). \gene{GLI2} amplification, 14q loss, and leptomeningeal dissemination (M+ disease) identify high and standard risk patients. Specifically, \gene{GLI2} amplification alone can identify patients with bleak prognosis (\citefig{shh-risk-strat}\emphlab{a}, appendix figure not shown). Absence of these markers demarcates a low-risk group of patients who exhibit survivorship reminiscent of WNT patients. Importantly, none of the covariates, particularly age and anaplastic histology, can explain the survival differences observed among risk groups (\citefig{shh-risk-strat}\emphlab{a}, appendix figures not shown). Direct application of the proposed risk stratification scheme on the independent validation cohort yields distinct survivorships for the three risk groups, thereby validating the model (\citefig{shh-risk-strat}\emphlab{c}).
 
 \begin{figure}[h]
 	\begin{center}
@@ -149,16 +151,16 @@ To integrate the individual biomarkers into a risk stratification model, multiva
 	\caption[Overall survival curves for molecular biomarkers in SHH medulloblastoma]
 	{
 	Overall survival curves for molecular biomarkers in SHH medulloblastoma:
-	\textbf{a}, \emph{GLI2} copy number status;
-	\textbf{b}, \emph{MYCN} copy number status;
+	\textbf{a}, \gene{GLI2} copy number status;
+	\textbf{b}, \gene{MYCN} copy number status;
 	\textbf{c}, chr14q status; and
 	\textbf{d}, chromothripsis status.
-	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; hazard ratio estimates (HR) are derived from Cox proportional-hazards analyses.
+	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:shh-markers}
 \end{figure}
 
-Two additional stratification schemes were constructed using only clinical biomarkers or only cytogenetic markers; however, the proposed model, which combines both types of biomarkers, yields the highest prediction accuracy (\citefig{shh-risk-strat}\emphlab{b}, appendix figure not shown). Furthermore, the accuracy of the combined risk model is drastically reduced when applied across non-SHH patients, further underscoring the importance of taking subgroup into consideration during risk stratification. We conclude that by using two molecular biomarkers (\emph{GLI2} and 14q FISH) and metastatic status, we can practically and reliably predict prognosis for patients with SHH medulloblastoma.
+Two additional stratification schemes were constructed using only clinical biomarkers or only cytogenetic markers; however, the proposed model, which combines both types of biomarkers, yields the highest prediction accuracy (\citefig{shh-risk-strat}\emphlab{b}, appendix figure not shown). Furthermore, the accuracy of the combined risk model is drastically reduced when applied across non-SHH patients, further underscoring the importance of taking subgroup into consideration during risk stratification. We conclude that by using two molecular biomarkers (\gene{GLI2} and 14q \gls{fish}) and metastatic status, we can practically and reliably predict prognosis for patients with SHH medulloblastoma.
 
 \clearpage
 
@@ -172,7 +174,7 @@ Two additional stratification schemes were constructed using only clinical bioma
 	\textbf{a}, Risk stratification of SHH medulloblastomas by molecular and clinical prognostic markers. \emph{Top-left}, decision tree; \emph{bottom-left}, events plot depicting status of molecular and clinical markers across the risk groups; \emph{right}, overall survival curves for SHH risk groups.
 	\textbf{b}, Average time-dependent AUCs for risk groups stratified using only clinical or molecular markers, or both. Risk stratification regimens are applied to SHH and non-SHH medulloblastomas. ***, $p < 0.001$, Friedman rank sum tests.
 	\textbf{c}, Survival curves for SHH risk groups in the validation cohort.
-	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; hazard ratio estimates (HR) are derived from Cox proportional-hazards analyses.
+	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:shh-risk-strat}
 \end{figure}
@@ -181,7 +183,7 @@ Two additional stratification schemes were constructed using only clinical bioma
 
 \subsection{Metastatic status, iso17q, and \emph{MYC} amplification demarcate high-risk Group~3 patients}
 
-In Group~3 patients, iso17q and \emph{MYC} amplification remain the only cytogenetic markers associated with poor survival, whereas chr8q loss and chr1q gain are the only good prognosis markers (\citefig{group3-markers}, appendix data not shown). In multivariate survival analyses, patients with metastasis, iso17q, or MYC amplification represent the high-risk group (\citefig{group3-risk-strat}\emphlab{a}). Critically, absence of these markers can identify a population of Group~3 patients who have a survivorship much longer than Group~3 taken as a whole. The risk groups are not associated with any clinical covariates, including age (\citefig{group3-risk-strat}\emphlab{a}, appendix figures not shown). Consistent with the findings in SHH patients, optimal risk stratification in Group~3 patients requires the use of both clinical and molecular prognostic markers, which have reduced or no prognostic value outside of Group~3 (\citefig{group3-risk-strat}\emphlab{b}, appendix figure not shown). Our proposed risk stratification scheme was validated on the non-overlapping validation cohort using three molecular biomarkers (\emph{MYC}, 17p, and 17q FISH) and metastatic status (\citefig{group3-risk-strat}\emphlab{c}).
+In Group~3 patients, iso17q and \emph{MYC} amplification remain the only cytogenetic markers associated with poor survival, whereas chr8q loss and chr1q gain are the only good prognosis markers (\citefig{group3-markers}, appendix data not shown). In multivariate survival analyses, patients with metastasis, iso17q, or MYC amplification represent the high-risk group (\citefig{group3-risk-strat}\emphlab{a}). Critically, absence of these markers can identify a population of Group~3 patients who have a survivorship much longer than Group~3 taken as a whole. The risk groups are not associated with any clinical covariates, including age (\citefig{group3-risk-strat}\emphlab{a}, appendix figures not shown). Consistent with the findings in SHH patients, optimal risk stratification in Group~3 patients requires the use of both clinical and molecular prognostic markers, which have reduced or no prognostic value outside of Group~3 (\citefig{group3-risk-strat}\emphlab{b}, appendix figure not shown). Our proposed risk stratification scheme was validated on the non-overlapping validation cohort using three molecular biomarkers (\emph{MYC}, 17p, and 17q \gls{fish}) and metastatic status (\citefig{group3-risk-strat}\emphlab{c}).
 
 \bigskip
 
@@ -196,7 +198,7 @@ In Group~3 patients, iso17q and \emph{MYC} amplification remain the only cytogen
 	\textbf{b}, \emph{MYC} copy number status; and 
 	\textbf{c}, chr8q status.
 	\textbf{d}, Risk stratification of Group~3 medulloblastomas by molecular and clinical prognostic markers.
-	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; hazard ratio estimates (HR) are derived from Cox proportional-hazards analyses.
+	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:group3-markers}
 \end{figure}
@@ -213,7 +215,7 @@ In Group~3 patients, iso17q and \emph{MYC} amplification remain the only cytogen
 	\textbf{a}, Risk stratification of Group~3 medulloblastomas by molecular and clinical prognostic markers.	\emph{Top-left}, decision tree; \emph{bottom-left}, events plot depicting status of molecular and clinical markers across the risk groups; \emph{right}, overall survival curves for Group~3 risk groups.
 	\textbf{b}, Average time-dependent AUCs for risk groups stratified using only clinical or molecular markers, or both. Risk stratification regimens are applied to Group~3 and non-Group~3 medulloblastomas. ***, $p < 0.001$, Friedman rank sum tests.
 	\textbf{c}, Survival curves for Group~3 risk groups in the validation cohort.
-	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; hazard ratio estimates (HR) are derived from Cox proportional-hazards analyses.
+	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:group3-risk-strat}
 \end{figure}
@@ -223,7 +225,7 @@ In Group~3 patients, iso17q and \emph{MYC} amplification remain the only cytogen
 
 \subsection{Identification of a low-risk group of metastatic Group~4 patients}
 
-Group~4 patients with whole chromosome loss of chr11 or gain of chr17 exhibit better survival under univariate Cox PH models (\citefig{group4-markers}\emphlab{a}), in addition to chr10p loss (\citefig{group4-markers}\emphlab{b}). There is no cytogenetic marker associated with poor prognosis (appendix data not shown). Specifically, neither \emph{MYCN} gain nor amplification is associated with poorer survival in Group~4, in stark contrast to SHH patients, reinforcing the distinction in their underlying biology (\citefig{group4-markers}\emphlab{b}, appendix figure not shown). Similarly, none of the cytogenetic biomarkers identified for Group~3 patients (e.g. iso17q) have any prognostic value in Group~4 (appendix table not shown). Following unbiased model selection, the consensus set of biomarkers results in a risk stratification scheme in which leptomeningeal dissemination identifies high-risk Group~4 patients, except in the context of chr11 loss or chr17 gain (\citefig{group4-risk-strat}\emphlab{a}). The biology underlying chr11 loss is not apparent as there is no obvious minimal common region of deletion (appendix figure not shown), nor are there any recurrent SNVs on chr11 reported in the recent medulloblastoma re-sequencing publications. Group~4 patients with either chr17 gain or chr11 loss, irrespective of their metastatic statuses exhibit survivorship that is characteristic of WNT patients in both the discovery and validation cohorts (\citefig{group4-risk-strat}\emphlab{a},\emphlab{c}), and the survival differences are not explainable by covariates (appendix figure not shown). Significantly, the low-risk Group~4 cohort also included some patients with anaplastic histology. Consistent with other subgroups, the risk stratification model using both clinical and molecular biomarkers achieve the highest accuracy (\citefig{group4-risk-strat}\emphlab{b}). Critically, the cytogenetic biomarkers identify low-risk Group~4 patients whom would be otherwise designated as high-risk by evidence of metastasis and/or anaplastic histology; this finding cannot be extrapolated to SHH and Group~3 patients (\citefig{group4-risk-strat}, appendix figure not shown).  We conclude that through the use of three molecular biomarkers (chr11, 17p, and 17q FISH) and metastatic status, we can accurately and reliably predict the prognosis of patients with Group~4 medulloblastoma.
+Group~4 patients with whole chromosome loss of chr11 or gain of chr17 exhibit better survival under univariate Cox PH models (\citefig{group4-markers}\emphlab{a}), in addition to chr10p loss (\citefig{group4-markers}\emphlab{b}). There is no cytogenetic marker associated with poor prognosis (appendix data not shown). Specifically, neither \gene{MYCN} gain nor amplification is associated with poorer survival in Group~4, in stark contrast to SHH patients, reinforcing the distinction in their underlying biology (\citefig{group4-markers}\emphlab{b}, appendix figure not shown). Similarly, none of the cytogenetic biomarkers identified for Group~3 patients (e.g. iso17q) have any prognostic value in Group~4 (appendix table not shown). Following unbiased model selection, the consensus set of biomarkers results in a risk stratification scheme in which leptomeningeal dissemination identifies high-risk Group~4 patients, except in the context of chr11 loss or chr17 gain (\citefig{group4-risk-strat}\emphlab{a}). The biology underlying chr11 loss is not apparent as there is no obvious minimal common region of deletion (appendix figure not shown), nor are there any recurrent SNVs on chr11 reported in the recent medulloblastoma re-sequencing publications. Group~4 patients with either chr17 gain or chr11 loss, irrespective of their metastatic statuses exhibit survivorship that is characteristic of WNT patients in both the discovery and validation cohorts (\citefig{group4-risk-strat}\emphlab{a},\emphlab{c}), and the survival differences are not explainable by covariates (appendix figure not shown). Significantly, the low-risk Group~4 cohort also included some patients with anaplastic histology. Consistent with other subgroups, the risk stratification model using both clinical and molecular biomarkers achieve the highest accuracy (\citefig{group4-risk-strat}\emphlab{b}). Critically, the cytogenetic biomarkers identify low-risk Group~4 patients whom would be otherwise designated as high-risk by evidence of metastasis and/or anaplastic histology; this finding cannot be extrapolated to SHH and Group~3 patients (\citefig{group4-risk-strat}, appendix figure not shown).  We conclude that through the use of three molecular biomarkers (chr11, 17p, and 17q \gls{fish}) and metastatic status, we can accurately and reliably predict the prognosis of patients with Group~4 medulloblastoma.
 
 \bigskip
 
@@ -235,8 +237,8 @@ Group~4 patients with whole chromosome loss of chr11 or gain of chr17 exhibit be
 	{
 	Overall survival curves for molecular biomarkers in Group~4 medulloblastoma:
 	\textbf{a}, whole chr11 status and whole chr17 status; and
-	\textbf{b}, \emph{MYCN} copy number status.
-	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; hazard ratio estimates (HR) are derived from Cox proportional-hazards analyses.
+	\textbf{b}, \gene{MYCN} copy number status.
+	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:group4-markers}
 \end{figure}
@@ -252,7 +254,7 @@ Group~4 patients with whole chromosome loss of chr11 or gain of chr17 exhibit be
 	\textbf{a}, Risk stratification of Group~4 medulloblastomas by molecular and clinical prognostic markers. \emph{Top-left}, decision tree; \emph{bottom-left}, events plot depicting status of molecular and clinical markers across the risk groups; \emph{right}, overall survival curves for Group~4 risk groups.
 	\textbf{b}, Average time-dependent AUCs for risk groups stratified using only clinical or molecular markers, or both. Risk stratification regimens are applied to Group~4 and non-Group~4 medulloblastomas. ***, $p < 0.001$, Friedman rank sum tests.
 	\textbf{c}, Survival curves for Group~4 risk groups in the validation cohort. 
-	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; hazard ratio estimates (HR) are derived from Cox proportional-hazards analyses.
+	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:group4-risk-strat}
 \end{figure}
@@ -260,7 +262,7 @@ Group~4 patients with whole chromosome loss of chr11 or gain of chr17 exhibit be
 \clearpage
 
 
-To conclude, we demonstrate that medulloblastoma subgroup affiliation is significantly more informative for predicting patient outcome than existing clinical variables, and that by incorporating subgroup status with conventional clinical parameters for patient risk stratification, the accuracy of survival prediction can be dramatically improved.  Moreover, we propose, test, and validate novel subgroup-specific risk stratification models that incorporate both clinical and molecular variables.  These models perform robustly and reproducibly both in the discovery cohort consisting of a heterogeneously treated group of patients and in a large non-overlapping validation cohort of patients treated at a single institution according to a single treatment protocol.  We do not have detailed treatment information for patients in these cohorts.  It is highly possible that treatment effects (type, duration, or intensity) could impact our results.  We would suggest that this can only be accounted through examination of our stratification model in a sufficiently large prospectively followed cohort of medulloblastoma patients.  While the current study uses either SNP arrays, or interphase FISH on FFPE sections, it is possible that other approaches such as array CGH could also be used to determine the copy number status of the six markers.  Our findings demonstrate the utility of incorporating tumor biology into clinical decision-making and offer a novel perspective on risk stratification using FISH applicable on paraffin sections, and thus could be translated immediately into routine clinical practice.
+To conclude, we demonstrate that medulloblastoma subgroup affiliation is significantly more informative for predicting patient outcome than existing clinical variables, and that by incorporating subgroup status with conventional clinical parameters for patient risk stratification, the accuracy of survival prediction can be dramatically improved.  Moreover, we propose, test, and validate novel subgroup-specific risk stratification models that incorporate both clinical and molecular variables.  These models perform robustly and reproducibly both in the discovery cohort consisting of a heterogeneously treated group of patients and in a large non-overlapping validation cohort of patients treated at a single institution according to a single treatment protocol.  We do not have detailed treatment information for patients in these cohorts.  It is highly possible that treatment effects (type, duration, or intensity) could impact our results.  We would suggest that this can only be accounted through examination of our stratification model in a sufficiently large prospectively followed cohort of medulloblastoma patients.  While the current study uses either SNP arrays, or interphase \gls{fish} on gls{ffpe} sections, it is possible that other approaches such as array CGH could also be used to determine the copy number status of the six markers.  Our findings demonstrate the utility of incorporating tumor biology into clinical decision-making and offer a novel perspective on risk stratification using \gls{fish} applicable on paraffin sections, and thus could be translated immediately into routine clinical practice.
 
 \clearpage
 

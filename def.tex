@@ -2,14 +2,16 @@
 
 \usepackage{multicol}
 
+\usepackage{setspace}
+
+% use captions
 \usepackage[font={small,sf}]{caption}
 \captionsetup[figure]{labelfont=bf}
 \captionsetup[table]{labelfont=bf}
 
+% use side captions
 \usepackage{sidecap}
 \sidecaptionvpos{figure}{c}
-
-\usepackage{setspace}
 
 % define new environments
 \usepackage{amsthm}
@@ -42,6 +44,9 @@
 % emphasize label
 \newcommand{\emphlab}[1]{\textbf{\textsf{#1}}}
 
+% italicize gene name
+\newcommand{\gene}[1]{\emph{#1}}
+
 % cite figure and table
 \newcommand{\citefig}[1]{\emphlab{Figure~\ref{fig:#1}}}
 \newcommand{\citetable}[1]{\emphlab{Table~\ref{tbl:#1}}}
@@ -54,8 +59,17 @@
 % margins
 \geometry{headsep=0.4in, top=1.25in}
 
+% change section header font size
 \usepackage{sectsty}
 \chapternumberfont{\large}
 \chaptertitlefont{\LARGE}
 \sectionfont{\Large}
 \subsectionfont{\large}
+
+% add glossary
+\usepackage[toc,acronym,nomain]{glossaries}
+\makeglossaries
+
+% add list of figures and list of tables to table of contents
+\usepackage[nottoc]{tocbibind}
+

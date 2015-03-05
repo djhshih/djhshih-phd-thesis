@@ -11,7 +11,7 @@ To develop a clinically applicable assay for molecular classification of medullo
 
 \section{Results}
 
-The nanoString nCounter technology \citeref{geiss08} was used to directly measure the expression level of 22 medulloblastoma subgroup specific signature genes. The nanoString assay directly interrogates nucleic acid levels without polymerase chain reaction (PCR) amplification (or other enzymatic reactions) in multiplexed system, using pairs of fluorescent probes that bind to target sequences. We developed an analytic method that can accurately predict molecular subgroups of medulloblastoma, even on archival FFPE samples \citeself{northcott12}.
+The nanoString nCounter technology \citeref{geiss08} was used to directly measure the expression level of 22 medulloblastoma subgroup specific signature genes. The nanoString assay directly interrogates nucleic acid levels without \gls{pcr} amplification (or other enzymatic reactions) in multiplexed system, using pairs of fluorescent probes that bind to target sequences. We developed an analytic method that can accurately predict molecular subgroups of medulloblastoma, even on archival \gls{ffpe} samples \citeself{northcott12}.
 
 A set of widely used classifiers (e.g. support-vector machine, linear discriminant analysis, multinomial logistic regression, k-nearest neighbour, pattern analsis of microarrays) were trained using a training set of 101 medulloblastomas with known subgroup affiliations. The classifiers were tuned and assessed using cross-validation. The most accurate classifier (across all tested accuracy measures) was selected for classification.
 
@@ -30,7 +30,7 @@ A set of widely used classifiers (e.g. support-vector machine, linear discrimina
 
 \clearpage
 
-The assay was validated on an external set of 130 non-overlapping medulloblastomas, and it achieved an accuracy of 98\% (\citefig{nanostr-valid}). Further, the assay yielded reproducible predictions when repeated in three independent laboratories \citeself{northcott12}. The clinical applicability of the assay was demonstrated by its predictive accuracy on FFPE samples of archival ages $\leq 8$ years (\citefig{nanostr-ffpe}). The accuracy decreased on older FFPE samples, presumably due to poorer RNA integrity, though standard measurements of RNA quality were not correlated with accuracy \citeself{northcott12}.
+The assay was validated on an external set of 130 non-overlapping medulloblastomas, and it achieved an accuracy of 98\% (\citefig{nanostr-valid}). Further, the assay yielded reproducible predictions when repeated in three independent laboratories \citeself{northcott12}. The clinical applicability of the assay was demonstrated by its predictive accuracy on \gls{ffpe} samples of archival ages $\leq 8$ years (\citefig{nanostr-ffpe}). The accuracy decreased on older \gls{ffpe} samples, presumably due to poorer RNA integrity, though standard measurements of RNA quality were not correlated with accuracy \citeself{northcott12}.
 
 \begin{figure}[ht]
 	\begin{center}
@@ -39,13 +39,13 @@ The assay was validated on an external set of 130 non-overlapping medulloblastom
 	\caption[Classification performance on formalin-fixed paraffin embedded archival samples]
 	{
 	Classification performance on formalin-fixed paraffin embedded archival samples.
-	\textbf{a}, Class prediction accuracy in relation to sample age of archival medulloblastomas stored as FFPE material ($n = 84$). Samples obtained within the past 8 years exhibit accuracies of $\geq 95\%$, as demarcated by the red vertical line.
-	\textbf{b}, Heatmap of nanoString data showing class predictions for FFPE cases of $\leq 8$ years confidently predicted by the assay ($n = 28$). Samples are sorted according to subgroup prediction. All cases satisfying prediction probability threshold were assigned to the correct subgroup ($28/28$). Adapted from Northcott et al.\citeself{northcott12}
+	\textbf{a}, Class prediction accuracy in relation to sample age of archival medulloblastomas stored as \gls{ffpe} material ($n = 84$). Samples obtained within the past 8 years exhibit accuracies of $\geq 95\%$, as demarcated by the red vertical line.
+	\textbf{b}, Heatmap of nanoString data showing class predictions for \gls{ffpe} cases of $\leq 8$ years confidently predicted by the assay ($n = 28$). Samples are sorted according to subgroup prediction. All cases satisfying prediction probability threshold were assigned to the correct subgroup ($28/28$). Adapted from Northcott et al.\citeself{northcott12}
 	}
 	\label{fig:nanostr-ffpe}
 \end{figure}
 
-Since the initial publication of the assay for molecular classification, we have analyzed over 1000 medulloblastoma samples and identified a few cases were replicate assays yielded conflicting results. Further examination revealed that poor sample quality and suboptimal assay conditions likely contributed to classification discrepancies. Therefore, additional quality control measures were implemented, which are especially important for developing this assay further for Clinical Laboratory Improvement Amendments (CLIA) certification.
+Since the initial publication of the assay for molecular classification, we have analyzed over 1000 medulloblastoma samples and identified a few cases were replicate assays yielded conflicting results. Further examination revealed that poor sample quality and suboptimal assay conditions likely contributed to classification discrepancies. Therefore, additional quality control measures were implemented, which are especially important for developing this assay further for \gls{clia} certification.
 
 Given that standard measurements of RNA quality were insufficient for predicting assay accuracy \citeself{northcott12}, the mean signals of the endogenous control probes included in the nanoString assay were used to assess whether sufficient quantities of intact, undegraded were present in the samples, using a outlier detection method. A Gaussian mixture model was fitted to all collected nanoString data to establish the nominal range for mean endogenous-control signals. Samples with mean signals that deviate significantly from this range at a significance level of 0.01 were identified as outliers. Such samples, due to extensive RNA degradation, cannot be assigned a molecular subgroup, and they may require classification using DNA copy-number or methylation profiling.
 
@@ -55,7 +55,7 @@ Furthermore, multi-sample assays are not amendable to reproducible clinical anal
 
 \section{Discussion}
 
-Above all, a rapid, reliable, and reproducible assay was developed for assigning molecular subgroups to clinical samples, available as frozen or recent FFPE material, and this assay has been developed further use in a clinical laboratory. Critically, stringent quality control must accompany the nanoString classification assay, lest its potentials be shadowed by concerns of reproducibility and predictability, an ignominy that has long plagued the microarray technology \citeref{shi08,deronde10,weigelt10,ein-dor06,frantz05,michiels05,ioannidis05,marshall04,check04,tan03,tilstone03}.
+Above all, a rapid, reliable, and reproducible assay was developed for assigning molecular subgroups to clinical samples, available as frozen or recent \gls{ffpe} material, and this assay has been developed further use in a clinical laboratory. Critically, stringent quality control must accompany the nanoString classification assay, lest its potentials be shadowed by concerns of reproducibility and predictability, an ignominy that has long plagued the microarray technology \citeref{shi08,deronde10,weigelt10,ein-dor06,frantz05,michiels05,ioannidis05,marshall04,check04,tan03,tilstone03}.
 
 Classification of medulloblastoma led to many discoveries \citeself{shih14,shih12,perreault14,kool14,ramaswamy14,ramaswamy13,remke13,dey13,zhukova13,dubuc13,dubuc12,wu12,jones12}.
 
