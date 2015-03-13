@@ -4,6 +4,8 @@
 
 \usepackage{setspace}
 
+\usepackage{array}
+
 % use captions
 \usepackage[font={small,sf}]{caption}
 \captionsetup[figure]{labelfont=bf}
@@ -31,7 +33,18 @@
 % disable subsection numbering
 \setcounter{secnumdepth}{1}
 
+% define citation and bibliography style
 \usepackage[super,sort&compress]{natbib}
+
+% define secondary citation style
+\newcommand*{\citeplainref}{}
+\DeclareRobustCommand*{\citeplainref}[1]{
+	\begingroup
+		\romannumeral-`\x  % remove space at the beginning of \setcitestyle
+		\setcitestyle{numbers}
+		\citeref{#1}
+	\endgroup
+}
 
 % define multiple reference lists
 \usepackage{multibib}
@@ -44,12 +57,15 @@
 % emphasize label
 \newcommand{\emphlab}[1]{\textbf{\textsf{#1}}}
 
+% emphasize a term
+\newcommand{\emphterm}[1]{\textbf{#1}}
+
 % italicize gene name
 \newcommand{\gene}[1]{\emph{#1}}
 
 % cite figure and table
 \newcommand{\citefig}[1]{\emphlab{Figure~\ref{fig:#1}}}
-\newcommand{\citetable}[1]{\emphlab{Table~\ref{tbl:#1}}}
+\newcommand{\citetbl}[1]{\emphlab{Table~\ref{tbl:#1}}}
 \newcommand{\citech}[1]{\emphlab{Chapter~\ref{ch:#1}}}
 
 % paragraph formatting
