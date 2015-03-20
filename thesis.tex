@@ -4,7 +4,7 @@
 \department{Laboratory Medicine and Pathobiology}
 \gradyear{2015}
 \author{J. H. David Shih}
-\title{\textbf{Clinical Genomics of Medulloblastoma}}
+\title{\textbf{Molecular Classification and Clinical Genomics of Medulloblastoma}}
 
 %% External formatting definitions
 \input{def}
@@ -30,14 +30,7 @@
 
 \begin{abstract}
 \setlength{\parindent}{0em}
-
-\textbf{Background}: Children with medulloblastoma have a 72\% chance of surviving more than 5 years under current treatment, and those who survive suffer long-term developmental and neurocognitive deficits due to treatment-associated toxicity. We believe that refining the classification of medulloblastoma will facilitate the optimization of treatment intensity and the discovery of novel therapeutics. Recent studies have identified four subgroups of medulloblastoma with distinct expression patterns: WNT, SHH, Group3, and Group4. These subgroups represent different molecular entities that arise through and rely on different oncogenic processes. Accordingly, we aim to improve prediction of patient survival by identifying prognostic markers for each subgroup, and we hope to abrogate non-specific cytotoxic treatments by discovering candidates for targeted intervention against each subgroup.
-
-\textbf{Methods}: Molecular subgroups of medulloblastoma tumours were determined with a trained classifier using select subgroup-specific marker expressions. DNA copy-number profiles ($n=1087$) were analyzed to identify somatic copy-number aberrations (SCNAs) and recurrently disrupted genes and pathways. Prognostic SCNAs were identified by Kaplan-Meier survival analyses on a discovery set ($n=673$), and the candidates were validated by FISH on a tissue microarray of validation samples ($n=453$).
-
-\textbf{Results}: Tumours of each subgroup harbour recurrent SCNAs disrupting different pathways. WNT medulloblastoma is characterized by Beta-catenin mutation, SHH medulloblastoma by activated Gli signaling, Group3 medulloblastoma by Myc activation, and Group4 medulloblastoma by SNCAIP duplication. Further, patients of different subgroups exhibit differential response to standard treatments. Incorporating subgroup data into survival models significantly improved predictive performance. Using six FISH biomarkers on FFPE tissues, we reproducibly stratified patients into groups with distinct survivorships.
-
-\textbf{Conclusion}: The stark differences in genetic alterations among medulloblastoma subgroups suggest that each subgroup arises through different biological mechanisms. The molecular classification of medulloblastoma not only improved survival prediction but also revealed pathways for intervention. We have identified a panel of prognostic markers that can be used to select patients for therapy de-escalation in future trials, and we have also discovered candidates for the development of targeted therapy.
+\input{abstract}
 \end{abstract}
 
 \cleardoublepage
@@ -89,17 +82,19 @@ This work is supported by the Frederick Banting and Charles Best Canada Graduate
 \include{ch02}
 \include{ch03}
 \include{ch04}
-\include{ch05}
+%\include{ch05}
 \include{ch06}
 
 %% Appendix
+
+\include{appendix}
 
 {
 \singlespacing
 \small
 \setlength{\parskip}{0.1em}
 
-\addcontentsline{toc}{chapter}{Publications Arising from Thesis}
+%\addcontentsline{toc}{chapter}{Publications Arising from Thesis}
 
 \bibliographystyleself{nature}
 \bibliographyself{self}
@@ -110,10 +105,10 @@ $^*$ These authors contributed equally.
 
 \clearpage
 
-\addcontentsline{toc}{chapter}{References}
+%\addcontentsline{toc}{chapter}{References}
 
 \bibliographystyleref{nature}
-\bibliographyref{mb,mb-mut,mb-mmu,tech,chromothr,cancer,array-qc,atrt,therapy,incidence,genetic,retract,mmu}
+\bibliographyref{mb,mb-mut,mb-mmu,tech,chromothr,cancer,array-qc,atrt,therapy,incidence,genetic,retract,mmu,pathway}
 }
 
 
