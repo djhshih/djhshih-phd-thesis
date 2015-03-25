@@ -6,6 +6,8 @@
 
 \usepackage{array}
 
+\usepackage{float}
+
 % use captions
 \usepackage[font={small,sf}]{caption}
 \captionsetup[figure]{labelfont=bf}
@@ -41,8 +43,8 @@
 \DeclareRobustCommand*{\citeplainref}[1]{
 	\begingroup
 		\romannumeral-`\x  % remove space at the beginning of \setcitestyle
-		\setcitestyle{numbers}
-		\citeref{#1}
+		\setcitestyle{numbers}%
+		\citeref{#1}%
 	\endgroup
 }
 
