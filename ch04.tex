@@ -8,6 +8,133 @@ Each medulloblastoma molecular subgroup is characterized by specific genomic abe
 
 \section{Materials and methods}
 
+\subsection{Patient samples and nucleic acid extraction}
+
+All patient samples were procured in accordance with the Research Ethics Board at The Hospital for Sick Children (Toronto, Canada).  Samples were obtained as frozen tissue biopsies at the time of diagnosis and stored at -80 $^{\circ}$C until processed for purification of nucleic acids.  Frozen tissue was available for ~75-80\% of cases included in the study; the remaining cases were shipped as pre-isolated DNA and/or RNA.
+Whenever possible, tumour isolates were partitioned for both standard DNA and RNA extraction.  Tissues were either manually homogenized using a mortar and pestle in the presence of liquid nitrogen or in an automated manner using a Precellys 24 tissue homogenizer (Bertin Technologies, France), according to the manufacturer’s instructions.  High molecular weight DNA was extracted by SDS/Proteinase K digestion followed by 2-3 phenol extractions and ethanol precipitation.  Total RNA was isolated using the Trizol method (Invitrogen, USA) using standard protocols.  DNA and RNA were quantified using a NanoDrop 1000 instrument (Thermo Scientific, USA) and integrity assessed either by agarose gel electrophoresis (DNA) or Agilent 2100 Bioanalyzer (RNA; Agilent, USA) at The Centre for Applied Genomics (TCAG, Toronto, Canada).  RNA with an RNA Integrity Number (RIN) $\ge 7.0$ was required for analysis by either Affymetrix Gene array or RNASeq. Paul Northcott performed the nucleic acid extractions.
+
+\subsection{DNA copy number analysis}
+
+\subsubsection{SNP array processing and quality control}
+
+Genotyping and copy-number profiling of DNA samples was performed on the Affymetrix Genome-Wide Human SNP Array 6.0 platform, which includes more than 906~600 probes for the genotyping of \gls{snp} loci and more than 946~000 probes for the detection of copy number variations. With a total of 1.8 million probe markers, the median distance between markers is less than 7000 bases. DNA was prepared, labeled, and hybridized to the Affymetrix SNP 6.0 arrays as previously described \citeref{shih12}. Sample quality control was assessed using Affymetrix Genotyping Console (GTC) as previously described \citeself{shih12}. \gls{tcag} performed the SNP array processing and quality control.
+
+\subsubsection{Generation and normalization of copy number profiles}
+
+Affymetrix SNP6 CEL files were processed in dChip \citeref{lin04} to obtain raw copy number estimates.  Arrays were normalized by quantile normalization and signal intensities computed using the MBEI method (PM-only) inherent to the dChip program.  To generate a diploid reference baseline for copy number analysis of medulloblastoma samples, we used Affymetrix SNP6 data from 132 individuals from the Ontario Population Genomics Platform (OPGP) epidemiological project and the HapMap PROJECT.  Germline DNA from these samples was genotyped in the same microarray facility as the tumour samples, using identical experimental protocols as described above.
+
+The normalized copy number estimates from dChip were subsequently imported into the R environment, and the copy number profiles were segmented using the \gls{cbs} algorithm from the DNAcopy (v1.24) \citeref{venkatraman07} package, with the undo split option enabled (\code{method = sdundo, undo.SD = 1}). The resulting segmentation profiles were further processed to reduce artificial segments. Segments with fewer than 10 markers were removed. Adjacent segments whose copy number states differed by less than 0.25 were merged together using their size-weighted mean. This merging step is repeated iteratively until no more segments can be merged. The segmentation profile of each sample was then median-centered. Further, normal CNVs reported in the Database of Genomic Variants (DGV, v10) \citeref{iafrate04} were filtered from the segmentation profiles. Segments that reciprocally overlapped (Dice coefficient > 0.5) with normal CNVs were removed. CNVs reported on BAC End Sequencing, BAC Array CGH, ROMA, and FISH were excluded from this filter. Upon removing a segment, the upstream segment was merged to the downstream segment using a size-weighted mean. The aforementioned merging and CNV-filtering steps helped reduce the occurrence of broad segments being broken into non-contiguous pieces by artificial segments or normal CNVs (which influences the downstream GISTIC2 analysis and segment classification). The copy number segments were classified as balanced or one of 6 copy number aberrations based on the criteria in \citetbl{cna-criteria}.
+
+\begin{table}[H]
+	\caption[Criteria for DNA copy number aberrations]
+	{
+		Criteria for DNA copy number aberrations
+	}
+	\label{tbl:cna-criteria}
+	\footnotesize
+	\setlength{\extrarowheight}{0.5em}
+	\centering
+	\begin{tabular}{l | l | l}
+		\hline
+		\textbf{Class} & \textbf{Log R ratio ($r$)} & \textbf{Size in Mbp ($s$)} \\
+		\hline
+		Balanced & $| r | \le 0.2$ & --- \\
+		Gain & $r > 0.2$ & --- \\
+		Loss & $r < -0.2$ & --- \\
+		Focal gain & $r > 0.2$ & $s < 12$ \\
+		Focal loss & $r < -0.2$ & $s < 12$ \\
+		High level amplification & $r > log_2(5/2)$ & $s < 12$ \\
+		Homozygous deletion & $r < -log_2(0.7/2)$ & $s < 12$ \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsubsection{Identification of recurrent copy number aberrations}
+
+The post-processed segmentation files profiles were analyzed using two algorithms, GISTIC2 and modified CMDS, to identify recurrent copy number events. GISTIC2 requires prior single sample segmentation, and hence may be affected by the presence of segmentation artifacts. In contrast, CMDS requires no single sample segmentation and works with the raw copy number profiles directly. Many post-processing steps were lacking from the distributed CMDS program (e.g. multiple hypothesis correction, peak calling, CNV filtering); therefore, a number of post-processing steps were added.
+
+GISTIC2 (v2.0.12) \citeref{mermel11} was run with default parameters unless specified otherwise (\code{brlen = 0.5, conf = 0.9}), on the segmentation profiles of the entire cohort and of each subgroup separately. The significant peaks were filtered based on the gene content ($ge 1$ gene spanned), size of the wide peak ($< 12$ Mbp), and additionally based on containment within a normal CNV region (one-way overlap $> 90$\%) reported in the filtered DGV database. This second CNV-filtering step ensures that amalgamated regions reported in DGV are considered, as these regions would often have poor reciprocal overlap with individual query segments and would be missed by the previous CNV-filtering procedure. It is not possible to apply this secondary CNV-filtering procedure directly on the segmentation file, as the CNV regions are often very large and this filtering can cause the loss of many informative CNA segments.
+CMDS (v 1.0) \citeref{zhang10} was run using default parameters unless specified otherwise (\code{w = 40, s = 1}), on the unstratified and subgroup-stratified segmentation profiles, for each chromosome separately. Since the raw outputs had a high false positive rate, the outputs were processed further. The z-scores were recalculated (separately for each chromosome) from the Fisher’s z-transformed of the Pearson correlations, using the means of the dominant components from Gaussian mixture models ($k = 3$). This recalculation ensured that the z-scores were not skewed due to the presence of multiple modes in the raw output. The z-scores were further detrended using \gls{emd} \citeref{wu07}, which corrects for trends due to recurring broad events. The p-values derived from the z-scores were then corrected for multiple hypothesis correction using the qvalue R package(v1.1) \citeref{storey03}. Finally, the peak regions were identified using a simple q-value threshold ($FDR = 0.05$).
+
+\subsubsection{Estimation of the copy number states of genes}
+
+The copy number states of all RefSeq genes in each sample were inferred from the respective post-processed segmentation profiles. The state for a given gene was determined by the copy number segment (classified as described earlier) that spans the greatest proportion of the gene (if multiple segments span the gene). Further, a gene is considered lost/deleted only if any portion of its coding region is spanned by a loss/deletion segment; a gene is considered gained/amplified only if at least 50\% of the coding region is spanned by a gained/amplified segment.
+
+\subsubsection{Identification of recurrent broad events}
+
+Identification of recurrent CNAs above explicitly excluded broad events (based on a broad length cutoff in GISTIC and by a detrending procedure after CMDS). Therefore, broad events in the segmentation profiles were analyzed separately, using an approach similar to GISTIC’s broad event analysis \citeref{mermel11}. The log2 R ratio (LRR) of each chromosome was calculated using a size-weighted mean of all segments mapping to the chromosome. A chromosome was declared gained if its LRR was greater than 0.2, lost if the LRR was less than -0.2, and balanced otherwise. Unlike GISTIC, gained and lost broad events were analyzed together. The significance of the frequency of each broad event was tested using the exact binomial test. Each broad event frequency was compared to the background frequency, which was determined from a robust regression of the observed frequencies with respect to gene content (i.e. number of RefSeq genes) across all chromosomes.
+
+\subsubsection{Identification of chromothripsis}
+
+The occurrence of chromothripsis was identified using tumour copy number profiles as previously described \citeref{rausch12}. Using the post-processed segmentation profiles, chromothripsis was identified on a chromosome based on the presence of greater than 10 copy number state changes. The enrichment of chromothripsis on a chromosome for a subgroup was determined using the hypergeometric test, comparing the observed incidence to the background incidence (tallied across all samples). Select samples inferred to have chromothripsis were confirmed by WGS to identify rearrangements.
+
+\subsection{Subgroup enrichment analysis of recurrent copy number aberrations}
+
+Recurrent copy number aberrations (CNAs) identified by GISTIC2 in the unstratified and subgroup-stratified analysis were tested for subgroup enrichment. In the case of stratified analysis, regions identified in each subgroup were combined together. Since the reported region coordinates of common CNA events can differ among the strata, regions that reciprocally overlap (Dice coefficient > 0.2) were merged together using their union. In the enrichment analysis, the frequency of recurrent CNAs in each subgroup was compared against the remaining subgroups, and odds ratios were estimated using Fisher’s conditional maximum likelihood estimate. CNAs with odds ratios greater than 2.0 were considered subgroup-enriched. A similar enrichment analysis was repeated for comparing combinations of two subgroups against the remaining, in order to identify CNAs that are enriched in the ensemble of two subgroups (and are not otherwise enriched in a single subgroup).
+
+\subsection{Integration of gene expression and copy number aberrations}
+
+To directly assess the correlation between significant CNA and gene expression, expression profiles were generated on 285 medulloblastomas from our study, including samples from SHH ($n = 51$), Group3 ($n = 46$), and Group4 ($n = 188$), using the Affymetrix Gene 1.1 ST platform. Global integration of expression data was performed by comparing expression levels of amplified or deleted genes relative to genes in balanced regions (Mann-Whitney tests). Further, specific integration of expression data at each significant CNA locus were done by comparing expression of genes in samples with the aberration against those that do not, within in medulloblastoma subgroup. Multiple hypothesis correction by the false discovery rate method was applied to each locus independently, and the false discovery rate threshold was adaptively tuned for each locus so that the no false positives are expected. The resulting lists of genes with copy-number driven expression were used in candidate identification.
+
+\subsection{Identification of candidate driver genes in each significant region}
+
+Many of the significant regions identified using GISTIC and CMDS span multiple genes. Therefore, multiple lines of evidence were used to prioritize putative target genes within each region. Evidences collected from integrated expression data, the literature, and multiple datasets were classified into the tiers in \citetbl{driver-evidence}.
+
+\begin{table}[H]
+	\caption[Tiered evidence framework for identifying candidate driver genes]
+	{
+		Tiered evidence framework for identifying candidate driver genes
+	}
+	\label{tbl:driver-evidence}
+	\scriptsize
+	\setlength{\extrarowheight}{0.5em}
+	\centering
+	\begin{tabular}{ p{0.25\linewidth} | p{0.6\linewidth} | p{0.05\linewidth} }
+		\hline
+		\textbf{Type} & \textbf{Description} & \textbf{Tier} \\
+		\hline
+		Correlated expression & Gene expression is driven by SCNA in the integrated analysis & I \\
+		Medulloblastoma literature & Implicated in medulloblastoma from the literature (PubMed) & I \\
+		Cancer Gene Census & Documented in the Cancer Gene Census & I \\
+		Parsons & Reported to be somatically mutated in the Parsons \emph{et al.}\ \citeref{parsons11} study on SNVs identified in medulloblastoma & III \\
+		ICGC & Reported to be somatically mutated in the ICGC medulloblastoma study & III \\
+		Northcott signature gene & Reported in the Northcott \emph{et al.}\ \citeref{northcott11a} medulloblastoma expression study & IV \\
+		Cho signature gene & Reported in the Cho \emph{et al.}\ \citeref{cho11} medulloblastoma expression subgroup study & IV \\
+		RNASeq SNV & Identified in the pilot RNASeq screen for SNV (Group 3 and 4 only) & IV \\
+		Gli1 target & Identified as a Gli1 target in Lee \emph{et al.}\ \citeref{lee10} (SHH subgroup only) & IV \\
+		Shh-inducible target & Identified as Shh-inducible gene by a screen in cerebellar granule neuron precursors (SHH subgroup only) & IV \\
+		COSMIC & Documented in the Catalogue of Somatic Mutations in Cancer & V \\
+		\hline
+	\end{tabular}
+\end{table}
+
+The priority of each gene in a region was ranked based on the total score of the above lines of evidence, weighted by their respective tiers. A higher tier (lower number) is assigned a higher weight. The weights were assigned so that supporting evidence from the next tier is only considered for breaking ties at previous tiers. At most two genes from each region were selected for network analysis using this evidence-driven ranking.
+
+\subsection{Mutual exclusivity analysis}
+
+The significant gene lists were analyzed to detect mutual exclusive relationships by iterating through all possible combination of genes in the list (for combination sizes from 2 to 6). Within each subgroup, combinations of genes with the highest exclusivity scores were identified. The exclusivity score was defined as the number of samples that harbour exactly one aberration among the genes in the combination; in other words, it is the product of exclusivity and coverage as defined by Miller \emph{et al}\ \citeref{miller11}.
+
+\subsection{Network analysis}
+
+Pathway enrichment analysis of copy number aberrations was carried out using g:Profiler web server \citeref{reimand11} and visualized in Cyotscape software as an Enrichment Map network \citeref{merico10}. Candidate driver genes from selected GISTIC2 regions were compiled for SHH, Group3, and Group4, ranked by frequency, and subsequently queried for significantly enriched functional categories with g:Profiler using the ordered list algorithm (FDR-corrected cutoff p=0.05, hypergeometric test). Detected categories were filtered with a custom R script to only include Gene Ontology (GO) terms, and Reactome and KEGG pathways, using an upper limit of 500 genes per gene set and the requirement that at least two putative driver genes intersect with the gene set. A small number of non-informative KEGG pathways were removed from the final list. The overlap coefficient value 0.6 was used in Enrichment map visualization.  Enrichment maps were manually adjusted to highlight the most significant themes for visualization purposes.  J\''{u}ri Reimand performed the network analysis.
+
+\subsection{Unsupervised clustering analysis of copy number events}
+
+All significant broad events (spanning chromosome arms) and focal events (identified as described earlier) identified in the pan-cohort analysis were used in the unsupervised clustering of medulloblastoma samples, by the Ward linkage method and the Euclidean distance metric, as implemented in the R environment. The copy number states were converted to absolute values and samples with unknown subgroup affiliation were removed prior to clustering. The agreement between the observed clusters and the medulloblastoma subgroups were assessed by the Adjusted Rand Index and tested by the $\chi^2$ test.
+
+\subsection{Expression array processing and data analysis}
+
+For gene expression array profiling, 400ng total RNA was processed and hybridized to the Affymetrix Gene 1.1 ST array at TCAG according to the manufacturer’s instructions. The CEL files were quantile normalized using Expression Console (v1.1.2; Affymetrix, USA) and signal estimates determined using the RMA algorithm.  Prior to clustering analysis of Group 4 medulloblastomas, 500-1000 high standard deviation (SD) genes were selected and the expression signals unlogged.  Unsupervised clustering was carried out using the NMFConsensus module available on the GenePattern public server (Broad Institute, USA) with default parameters.  The cophenetic coefficient metric was used to assess stability of the tested sample clusters.
+
+\subsection{nanoString CodeSets and data analysis}
+
+To determine subgroup affiliation of the MAGIC cohort, a custom nanoString CodeSet was designed to assess the expression status of 22 medulloblastoma signature genes and samples processed as described in detail in a recent publication \citeself{northcott12}.  Samples were processed as recommended by nanoString at the University Health Network (UHN) Microarray Facility using an input of 100ng total RNA.  Raw nanoString counts for each gene within each experiment were subjected to a technical normalization using the counts obtained for positive control probe sets prior to a biological normalization using the three housekeeping genes included in the CodeSet. Normalized data was log2-transformed and then used as input for class prediction analysis using the PAM method.  A series of 101 medulloblastomas with known subgroup affiliation were used as a training dataset for class prediction \citeref{northcott11a}.
+
+\subsection{Statistical and bioinformatic analyses}
+
+Statistical and bioinformatic analyses were performed in the R statistical environment (v2.13) or using custom programs/scripts written in Python, C++, or Go. Enrichment analyses were done using the hypergeometric test. The significance of chromosome arm frequencies were done using the exact binomial test, comparing the observed frequency to the expected frequency derived from a robust regression of event frequency and gene content, in a similar manner to the broad analysis in GISTIC2. Comparisons of event frequencies across medulloblastoma subgroups were performed using Fisher’s exact test. Expressions of genes across samples were compared using the Mann-Whitney test (and confirmed with the Student’s independent t-test). Where applicable, multiple hypothesis corrections were performed using the false discovery rate method \citeref{storey03}. Univariate survival analyses were done using the log-rank test, as implemented in the survival R package (v2.36).
+
+
 \section{Results}
 
 Copy-number profiles were generated on $> 1200$ medulloblastomas using the Affymetrix Genome-wide SNP6 platform. After quality control and clinical criteria filtering, copy-number profiles of $1087$ primary medulloblastomas were available for further analysis in identifying \gls{scna} events: regions of aberrant gains and losses in the tumour genome. The tumours were stratified based on molecular subgroups, as determined by the method described in \citech{mb-class}. The copy-number and cytogenetic profiles of medulloblastoma subgroups were highly divergent, demonstrating that medulloblastoma subgroups are genomically heterogeneous (appendix figure not shown). Indeed, when the cohort was analyzed by each subgroup independently, an increased number of \gls{scnas} were identified, many of which were subgroup-enriched (\citefig{subgroup-specificity}).
@@ -23,10 +150,10 @@ Copy-number profiles were generated on $> 1200$ medulloblastomas using the Affym
 	\label{fig:subgroup-specificity}
 \end{SCfigure}
 
-Among the recurrent high-level amplifications (copy-number $\geq 5$) identified (\citefig{high-level-amps}), the most prevalent events targeted members of the MYC family (\gene{MYCN}, \gene{MYC}, \gene{MYCL1}), with \gene{MYCN} predominantly amplified in SHH and Group~4, \gene{MYC} in Group~3, and \gene{MYCL1} in SHH medulloblastomas.
+Among the recurrent high-level amplifications (copy-number $\geq 5$) identified (\citefig{high-level-amps}), the most prevalent events targeted members of the MYC family (\gene{MYCN}, \gene{MYC}, \gene{MYCL1}), with \gene{MYCN} predominantly amplified in SHH and Group4, \gene{MYC} in Group3, and \gene{MYCL1} in SHH medulloblastomas.
 The most common homozygous deletions targeted known tumour suppressors \gene{PTEN}, \gene{PTCH1}, and \gene{CDKN2A/B}, all of which were enriched in SHH tumours (\citefig{homo-del}). A selected set of genes were assessed using custom nanoString assays, and 90.9\% of events were verified (\citefig{nanostr-verification}). Additional genes were validated on external cohorts by \gls{fish} (appendix figures not shown).
 
-The disparate genomic landscapes of medulloblastoma subgroups lead to the identification of a multitude of focal \gls{scnas} that characterize each molecular subgroup (appendix figures not shown). Novel genes identified in this study include: \gene{PPM1D}, \gene{PIK3C2B}, and \gene{MDM4} in SHH (\citefig{shh-amps-igv}); \gene{ACVR2A}, \gene{ACVR2B}, and \gene{TGFBR1} in Group~3 (\citefig{group3-amps-igv}); and \gene{NFKBIA} and \gene{USP4} in Group~4 (\citefig{group4-dels-igv}). Conversely, WNT medulloblastoma have few recurrent \gls{scnas} (\citefig{genome-coverage}). 
+The disparate genomic landscapes of medulloblastoma subgroups lead to the identification of a multitude of focal \gls{scnas} that characterize each molecular subgroup (appendix figures not shown). Novel genes identified in this study include: \gene{PPM1D}, \gene{PIK3C2B}, and \gene{MDM4} in SHH (\citefig{shh-amps-igv}); \gene{ACVR2A}, \gene{ACVR2B}, and \gene{TGFBR1} in Group3 (\citefig{group3-amps-igv}); and \gene{NFKBIA} and \gene{USP4} in Group4 (\citefig{group4-dels-igv}). Conversely, WNT medulloblastoma have few recurrent \gls{scnas} (\citefig{genome-coverage}). 
 
 \begin{SCfigure}[5][b]
 	\centering
@@ -90,10 +217,10 @@ The disparate genomic landscapes of medulloblastoma subgroups lead to the identi
 \begin{SCfigure}[1][b]
 	\centering
 	\includegraphics[width=0.45\textwidth]{fig/magic-cn/group3-amps-igv.pdf}
-	\caption[Recurrent amplifications target receptors of the TGF$\beta$ superfamily in Group~3]
+	\caption[Recurrent amplifications target receptors of the TGF$\beta$ superfamily in Group3]
 	{
-	Recurrent amplifications target receptors of the TGF$\beta$ superfamily in Group~3.
-	Segmented copy-number tracks of Group~3 medulloblastomas show recurrent high-level amplifications affecting \gene{ACVR2A} (2q22), \gene{ACVR2B} (3p22), and \gene{TGFBR1} (9q22).
+	Recurrent amplifications target receptors of the TGF$\beta$ superfamily in Group3.
+	Segmented copy-number tracks of Group3 medulloblastomas show recurrent high-level amplifications affecting \gene{ACVR2A} (2q22), \gene{ACVR2B} (3p22), and \gene{TGFBR1} (9q22).
 	}
 	\label{fig:group3-amps-igv}
 \end{SCfigure}
@@ -116,32 +243,32 @@ SHH medulloblastoma, which is characterized by activation of Shh signaling \cite
 \begin{SCfigure}[5][b]
 	\centering
 	\includegraphics[width=0.3\textwidth]{fig/magic-cn/group3-pathways.pdf}
-	\caption[TGF$\beta$ signaling is recurrently disrupted by \gls{scnas} in Group~3]
+	\caption[TGF$\beta$ signaling is recurrently disrupted by \gls{scnas} in Group3]
 	{
-	TGF$\beta$ signaling is recurrently disrupted by \gls{scnas} in Group~3.
-	\gls{scnas} affecting the TGF$\beta$ pathway comprise 20.2\% of Group~3 cases and are significantly enriched in Group~3 compared to non-Group~3 cases (Fisher's exact test).
+	TGF$\beta$ signaling is recurrently disrupted by \gls{scnas} in Group3.
+	\gls{scnas} affecting the TGF$\beta$ pathway comprise 20.2\% of Group3 cases and are significantly enriched in Group3 compared to non-Group3 cases (Fisher's exact test).
 	}
 	\label{fig:group3-pathways}
 \end{SCfigure}
 
 \clearpage
 
-The signaling pathways involved in Group~3 and Group~4 medulloblastomas are less well understood, as suggested by their names. Nonetheless, at the copy-number level, distinct pathways were dysregulated in Group~3 and Group~4 (appendix figure not shown). Group~3 tumours are characterized by amplification of \gene{MYC} and \gene{OTX2}, which occur in a mutually exclusive pattern (appendix figure not shown). This observation is consistent with the tendency of the two oncogenic transcription factors to bind the same promoter regions \citeref{bunt11}. Further, the TGF$\beta$ signaling pathway is frequently disrupted by \gls{scnas} in Group~3 (\citefig{group3-pathways}). Conversely, the NF-$\kappa$B pathway appear to genetically targeted in Group 4 medulloblastomas (\citefig{group4-dels-igv}).
+The signaling pathways involved in Group3 and Group4 medulloblastomas are less well understood, as suggested by their names. Nonetheless, at the copy-number level, distinct pathways were dysregulated in Group3 and Group4 (appendix figure not shown). Group3 tumours are characterized by amplification of \gene{MYC} and \gene{OTX2}, which occur in a mutually exclusive pattern (appendix figure not shown). This observation is consistent with the tendency of the two oncogenic transcription factors to bind the same promoter regions \citeref{bunt11}. Further, the TGF$\beta$ signaling pathway is frequently disrupted by \gls{scnas} in Group3 (\citefig{group3-pathways}). Conversely, the NF-$\kappa$B pathway appear to genetically targeted in Group 4 medulloblastomas (\citefig{group4-dels-igv}).
 
 \begin{SCfigure}[2]
 	\centering
 	\includegraphics[width=0.2\textwidth]{fig/magic-cn/group4-dels-igv.pdf}
-	\caption[NF-$\kappa$B pathway is recurrently targeted in Group~4]
+	\caption[NF-$\kappa$B pathway is recurrently targeted in Group4]
 	{
-	NF-$\kappa$B pathway is recurrently targeted in Group~4.
-	Recurrent focal deletions disrupt \gene{NFKBIA} and \gene{USP4}, negative regulators of the NF-$\kappa$B pathway, in Group~4 medulloblastoma.
+	NF-$\kappa$B pathway is recurrently targeted in Group4.
+	Recurrent focal deletions disrupt \gene{NFKBIA} and \gene{USP4}, negative regulators of the NF-$\kappa$B pathway, in Group4 medulloblastoma.
 	}
 	\label{fig:group4-dels-igv}
 \end{SCfigure}
 
-While \gene{MYC} amplification is a known pivotal player Group~3, our data indicated that others genes in close proximity to the \gene{MYC} locus may also play cooperative roles. This locus was frequently disrupted by a multitude of high-level amplicons (appendix figure not shown) as well as massively genomic rearrangements (\citefig{chromothr_myc_wgs}). These genomic aberrations are reminiscent of chromothripsis (chromosome shattering), which has recently been implicated in cancer formation \citeref{stephens11,liu11,kloosterman11b,magrangeas11,crasta12,molenaar12}, as well as in medulloblastoma \citeself{rausch12}. As a consequence of these events, the adjacent \gene{PVT1} gene and miR-1204 are frequently co-amplified with \gene{MYC}. Moreover, amplifications of the \gene{MYC}/\gene{PVT1} locus frequently result in the formation of fusion transcripts. Concurrent with MYC-PTV1 fusion expression, miR-1204 (hosted in PTV1) is upregulated (appendix figure not shown). \gene{MYC}, \gene{PVT1}, and miR-1204 all have been previously shown to play independent functional roles in other tumours \citeref{guan07,carramusa07,huppi08,barsotti12}, and may synergistically promote tumourigenesis.
+While \gene{MYC} amplification is a known pivotal player Group3, our data indicated that others genes in close proximity to the \gene{MYC} locus may also play cooperative roles. This locus was frequently disrupted by a multitude of high-level amplicons (appendix figure not shown) as well as massively genomic rearrangements (\citefig{chromothr_myc_wgs}). These genomic aberrations are reminiscent of chromothripsis (chromosome shattering), which has recently been implicated in cancer formation \citeref{stephens11,liu11,kloosterman11b,magrangeas11,crasta12,molenaar12}, as well as in medulloblastoma \citeself{rausch12}. As a consequence of these events, the adjacent \gene{PVT1} gene and miR-1204 are frequently co-amplified with \gene{MYC}. Moreover, amplifications of the \gene{MYC}/\gene{PVT1} locus frequently result in the formation of fusion transcripts. Concurrent with MYC-PTV1 fusion expression, miR-1204 (hosted in PTV1) is upregulated (appendix figure not shown). \gene{MYC}, \gene{PVT1}, and miR-1204 all have been previously shown to play independent functional roles in other tumours \citeref{guan07,carramusa07,huppi08,barsotti12}, and may synergistically promote tumourigenesis.
 
-The most prevalent focal gain (and previously neglected) in Group~4 was the somatic tandem duplication of the \gene{SNCAIP} gene (appendix figure not shown). SNCAIP expression is highly elevated in Group~4 medulloblastomas (\citefig{sncaip-expr}). In fact, \gene{SNCAIP} duplication is further restricted to the Group~4$\alpha$ and may play a functional role in this medulloblastoma subtype (\citefig{group4-alpha-beta}). Another lab member, Vijay Ramaswamy, has begun functional characterization of this gene.
+The most prevalent focal gain (and previously neglected) in Group4 was the somatic tandem duplication of the \gene{SNCAIP} gene (appendix figure not shown). SNCAIP expression is highly elevated in Group4 medulloblastomas (\citefig{sncaip-expr}). In fact, \gene{SNCAIP} duplication is further restricted to the Group4$\alpha$ and may play a functional role in this medulloblastoma subtype (\citefig{group4-alpha-beta}). Another lab member, Vijay Ramaswamy, has begun functional characterization of this gene.
 
 In summary, medulloblastoma subgroups are characterized by distinct genomic aberrations that dysregulated disparate signaling pathways. Importantly, the amplified genes and activated pathways identified in this study could serve as potential targets for therapeutic development in medulloblastoma subgroups.
 
@@ -181,11 +308,11 @@ In summary, medulloblastoma subgroups are characterized by distinct genomic aber
 	\begin{center}
 		\includegraphics[width=0.8\textwidth]{fig/magic-cn/sncaip-expr.pdf}
 	\end{center}
-	\caption[\gene{SNCAIP} is a Group~4 signature gene]
+	\caption[\gene{SNCAIP} is a Group4 signature gene]
 	{
-	\gene{SNCAIP} is a Group~4 signature gene.
-	\emph{Left}, Box-plot depicting SNCAIP significant upregulation in Group~4 (Mann-Whitney test), as determined by expression analysis of a previously published cohort of 103 primary medulloblastoma \citeref{northcott11a}. SNCAIP ranks among the top 1\% of most highly expressed genes in Group~4 medulloblastoma (rank 39 out of 16758).
-	\emph{Right}, Validation of SNCAIP as a Group~4 signature gene across five published medulloblastoma expression datasets: Thompson \citeref{thompson06}, Kool \citeref{kool08}, Fattet, Cho \citeref{cho11}, and Remke \citeref{remke11}. Expression datasets total 396 cases on four different array platforms. In all datasets, SNCAIP exhibited highest expression in Group~4.
+	\gene{SNCAIP} is a Group4 signature gene.
+	\emph{Left}, Box-plot depicting SNCAIP significant upregulation in Group4 (Mann-Whitney test), as determined by expression analysis of a previously published cohort of 103 primary medulloblastoma \citeref{northcott11a}. SNCAIP ranks among the top 1\% of most highly expressed genes in Group4 medulloblastoma (rank 39 out of 16758).
+	\emph{Right}, Validation of SNCAIP as a Group4 signature gene across five published medulloblastoma expression datasets: Thompson \citeref{thompson06}, Kool \citeref{kool08}, Fattet, Cho \citeref{cho11}, and Remke \citeref{remke11}. Expression datasets total 396 cases on four different array platforms. In all datasets, SNCAIP exhibited highest expression in Group4.
 	}
 	\label{fig:sncaip-expr}
 \end{figure}
@@ -194,10 +321,10 @@ In summary, medulloblastoma subgroups are characterized by distinct genomic aber
 	\begin{center}
 		\includegraphics[width=0.7\textwidth]{fig/magic-cn/group4-alpha-beta.pdf}
 	\end{center}
-	\caption[\gene{SNCAIP} duplication is restricted to one subtype of Group~4]
+	\caption[\gene{SNCAIP} duplication is restricted to one subtype of Group4]
 	{
-	\gene{SNCAIP} duplication is restricted to one subtype of Group~4.
-	\textsf{a}, Non-negative matrix factorization (NMF) consensus clustering performed on expression profiles of Group~4 cases ($n = 188$) reveal two transcriptionally distinct subtypes of Group~4, designated $4\alpha$ and $4\beta$. SNCAIP duplicated is significantly enriched in the Group $4\alpha$ subtype (Fisher's exact test).
+	\gene{SNCAIP} duplication is restricted to one subtype of Group4.
+	\textsf{a}, Non-negative matrix factorization (NMF) consensus clustering performed on expression profiles of Group4 cases ($n = 188$) reveal two transcriptionally distinct subtypes of Group4, designated $4\alpha$ and $4\beta$. SNCAIP duplicated is significantly enriched in the Group $4\alpha$ subtype (Fisher's exact test).
 	\textsf{b}, SNCAIP expression is significantly elevated in Group $4\alpha$ compared to $4\beta$ (Mann-Whitney test).
 	\textsf{c}, SNCAIP expression is copy number-driven in Group $4\alpha$. Group $4\alpha$ cases were stratified by \gene{SNCAIP} copy-number status. Samples harbouring SNCAIP duplication exhibit a significant \~1.5-fold increase in SNCAIP expression (Mann-Whitney test).
 	}

@@ -41,11 +41,42 @@ In China, WNT Medulloblastoma continues to have superior survival compared to ot
 
 \section{Material and methods}
 
+\subsection{Patient information}
+
+All tissues and clinicopathological information were serially collected in accordance with institutional review boards from various contributing centers. In the discovery set, although precise treatment dates were often unavailable, at least 95\% of the patients were treated within the past 15 years using modern treatment protocols, including surgical resection, craniospinal (whole brain and spine) irradiation, and/or chemotherapy. Discovery set samples were collected between 2005 and 2013, with a focus on samples with available fresh-frozen material. Among the samples with treatment details, the earliest diagnosis is July 1997 and the latest is August 2012. Samples in the validation set were all obtained from the Burdenko institute with no selection criterion applied. All patients in the validation set were treated between 1995 and 2010 according to standardized therapy protocols of the German HIT study group.
+
+\subsection{Tumor material and patient characteristics}
+
+A discovery set of 673 medulloblastoma samples with clinical follow-up was acquired retrospectively from 43 cities around the globe. These samples were copy-number profiled on the Affymetrix SNP6 array platform, in order to identify potential molecular biomarkers \citeself{shih12}. An independent validation set of 453 samples with clinical follow-up on a medulloblastoma TMA was analyzed by FISH as previously described \citeself{northcott11a}. The validation set consisted only of patients treated in Burdenko, Moscow. Tumors were classified based on signature marker expression into molecular subgroups as previously described \citeself{northcott12}; additional tumors were classified based on cytogenetic aberrations using standard conditional probability models. Subgroup affiliation was not available for 162 discovery samples. The validation set includes an additional set of 50 WNT tumours that were not on the TMA. Details on clinical data are listed in Appendix Table A1-2. The availability of clinical and cytogenetic data is shown in Appendix Fig 20. Nucleic acid isolation, TMA construction, and $\beta$-catenin mutation analysis were performed as previously described \citeself{shih12}. 
+
+\subsection{Prognostic biomarker identification}
+
+Cytogenetic events and copy-number aberrations were identified as previously described in the discovery set \citeself{shih12}. Subsequent to biomarker discovery, cross-validation was performed to estimate the reproducibility of the potential biomarkers in an independent cohort, with multiple hypothesis correction. Additionally, sample size estimates for prospective trials of each biomarker were calculated under univariate Cox models based on the observed hazard ratios.
+
+During the identification of cytogenetic events and copy-number aberrations in the discovery set, all chromosomal events (or chromosome arm events) were compared against reference samples with balanced copy-number for the chromosome (or chromosome arm); samples with copy-number changes in the opposite direction were specifically excluded from each comparison. Subsequent to biomarker discovery, cross-validation was performed to estimate the reproducibility and generalizability of the potential biomarkers in an independent cohort. During cross-validation, the discovery set was split randomly into two subsets. First, the biomarkers are tested by the log-rank test on the first subset. Then, statistically significant biomarkers ($p < 0.05$) are tested again by the log-rank test on the second subset, with correction for multiple hypotheses testing. This process was repeated 10~000 times to estimate the expected validation rate of each biomarker. The expected validation rate of each biomarker is $n_v / n_d$, where $n_d$ is the number of times a biomarker is significant in the first subset and $n_v$ is the number of times a discovered biomarker is also significant in the second subset. The final set of biomarkers was further validated in the external validation set.
+
+\subsection{Multiple hypothesis testing correction}
+
+Within each biomarker identification analysis, correction for multiple hypothesis testing was performed by the Benjamini-Hochberg method during the cross-validation procedure. Independent analyses were corrected for multiple hypothesese testing independently: clinical biomarker identification across medulloblastoma, within WNT medulloblastoma, within SHH medulloblastoma, within Group3, and within Group4; molecular biomarker identification across medulloblastoma, within WNT medulloblastoma, within SHH medulloblastoma, within Group3 medulloblastoma, and within Group4 medulloblastoma.
+
+\subsection{Statistical analysis}
+
+The patient survival characteristics were right-censored at 5 years (or 10 years) and analyzed by the Kaplan-Meier method. Univariate comparison of two or more survival curves were performed using log-rank tests and the Cox proportional-hazards regression models. The predictive values of biomarkers were assessed by analyses of deviance tests under multivariate Cox models and by time-dependent \gls{roc} analyses. Associations between covariates and risk groups were tested by the Fisher’s exact test. All statistical analyses were performed in the R software environment (v2.15), using R packages survival (v2.36), risksetROC (v1.0.4), powerSurvEpi (v0.0.6), and ggplot2 (v0.9.3).
+
+\subsection{Time-dependent ROC analysis}
+
+Time-dependent \gls{roc} analyses were performed using the CoxWeights function provided in the risksetROC (v1.0.4) R package. This function calculates areas under time-dependent ROC curves as described by Heagerty and Zheng \citeref{heagerty05}. \gls{auc} estimates of the fitted multivariate Cox models being assessed were calculated every month, from 1 month to 60 months, in order to determine the collective predictive performance of the biomarkers in the Cox models. Differences in \gls{auc} estimates among Cox models across time points were tested by Friedman rank sum tests.
+
+\subsection{Risk stratification model selection}
+
+Biomarkers identified in univariate survival analyses were tested by multivariate Cox proportional-hazards models. All discovered biomarkers were tested for inclusion in the risk stratification model by multiple unbiased procedures: stepwise regression using forward selection, backward elimination and bidirectional elimination with the \gls{aic}, as well as analyses of deviance tests.
+
+
 \section{Results}
 
 \subsection{Prognostic significance of clinical variables within medulloblastoma subgroups}
 
-Many prior medulloblastoma biomarker publications were limited by sample size, a problem that will only be exacerbated once cohorts are divided into their molecular subgroups.  The current study includes 1126 medulloblastoma patients (673 discovery plus 453 validation patients), which is more than double the sample size of any prior medulloblastoma biomarker publication, and one of only a very few that includes a validation cohort (\citefig{meta_cyto-markers}). Although the discovery cohort accumulated by MAGIC consists of medulloblastomas gathered from 43 different treating centers from around the world, the subgroup-specific outcome mirrors what has been previously published with very good outcomes for WNT patients, poor outcomes for Group~3 patients, and intermediate outcomes for SHH and Group~4 patients (\citefig{surv_mb-subgroups}) suggesting that the discovery cohort is a representative sample (appendix table not shown).
+Many prior medulloblastoma biomarker publications were limited by sample size, a problem that will only be exacerbated once cohorts are divided into their molecular subgroups.  The current study includes 1126 medulloblastoma patients (673 discovery plus 453 validation patients), which is more than double the sample size of any prior medulloblastoma biomarker publication, and one of only a very few that includes a validation cohort (\citefig{meta_cyto-markers}). Although the discovery cohort accumulated by MAGIC consists of medulloblastomas gathered from 43 different treating centers from around the world, the subgroup-specific outcome mirrors what has been previously published with very good outcomes for WNT patients, poor outcomes for Group3 patients, and intermediate outcomes for SHH and Group4 patients (\citefig{surv_mb-subgroups}) suggesting that the discovery cohort is a representative sample (appendix table not shown).
 
 \begin{figure}[h]
 	\begin{center}
@@ -59,9 +90,9 @@ Many prior medulloblastoma biomarker publications were limited by sample size, a
 	\label{fig:surv_ageg_mstat_wnt}
 \end{figure}
 
-In order to assess long-term survivors, WNT patients were followed for up to 10 years, and only two deaths were observed, both late in the follow-up period and due to recurrence of medulloblastoma (\citefig{surv_ageg_mstat_wnt}, appendix table not shown).  Among the SHH tumors, there is a significantly better outcome in the adult patients as compared to children or infants (\citefig{surv_ageg_shh_group3_group4}).  There is a trend towards a worse outcome for infants with Group~3 tumors that is not statistically significant (\citefig{surv_ageg_shh_group3_group4}).  Infants with Group~4 tumors have a significantly worse outcome than children or adults (\citefig{surv_ageg_shh_group3_group4}), suggesting that radiation therapy is critical in the treatment of Group~4 medulloblastoma. There is no reproducible association between gender and prognosis in any of the four subgroups (appendix figure not shown). Desmoplastic histology portends a more favorable prognosis than classic histology, which is more favorable than anaplastic histology among SHH tumors (appendix figure not shown). Large cell/anaplastic histology has prognostic significance for Group~3 medulloblastomas in the discovery cohort, but does not validate as significant in the validation cohort.
+In order to assess long-term survivors, WNT patients were followed for up to 10 years, and only two deaths were observed, both late in the follow-up period and due to recurrence of medulloblastoma (\citefig{surv_ageg_mstat_wnt}, appendix table not shown).  Among the SHH tumors, there is a significantly better outcome in the adult patients as compared to children or infants (\citefig{surv_ageg_shh_group3_group4}).  There is a trend towards a worse outcome for infants with Group3 tumors that is not statistically significant (\citefig{surv_ageg_shh_group3_group4}).  Infants with Group4 tumors have a significantly worse outcome than children or adults (\citefig{surv_ageg_shh_group3_group4}), suggesting that radiation therapy is critical in the treatment of Group4 medulloblastoma. There is no reproducible association between gender and prognosis in any of the four subgroups (appendix figure not shown). Desmoplastic histology portends a more favorable prognosis than classic histology, which is more favorable than anaplastic histology among SHH tumors (appendix figure not shown). Large cell/anaplastic histology has prognostic significance for Group3 medulloblastomas in the discovery cohort, but does not validate as significant in the validation cohort.
 
-While metastatic status is not prognostic for patients with WNT medulloblastoma, macroscopic metastasis (M2/M3) is consistently associated with poor survival in all non-WNT subgroups, though the clinical effect is very slight among patients with Group~4 disease (\citefig{surv_mstat_shh_group3_group4}).  While the prognostic significance of M0 disease as compared to M2/3 disease is very clear across SHH, Group~3, and Group~4, the prognostic significance of isolated M1 disease is less clear (\citefig{surv_mstat_shh_group3_group4}, appendix figure not shown). Isolated M1 disease is associated with increased risk in Group~3 in the discovery cohort, but not the validation cohort, with the opposite pattern seen in the SHH patients. However, for both discovery and validation cohorts, there are no survival differences survival between M0 and M1 patients with Group~4 disease. There are no CNAs in any of the subgroups that are associated with an increased risk of leptomeningeal dissemination (appendix table not shown). Overall, many clinical biomarkers continue to exhibit prognostic significance when medulloblastoma is analyzed in a subgroup-specific fashion (appendix table not shown).
+While metastatic status is not prognostic for patients with WNT medulloblastoma, macroscopic metastasis (M2/M3) is consistently associated with poor survival in all non-WNT subgroups, though the clinical effect is very slight among patients with Group4 disease (\citefig{surv_mstat_shh_group3_group4}).  While the prognostic significance of M0 disease as compared to M2/3 disease is very clear across SHH, Group3, and Group4, the prognostic significance of isolated M1 disease is less clear (\citefig{surv_mstat_shh_group3_group4}, appendix figure not shown). Isolated M1 disease is associated with increased risk in Group3 in the discovery cohort, but not the validation cohort, with the opposite pattern seen in the SHH patients. However, for both discovery and validation cohorts, there are no survival differences survival between M0 and M1 patients with Group4 disease. There are no CNAs in any of the subgroups that are associated with an increased risk of leptomeningeal dissemination (appendix table not shown). Overall, many clinical biomarkers continue to exhibit prognostic significance when medulloblastoma is analyzed in a subgroup-specific fashion (appendix table not shown).
 
 \bigskip
 
@@ -69,9 +100,9 @@ While metastatic status is not prognostic for patients with WNT medulloblastoma,
 	\begin{center}
 		\includegraphics{fig/magic-clin/surv_ageg_shh_group3_group4.pdf}
 	\end{center}
-	\caption[Overall survival curves for age groups within SHH, Group~3, and Group~4 subgroups]
+	\caption[Overall survival curves for age groups within SHH, Group3, and Group4 subgroups]
 	{
-	Overall survival curves for age groups within SHH, Group~3, and Group~4 subgroups.
+	Overall survival curves for age groups within SHH, Group3, and Group4 subgroups.
 	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:surv_ageg_shh_group3_group4}
@@ -81,9 +112,9 @@ While metastatic status is not prognostic for patients with WNT medulloblastoma,
 	\begin{center}
 		\includegraphics{fig/magic-clin/surv_mstat_shh_group3_group4.pdf}
 	\end{center}
-	\caption[Overall survival curves for metastatic status within SHH, Group~3, and Group~4 subgroups]
+	\caption[Overall survival curves for metastatic status within SHH, Group3, and Group4 subgroups]
 	{
-	Overall survival curves for metastatic status within SHH, Group~3, and Group~4 subgroups.
+	Overall survival curves for metastatic status within SHH, Group3, and Group4 subgroups.
 	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:surv_mstat_shh_group3_group4}
@@ -115,7 +146,7 @@ Multivariate survival analyses were conducted in order to dissect the relative p
 
 \subsection{Subgroup specificity of published molecular biomarkers}
 
-Several cytogenetic biomarkers have been previously reported to be associated with patient survival across medulloblastoma, but their prognostic values have seldom been assessed in the context of medulloblastoma subgroups (appendix table not shown). Monosomy for chromosome 6 is significantly associated with improved survival across medulloblastoma in toto (\citefig{subgroup-specific_eg}\emphlab{a}, appendix table not shown). However, the prognostic value of chr6 loss can be completely attributed to its enrichment in WNT medulloblastomas (\citefig{subgroup-specific_eg}\emphlab{b}, appendix data not shown), as loss of chr6 has no prognostic value among WNT patients, or among non-WNT patients, when compared to their respective controls with balanced chr6.  We would suggest that monosomy 6 is subgroup-driven biomarker in that its prognostic significance is driven by its enrichment in a particular subgroup, and it thus holds no further significance in subgroup-specific analysis.  Further, these results would caution against using monosomy 6 as the lone diagnostic criteria for a WNT medulloblastoma, since it is also observed in non-WNT medulloblastoma (7/49 monosomy 6 medulloblastomas were not WNT (14\%)), and monosomy 6 is only present in 42/53 WNT tumors (79\%).  The prognostic role of isochromosome 17q (iso17q) has been very controversial; in our cohort in toto, iso17q is a statistically significant predictor of poor outcome (\citefig{subgroup-specific_eg}\emphlab{c}).  However, subgroup-specific analysis demonstrates that iso17q is highly prognostic for Group~3 medulloblastoma, but not for Group~4 medulloblastoma (\citefig{subgroup-specific_eg}\emphlab{d}), indicating that it is a subgroup-specific molecular biomarker.  Similarly, while 10q loss is a modestly significant predictor of poor outcome across medulloblastoma subgroups (\citefig{subgroup-specific_eg}\emphlab{e}), its prognostic power is limited to the SHH subgroup of tumors in a subgroup-specific analysis (\citefig{subgroup-specific_eg}\emphlab{f}).  We conclude that determination of molecular subgroup affiliation is crucial in the evaluation and implementation of molecular biomarkers for patients with medulloblastoma (appendix data not shown), as some putative biomarkers are merely enriching for a specific subgroup (subgroup driven) while most others are only significant within a specific subgroup (subgroup specific).
+Several cytogenetic biomarkers have been previously reported to be associated with patient survival across medulloblastoma, but their prognostic values have seldom been assessed in the context of medulloblastoma subgroups (appendix table not shown). Monosomy for chromosome 6 is significantly associated with improved survival across medulloblastoma in toto (\citefig{subgroup-specific_eg}\emphlab{a}, appendix table not shown). However, the prognostic value of chr6 loss can be completely attributed to its enrichment in WNT medulloblastomas (\citefig{subgroup-specific_eg}\emphlab{b}, appendix data not shown), as loss of chr6 has no prognostic value among WNT patients, or among non-WNT patients, when compared to their respective controls with balanced chr6.  We would suggest that monosomy 6 is subgroup-driven biomarker in that its prognostic significance is driven by its enrichment in a particular subgroup, and it thus holds no further significance in subgroup-specific analysis.  Further, these results would caution against using monosomy 6 as the lone diagnostic criteria for a WNT medulloblastoma, since it is also observed in non-WNT medulloblastoma (7/49 monosomy 6 medulloblastomas were not WNT (14\%)), and monosomy 6 is only present in 42/53 WNT tumors (79\%).  The prognostic role of isochromosome 17q (iso17q) has been very controversial; in our cohort in toto, iso17q is a statistically significant predictor of poor outcome (\citefig{subgroup-specific_eg}\emphlab{c}).  However, subgroup-specific analysis demonstrates that iso17q is highly prognostic for Group3 medulloblastoma, but not for Group4 medulloblastoma (\citefig{subgroup-specific_eg}\emphlab{d}), indicating that it is a subgroup-specific molecular biomarker.  Similarly, while 10q loss is a modestly significant predictor of poor outcome across medulloblastoma subgroups (\citefig{subgroup-specific_eg}\emphlab{e}), its prognostic power is limited to the SHH subgroup of tumors in a subgroup-specific analysis (\citefig{subgroup-specific_eg}\emphlab{f}).  We conclude that determination of molecular subgroup affiliation is crucial in the evaluation and implementation of molecular biomarkers for patients with medulloblastoma (appendix data not shown), as some putative biomarkers are merely enriching for a specific subgroup (subgroup driven) while most others are only significant within a specific subgroup (subgroup specific).
 
 \clearpage
 
@@ -129,7 +160,7 @@ Several cytogenetic biomarkers have been previously reported to be associated wi
 	\textbf{a}, Overall survival curves and frequency distribution of chr6 status across the entire cohort.
 	\textbf{b}, Overall survival curves for chr6 status in WNT and non-WNT medulloblastomas.		
 	\textbf{c}, Overall survival curves and frequency distribution of isolated chr17q gain across the entire cohort.
-	\textbf{d}, Overall survival curves for chr17q status in Group~3 and Group~4 subgroups. 
+	\textbf{d}, Overall survival curves for chr17q status in Group3 and Group4 subgroups. 
 	\textbf{e}, Overall survival curves for chr10q status across the entire cohort.
 	\textbf{f}, Overall survival curves for chr10q status in SHH and non-SHH medulloblastomas.
 	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
@@ -182,9 +213,9 @@ Two additional stratification schemes were constructed using only clinical bioma
 
 \clearpage
 
-\subsection{Metastatic status, iso17q, and \emph{MYC} amplification demarcate high-risk Group~3 patients}
+\subsection{Metastatic status, iso17q, and \emph{MYC} amplification demarcate high-risk Group3 patients}
 
-In Group~3 patients, iso17q and \emph{MYC} amplification remain the only cytogenetic markers associated with poor survival, whereas chr8q loss and chr1q gain are the only good prognosis markers (\citefig{group3-markers}, appendix data not shown). In multivariate survival analyses, patients with metastasis, iso17q, or MYC amplification represent the high-risk group (\citefig{group3-risk-strat}\emphlab{a}). Critically, absence of these markers can identify a population of Group~3 patients who have a survivorship much longer than Group~3 taken as a whole. The risk groups are not associated with any clinical covariates, including age (\citefig{group3-risk-strat}\emphlab{a}, appendix figures not shown). Consistent with the findings in SHH patients, optimal risk stratification in Group~3 patients requires the use of both clinical and molecular prognostic markers, which have reduced or no prognostic value outside of Group~3 (\citefig{group3-risk-strat}\emphlab{b}, appendix figure not shown). Our proposed risk stratification scheme was validated on the non-overlapping validation cohort using three molecular biomarkers (\emph{MYC}, 17p, and 17q \gls{fish}) and metastatic status (\citefig{group3-risk-strat}\emphlab{c}).
+In Group3 patients, iso17q and \emph{MYC} amplification remain the only cytogenetic markers associated with poor survival, whereas chr8q loss and chr1q gain are the only good prognosis markers (\citefig{group3-markers}, appendix data not shown). In multivariate survival analyses, patients with metastasis, iso17q, or MYC amplification represent the high-risk group (\citefig{group3-risk-strat}\emphlab{a}). Critically, absence of these markers can identify a population of Group3 patients who have a survivorship much longer than Group3 taken as a whole. The risk groups are not associated with any clinical covariates, including age (\citefig{group3-risk-strat}\emphlab{a}, appendix figures not shown). Consistent with the findings in SHH patients, optimal risk stratification in Group3 patients requires the use of both clinical and molecular prognostic markers, which have reduced or no prognostic value outside of Group3 (\citefig{group3-risk-strat}\emphlab{b}, appendix figure not shown). Our proposed risk stratification scheme was validated on the non-overlapping validation cohort using three molecular biomarkers (\emph{MYC}, 17p, and 17q \gls{fish}) and metastatic status (\citefig{group3-risk-strat}\emphlab{c}).
 
 \bigskip
 
@@ -192,13 +223,13 @@ In Group~3 patients, iso17q and \emph{MYC} amplification remain the only cytogen
 	\begin{center}
 		\includegraphics[width=\textwidth]{fig/magic-clin/group3-markers.pdf}
 	\end{center}
-	\caption[Overall survival curves for molecular biomarkers in Group~3 medulloblastoma]
+	\caption[Overall survival curves for molecular biomarkers in Group3 medulloblastoma]
 	{
-	Overall survival curves for molecular biomarkers in Group~3 medulloblastoma:
+	Overall survival curves for molecular biomarkers in Group3 medulloblastoma:
 	\textbf{a}, chr17 copy number aberrations;
 	\textbf{b}, \emph{MYC} copy number status; and 
 	\textbf{c}, chr8q status.
-	\textbf{d}, Risk stratification of Group~3 medulloblastomas by molecular and clinical prognostic markers.
+	\textbf{d}, Risk stratification of Group3 medulloblastomas by molecular and clinical prognostic markers.
 	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:group3-markers}
@@ -210,12 +241,12 @@ In Group~3 patients, iso17q and \emph{MYC} amplification remain the only cytogen
 	\begin{center}
 		\includegraphics{fig/magic-clin/group3-risk-strat.pdf}
 	\end{center}
-	\caption[Combined clinical and molecular biomarkers improve risk-stratification of Group~3 patients.]
+	\caption[Combined clinical and molecular biomarkers improve risk-stratification of Group3 patients.]
 	{
-	Combined clinical and molecular biomarkers improve risk-stratification of Group~3 patients.
-	\textbf{a}, Risk stratification of Group~3 medulloblastomas by molecular and clinical prognostic markers.	\emph{Top-left}, decision tree; \emph{bottom-left}, events plot depicting status of molecular and clinical markers across the risk groups; \emph{right}, overall survival curves for Group~3 risk groups.
-	\textbf{b}, Average time-dependent AUCs for risk groups stratified using only clinical or molecular markers, or both. Risk stratification regimens are applied to Group~3 and non-Group~3 medulloblastomas. ***, $p < 0.001$, Friedman rank sum tests.
-	\textbf{c}, Survival curves for Group~3 risk groups in the validation cohort.
+	Combined clinical and molecular biomarkers improve risk-stratification of Group3 patients.
+	\textbf{a}, Risk stratification of Group3 medulloblastomas by molecular and clinical prognostic markers.	\emph{Top-left}, decision tree; \emph{bottom-left}, events plot depicting status of molecular and clinical markers across the risk groups; \emph{right}, overall survival curves for Group3 risk groups.
+	\textbf{b}, Average time-dependent AUCs for risk groups stratified using only clinical or molecular markers, or both. Risk stratification regimens are applied to Group3 and non-Group3 medulloblastomas. ***, $p < 0.001$, Friedman rank sum tests.
+	\textbf{c}, Survival curves for Group3 risk groups in the validation cohort.
 	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:group3-risk-strat}
@@ -224,9 +255,9 @@ In Group~3 patients, iso17q and \emph{MYC} amplification remain the only cytogen
 \clearpage
 
 
-\subsection{Identification of a low-risk group of metastatic Group~4 patients}
+\subsection{Identification of a low-risk group of metastatic Group4 patients}
 
-Group~4 patients with whole chromosome loss of chr11 or gain of chr17 exhibit better survival under univariate Cox PH models (\citefig{group4-markers}\emphlab{a}), in addition to chr10p loss (\citefig{group4-markers}\emphlab{b}). There is no cytogenetic marker associated with poor prognosis (appendix data not shown). Specifically, neither \gene{MYCN} gain nor amplification is associated with poorer survival in Group~4, in stark contrast to SHH patients, reinforcing the distinction in their underlying biology (\citefig{group4-markers}\emphlab{b}, appendix figure not shown). Similarly, none of the cytogenetic biomarkers identified for Group~3 patients (e.g. iso17q) have any prognostic value in Group~4 (appendix table not shown). Following unbiased model selection, the consensus set of biomarkers results in a risk stratification scheme in which leptomeningeal dissemination identifies high-risk Group~4 patients, except in the context of chr11 loss or chr17 gain (\citefig{group4-risk-strat}\emphlab{a}). The biology underlying chr11 loss is not apparent as there is no obvious minimal common region of deletion (appendix figure not shown), nor are there any recurrent SNVs on chr11 reported in the recent medulloblastoma re-sequencing publications. Group~4 patients with either chr17 gain or chr11 loss, irrespective of their metastatic statuses exhibit survivorship that is characteristic of WNT patients in both the discovery and validation cohorts (\citefig{group4-risk-strat}\emphlab{a},\emphlab{c}), and the survival differences are not explainable by covariates (appendix figure not shown). Significantly, the low-risk Group~4 cohort also included some patients with anaplastic histology. Consistent with other subgroups, the risk stratification model using both clinical and molecular biomarkers achieve the highest accuracy (\citefig{group4-risk-strat}\emphlab{b}). Critically, the cytogenetic biomarkers identify low-risk Group~4 patients whom would be otherwise designated as high-risk by evidence of metastasis and/or anaplastic histology; this finding cannot be extrapolated to SHH and Group~3 patients (\citefig{group4-risk-strat}, appendix figure not shown).  We conclude that through the use of three molecular biomarkers (chr11, 17p, and 17q \gls{fish}) and metastatic status, we can accurately and reliably predict the prognosis of patients with Group~4 medulloblastoma.
+Group4 patients with whole chromosome loss of chr11 or gain of chr17 exhibit better survival under univariate Cox PH models (\citefig{group4-markers}\emphlab{a}), in addition to chr10p loss (\citefig{group4-markers}\emphlab{b}). There is no cytogenetic marker associated with poor prognosis (appendix data not shown). Specifically, neither \gene{MYCN} gain nor amplification is associated with poorer survival in Group4, in stark contrast to SHH patients, reinforcing the distinction in their underlying biology (\citefig{group4-markers}\emphlab{b}, appendix figure not shown). Similarly, none of the cytogenetic biomarkers identified for Group3 patients (e.g. iso17q) have any prognostic value in Group4 (appendix table not shown). Following unbiased model selection, the consensus set of biomarkers results in a risk stratification scheme in which leptomeningeal dissemination identifies high-risk Group4 patients, except in the context of chr11 loss or chr17 gain (\citefig{group4-risk-strat}\emphlab{a}). The biology underlying chr11 loss is not apparent as there is no obvious minimal common region of deletion (appendix figure not shown), nor are there any recurrent SNVs on chr11 reported in the recent medulloblastoma re-sequencing publications. Group4 patients with either chr17 gain or chr11 loss, irrespective of their metastatic statuses exhibit survivorship that is characteristic of WNT patients in both the discovery and validation cohorts (\citefig{group4-risk-strat}\emphlab{a},\emphlab{c}), and the survival differences are not explainable by covariates (appendix figure not shown). Significantly, the low-risk Group4 cohort also included some patients with anaplastic histology. Consistent with other subgroups, the risk stratification model using both clinical and molecular biomarkers achieve the highest accuracy (\citefig{group4-risk-strat}\emphlab{b}). Critically, the cytogenetic biomarkers identify low-risk Group4 patients whom would be otherwise designated as high-risk by evidence of metastasis and/or anaplastic histology; this finding cannot be extrapolated to SHH and Group3 patients (\citefig{group4-risk-strat}, appendix figure not shown).  We conclude that through the use of three molecular biomarkers (chr11, 17p, and 17q \gls{fish}) and metastatic status, we can accurately and reliably predict the prognosis of patients with Group4 medulloblastoma.
 
 \bigskip
 
@@ -234,9 +265,9 @@ Group~4 patients with whole chromosome loss of chr11 or gain of chr17 exhibit be
 	\begin{center}
 		\includegraphics{fig/magic-clin/group4-markers.pdf}
 	\end{center}
-	\caption[Overall survival curves for molecular biomarkers in Group~4 medulloblastoma]
+	\caption[Overall survival curves for molecular biomarkers in Group4 medulloblastoma]
 	{
-	Overall survival curves for molecular biomarkers in Group~4 medulloblastoma:
+	Overall survival curves for molecular biomarkers in Group4 medulloblastoma:
 	\textbf{a}, whole chr11 status and whole chr17 status; and
 	\textbf{b}, \gene{MYCN} copy number status.
 	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
@@ -250,11 +281,11 @@ Group~4 patients with whole chromosome loss of chr11 or gain of chr17 exhibit be
 	\begin{center}
 		\includegraphics[width=\textwidth]{fig/magic-clin/group4-risk-strat.pdf}
 	\end{center}
-	\caption[Combined clinical and molecular biomarkers improve risk-stratification of Group~4 patients]
-	{Combined clinical and molecular biomarkers improve risk-stratification of Group~4 patients.
-	\textbf{a}, Risk stratification of Group~4 medulloblastomas by molecular and clinical prognostic markers. \emph{Top-left}, decision tree; \emph{bottom-left}, events plot depicting status of molecular and clinical markers across the risk groups; \emph{right}, overall survival curves for Group~4 risk groups.
-	\textbf{b}, Average time-dependent AUCs for risk groups stratified using only clinical or molecular markers, or both. Risk stratification regimens are applied to Group~4 and non-Group~4 medulloblastomas. ***, $p < 0.001$, Friedman rank sum tests.
-	\textbf{c}, Survival curves for Group~4 risk groups in the validation cohort. 
+	\caption[Combined clinical and molecular biomarkers improve risk-stratification of Group4 patients]
+	{Combined clinical and molecular biomarkers improve risk-stratification of Group4 patients.
+	\textbf{a}, Risk stratification of Group4 medulloblastomas by molecular and clinical prognostic markers. \emph{Top-left}, decision tree; \emph{bottom-left}, events plot depicting status of molecular and clinical markers across the risk groups; \emph{right}, overall survival curves for Group4 risk groups.
+	\textbf{b}, Average time-dependent AUCs for risk groups stratified using only clinical or molecular markers, or both. Risk stratification regimens are applied to Group4 and non-Group4 medulloblastomas. ***, $p < 0.001$, Friedman rank sum tests.
+	\textbf{c}, Survival curves for Group4 risk groups in the validation cohort. 
 	Numbers below x-axis represent patients at risk of event; statistical significances are evaluated by log-rank tests; \gls{hr} estimates are derived from Cox proportional-hazards analyses.
 	}
 	\label{fig:group4-risk-strat}
