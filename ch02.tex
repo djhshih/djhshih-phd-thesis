@@ -3,11 +3,21 @@
 \label{ch:mb-class}
 
 \begin{objective}
-To develop a clinically applicable assay for molecular classification of medulloblastoma.
+To develop a clinically applicable method for molecular classification of medulloblastoma.
 \end{objective}
 
-class prediction and class discovery
-compare to taxonomic identification and taxonomic classification
+Medulloblastoma can be classified by similarities in RNA expression profiles into four molecular subgroups: WNT, SHH, Group3, and Group4. These four subgroups show some association with the histological subtypes of medulloblastoma: classic, demosplastic, and anaplastic (large cell). The demosplastic histotype is enriched in SHH medulloblastoma (i.e. it is observed more often than expected by chance), while the anaplastic histotype is enriched in Group3 medulloblastoma. Nonetheless, the molecular classification is quite different from the histological classification. Despite its relative infancy, the molecular classification of medulloblastoma has gained widespread acceptance in the research community since the publication of the Taylor \emph{et al.}\ \citeref{taylor12}, a report of the consensus on classifying medulloblastoma by molecular profiles. Prior to this consensus report, several groups have independently discovered various molecular subtypes of medulloblastoma using different clustering analyses for class discovery \emph{thompson06, kool08, northcott11a, remke11}. On the surface, these studies discovered different molecular subtypes; in fact, each study discovered a different number of subtypes. Upon closer inspection, all the studies reported the delineation of a \gls{shh} activated and a \gls{wnt} activated subtype. Further, most studies (those with sufficient sample size) discovered at least two additional molecular subgroups; the exact number of molecular subtypes discovered depended on the granularity of the clustering or partitioning analysis. Indeed, the number of molecular subtypes is not as biologically important as the existence of each molecular subtypes. (Refer to the \emphlab{Classification} section, page \pageref{sec:classification}, in the \emphlab{Appendix} for a discussion on the difficulty in determining the number of classes.) In fact, most studies identified molecular subtypes bearing semblance to the GroupC and GroupD subtypes discovered by Northcott \emph{et al.}\ \citeref{northcott11a}, which have been renamed Group3 and Group4, respectively. To emphasize, each of the currently accepted WNT, SHH, and Group3, Group4 molecular subgroups have been identified in multiple studies, and these subgroups represent molecular entities that differ genetically, epidemiologically, and clinically \citeref{taylor12}.
+
+We sought to develop a method for classifying medulloblastoma samples into the four molecular subgroups.
+
+While clustering analysis has been instrumental in \emph{discovering} the molecular classes of medulloblastoma, it is ill-suited for predicting the class of a new, unknown sample. (See page \pageref{sec:classification} for the distinction between class discovery and class prediction.)  Clustering analysis can be sensitive to changes in sample size: removal or additional samples can drastically change the clustering results. The inclusion of samples with poor quality measurements may also completely reorganize the clustering structure. Moreover, clustering analysis is particularly prone to batch effects, where the discovered classes represent different technical batches of samples and do not reflect underlying biology. In comparison, class prediction can mitigate these effects by selecting for features that discriminate between the different classes and by assessing training and testing accuracies separately. Admittedly, clustering algorithms can be adapted for class prediction, but existing classification algorithms are widely applied, extensively tested, and well understood. Further, model-based classifiers can be designed under the classification framework in order to exploit specific statistical properties of the input data and thus improve prediction accuracy. Above all, we prefer to use or refine an ready suitable tool rather than re-purposing a tool designed for another task.
+
+
+
+nanostring vs. expression
+
+As later chapters will show, the classification of medulloblastoma into WNT, SHH, Group3, and Group4 is both practically feasiable but also catalyzes research into the molecular mechanism underlying medulloblastoma.
+
 
 \section{Materials and methods}
 

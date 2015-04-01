@@ -23,14 +23,14 @@ Genotyping and copy-number profiling of DNA samples was performed on the Affymet
 
 Affymetrix SNP6 CEL files were processed in dChip \citeref{lin04} to obtain raw copy number estimates.  Arrays were normalized by quantile normalization and signal intensities computed using the MBEI method (PM-only) inherent to the dChip program.  To generate a diploid reference baseline for copy number analysis of medulloblastoma samples, we used Affymetrix SNP6 data from 132 individuals from the Ontario Population Genomics Platform (OPGP) epidemiological project and the HapMap PROJECT.  Germline DNA from these samples was genotyped in the same microarray facility as the tumour samples, using identical experimental protocols as described above.
 
-The normalized copy number estimates from dChip were subsequently imported into the R environment, and the copy number profiles were segmented using the \gls{cbs} algorithm from the DNAcopy (v1.24) \citeref{venkatraman07} package, with the undo split option enabled (\code{method = sdundo, undo.SD = 1}). The resulting segmentation profiles were further processed to reduce artificial segments. Segments with fewer than 10 markers were removed. Adjacent segments whose copy number states differed by less than 0.25 were merged together using their size-weighted mean. This merging step is repeated iteratively until no more segments can be merged. The segmentation profile of each sample was then median-centered. Further, normal CNVs reported in the Database of Genomic Variants (DGV, v10) \citeref{iafrate04} were filtered from the segmentation profiles. Segments that reciprocally overlapped (Dice coefficient > 0.5) with normal CNVs were removed. CNVs reported on BAC End Sequencing, BAC Array CGH, ROMA, and FISH were excluded from this filter. Upon removing a segment, the upstream segment was merged to the downstream segment using a size-weighted mean. The aforementioned merging and CNV-filtering steps helped reduce the occurrence of broad segments being broken into non-contiguous pieces by artificial segments or normal CNVs (which influences the downstream GISTIC2 analysis and segment classification). The copy number segments were classified as balanced or one of 6 copy number aberrations based on the criteria in \citetbl{cna-criteria}.
+The normalized copy number estimates from dChip were subsequently imported into the R environment, and the copy number profiles were segmented using the \gls{cbs} algorithm from the DNAcopy (v1.24) \citeref{venkatraman07} package, with the undo split option enabled (\code{method = sdundo, undo.SD = 1}). The resulting segmentation profiles were further processed to reduce artificial segments. Segments with fewer than 10 markers were removed. Adjacent segments whose copy number states differed by less than 0.25 were merged together using their size-weighted mean. This merging step is repeated iteratively until no more segments can be merged. The segmentation profile of each sample was then median-centered. Further, normal CNVs reported in the Database of Genomic Variants (DGV, v10) \citeref{iafrate04} were filtered from the segmentation profiles. Segments that reciprocally overlapped (Dice coefficient > 0.5) with normal CNVs were removed. CNVs reported on BAC End Sequencing, BAC Array CGH, ROMA, and FISH were excluded from this filter. Upon removing a segment, the upstream segment was merged to the downstream segment using a size-weighted mean. The aforementioned merging and CNV-filtering steps helped reduce the occurrence of broad segments being broken into non-contiguous pieces by artificial segments or normal CNVs (which influences the downstream GISTIC2 analysis and segment classification). The copy number segments were classified as balanced or one of 6 copy number aberrations based on the criteria in \citetab{cna-criteria}.
 
 \begin{table}[H]
 	\caption[Criteria for DNA copy number aberrations]
 	{
 		Criteria for DNA copy number aberrations
 	}
-	\label{tbl:cna-criteria}
+	\label{tab:cna-criteria}
 	\footnotesize
 	\setlength{\extrarowheight}{0.5em}
 	\centering
@@ -78,14 +78,14 @@ To directly assess the correlation between significant CNA and gene expression, 
 
 \subsection{Identification of candidate driver genes in each significant region}
 
-Many of the significant regions identified using GISTIC and CMDS span multiple genes. Therefore, multiple lines of evidence were used to prioritize putative target genes within each region. Evidences collected from integrated expression data, the literature, and multiple datasets were classified into the tiers in \citetbl{driver-evidence}.
+Many of the significant regions identified using GISTIC and CMDS span multiple genes. Therefore, multiple lines of evidence were used to prioritize putative target genes within each region. Evidences collected from integrated expression data, the literature, and multiple datasets were classified into the tiers in \citetab{driver-evidence}.
 
 \begin{table}[H]
 	\caption[Tiered evidence framework for identifying candidate driver genes]
 	{
 		Tiered evidence framework for identifying candidate driver genes
 	}
-	\label{tbl:driver-evidence}
+	\label{tab:driver-evidence}
 	\scriptsize
 	\setlength{\extrarowheight}{0.5em}
 	\centering
