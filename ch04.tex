@@ -18,6 +18,7 @@ The four molecular subgroups of medulloblastoma exhibit activation of different 
 
 % lower dose of cisplatin did not compromise survival among patients with nonmetastatic, near totally resected medulloblastoma \citeref{nageswararao14}.
 
+\clearpage
 
 \section{Materials and methods}
 
@@ -147,6 +148,7 @@ To determine subgroup affiliation of the MAGIC cohort, a custom nanoString CodeS
 
 Statistical and bioinformatic analyses were performed in the R statistical environment (v2.13) or using custom programs/scripts written in Python, C++, or Go. Enrichment analyses were done using the hypergeometric test. The significance of chromosome arm frequencies were done using the exact binomial test, comparing the observed frequency to the expected frequency derived from a robust regression of event frequency and gene content, in a similar manner to the broad analysis in GISTIC2. Comparisons of event frequencies across medulloblastoma subgroups were performed using Fisher’s exact test. Expressions of genes across samples were compared using the Mann-Whitney test (and confirmed with the Student’s independent t-test). Where applicable, multiple hypothesis corrections were performed using the false discovery rate method \citeref{storey03}. Univariate survival analyses were done using the log-rank test, as implemented in the survival R package (v2.36).
 
+\clearpage
 
 \section{Results}
 
@@ -156,7 +158,7 @@ Copy-number profiles were generated on $> 1200$ medulloblastomas using the Affym
 
 \begin{SCfigure}[5]
 	\centering
-	\includegraphics[width=0.22\textwidth]{fig/magic-cn/subgroup-specificity.pdf}
+	\includegraphics[width=0.6\textwidth]{fig/magic-cn/subgroup-specificity.pdf}
 	\caption[Significant regions of focal SCNA identified by GISTIC2]
 	{
 	Significant regions of focal SCNA identified by GISTIC2 in pan-cohort or subgroup-stratified analyses.
@@ -165,7 +167,7 @@ Copy-number profiles were generated on $> 1200$ medulloblastomas using the Affym
 	\label{fig:subgroup-specificity}
 \end{SCfigure}
 
-\subsection{Recurrent high-level amplifications and homozygous deletions target known cancer-associated genes}
+\subsection{Recurrent events target known cancer-associated genes}
 
 Among the recurrent high-level amplifications (copy-number $\geq 5$) identified (\citefig{high-level-amps}), the most prevalent events targeted members of the MYC family (\gene{MYCN}, \gene{MYC}, \gene{MYCL}), with \gene{MYCN} predominantly amplified in SHH and Group4, \gene{MYC} in Group3, and \gene{MYCL} in SHH medulloblastomas. The most common homozygous deletions targeted known tumour suppressors \gene{PTEN}, \gene{PTCH1}, and \gene{CDKN2A/B}, all of which were enriched in SHH tumours (\citefig{homo-del}). A selected set of genes were assessed using custom nanoString assays, and 90.9\% of events were verified (\citefig{nanostr-verification}). Additional genes were validated on external cohorts by \gls{fish} \citeref{shih12}.
 
@@ -173,13 +175,24 @@ Among the recurrent high-level amplifications (copy-number $\geq 5$) identified 
 
 Chromothripsis (chromosome shattering) lead to co-occurrence of high-level amplifications and disruption of several genes localized to specific regions in one or multiple chromosomes. Several samples exhibit genomic aberrations reminiscent of chromothripsis, which has recently been implicated in cancer formation \citeref{stephens11, liu11, kloosterman11b, magrangeas11, crasta12, molenaar12}, as well as in medulloblastoma \citeself{rausch12}. In our cohort of chromothripsis, the incidence of chromothripsis is not uniform across subgroups ($p = 0.015$, Fisher's exact test). While the incidence of chromothripsis is depleted in WNT tumours compared to non-WNT tumours ($p = 0.0028$), chromothripsis is neither enriched nor depleted in the SHH, Group3, or Group4 ($p > 0.05$). The incidence of chromothripsis is about 12\% among SHH, Group3, and Group4 tumours. These findings are consistent with the observation that WNT medulloblastoma show no recurrent \gls{scna} other than chr6 loss and appear more genomically stable \citeref{shih12}.
 
-\subsection{Subgroup-specific genomic events converge on oncogenic pathways}
+\begin{SCfigure}[5]
+	\centering
+	\includegraphics[width=0.35\textwidth]{fig/magic-cn/genome-coverage.pdf}
+	\caption[WNT medulloblastomas sustain a paucity of recurrent focal \gls{scnas}.]
+	{
+		WNT medulloblastomas sustain a paucity of recurrent focal \gls{scnas}.
+		Bar-plots of the proportion of genome recurrently disrupted by focal \gls{scnas} are depicted for each medulloblastoma subgroup.
+	}
+	\label{fig:genome-coverage}
+\end{SCfigure}
+
+\subsection{Subgroup-specific events converge on oncogenic pathways}
 
 The disparate genomic landscapes of medulloblastoma subgroups lead to the identification of a multitude of focal \gls{scnas} that characterize each molecular subgroup (appendix figures not shown). Novel genes identified in this study include: \gene{PPM1D}, \gene{PIK3C2B}, and \gene{MDM4} in SHH (\citefig{shh-amps-igv}); \gene{ACVR2A}, \gene{ACVR2B}, and \gene{TGFBR1} in Group3 (\citefig{group3-amps-igv}); and \gene{NFKBIA} and \gene{USP4} in Group4 (\citefig{group4-dels-igv}). Conversely, WNT medulloblastoma have few recurrent \gls{scnas} (\citefig{genome-coverage}). 
 
-\begin{SCfigure}[5][b]
+\begin{SCfigure}[5]
 	\centering
-	\includegraphics[width=0.15\textwidth]{fig/magic-cn/nanostr-verification.pdf}
+	\includegraphics[width=0.5\textwidth]{fig/magic-cn/nanostr-verification.pdf}
 	\caption[Verification of focal \gls{scnas} by nanoString]
 	{
 	Verification of focal \gls{scnas} by nanoString.
@@ -190,44 +203,33 @@ The disparate genomic landscapes of medulloblastoma subgroups lead to the identi
 
 \clearpage
 
-\begin{SCfigure}[5]
+\begin{figure}[5]
 	\centering
-	\includegraphics[width=0.4\textwidth]{fig/magic-cn/high-level-amps.pdf}
+	\includegraphics[width=\textwidth]{fig/magic-cn/high-level-amps.pdf}
 	\caption[Recurrent high-level amplifications in medulloblastoma]
 	{
 	Recurrent high-level amplifications in medulloblastoma.
 	Frequency of genes amplified (segmented copy-number $\geq 5$) in at least two samples are shown with the distribution of the event across subgroups. The number of genes mapping to the peak region as defined by GISTIC2 (where applicable) are listed in parentheses after the candidate driver gene.
 	}
 	\label{fig:high-level-amps}
-\end{SCfigure}
+\end{figure}
 
-\begin{SCfigure}[5]
+\begin{figure}[5]
 	\centering
-	\includegraphics[width=0.4\textwidth]{fig/magic-cn/homo-del.pdf}
+	\includegraphics[width=\textwidth]{fig/magic-cn/homo-del.pdf}
 	\caption[Recurrent homozygous deletions in medulloblastoma]
 	{
 	Recurrent homozygous deletions in medulloblastoma.
 	Frequency of genes targeted by homozygous deletion (segmented copy-number $\leq 0.7$) in at least two samples are shown.
 	}
 	\label{fig:homo-del}
-\end{SCfigure}
-
-\begin{SCfigure}[5]
-	\centering
-	\includegraphics[width=0.2\textwidth]{fig/magic-cn/genome-coverage.pdf}
-	\caption[WNT medulloblastomas sustain a paucity of recurrent focal \gls{scnas}.]
-	{
-	WNT medulloblastomas sustain a paucity of recurrent focal \gls{scnas}.
-	Bar-plots of the proportion of genome recurrently disrupted by focal \gls{scnas} are depicted for each medulloblastoma subgroup.
-	}
-	\label{fig:genome-coverage}
-\end{SCfigure}
+\end{figure}
 
 \clearpage
 
 \begin{SCfigure}[1][t]
 	\centering
-	\includegraphics[width=0.5\textwidth]{fig/magic-cn/shh-amps-igv.pdf}
+	\includegraphics[width=0.6\textwidth]{fig/magic-cn/shh-amps-igv.pdf}
 	\caption[Recurrent amplifications of \gene{PPMID}, \gene{MDM4}, and \gene{PIK3C2B} in SHH medulloblastoma]
 	{
 	Recurrent high-level amplifications of \gene{PPMID} and co-amplification of \gene{MDM4} and \gene{PIK3C2B} in SHH medulloblastoma.
@@ -238,7 +240,7 @@ The disparate genomic landscapes of medulloblastoma subgroups lead to the identi
 
 \begin{SCfigure}[1][b]
 	\centering
-	\includegraphics[width=0.45\textwidth]{fig/magic-cn/group3-amps-igv.pdf}
+	\includegraphics[width=0.6\textwidth]{fig/magic-cn/group3-amps-igv.pdf}
 	\caption[Recurrent amplifications target receptors of the TGF$\beta$ superfamily in Group3]
 	{
 	Recurrent amplifications target receptors of the TGF$\beta$ superfamily in Group3.
@@ -247,24 +249,22 @@ The disparate genomic landscapes of medulloblastoma subgroups lead to the identi
 	\label{fig:group3-amps-igv}
 \end{SCfigure}
 
-\clearpage
+SHH medulloblastoma, which is characterized by activation of Shh signaling \citeref{northcott11a,remke11,cho11,kool08,taylor12}, exhibit frequent \gls{scnas} in the Shh pathway. Genes involved in focal \gls{scnas} amplifications are significantly associated with SHH medulloblastoma signatures genes \citeref{shih12}, suggesting that copy-number changes contribute in part to the altered expression signatures previously observed in SHH tumours. Accordingly, positive regulators of Shh signaling (\gene{MYCN} and \gene{GLI2}) were recurrently amplified, while a negative regulator of Shh signaling (\gene{PTCH1}) was recurrently lost. Consistent with their functions in the same pathway, these events were mutually exclusive; however, they lead to different clinical outcomes (appendix figure not shown). In additional to Shh signaling, other core pathways recurrently disrupted in SHH medulloblastoma are TP53 signaling and RTK/PI3K signaling (\citefig{shh-pathways}).
 
-SHH medulloblastoma, which is characterized by activation of Shh signaling \citeref{northcott11a,remke11,cho11,kool08,taylor12}, exhibit frequent \gls{scnas} in the Shh pathway. Genes involved in focal \gls{scnas} amplifications are significantly associated with SHH medulloblastoma signatures genes (appendix figure not shown), suggesting that copy-number changes contribute in part to the altered expression signatures previously observed in SHH tumours. Accordingly, positive regulators of Shh signaling (\gene{MYCN} and \gene{GLI2}) were recurrently amplified, while a negative regulator of Shh signaling (\gene{PTCH1}) was recurrently lost. Consistent with their functions in the same pathway, these events were mutually exclusive; however, they lead to different clinical outcomes (appendix figure not shown). In additional to Shh signaling, other core pathways recurrently disrupted in SHH medulloblastoma are TP53 signaling and RTK/PI3K signaling (\citefig{shh-pathways}).
-
-\begin{SCfigure}[5]
+\begin{figure}[5]
 	\centering
-	\includegraphics[width=0.6\textwidth]{fig/magic-cn/shh-pathways.pdf}
+	\includegraphics[width=\textwidth]{fig/magic-cn/shh-pathways.pdf}
 	\caption[Core pathways genetically targeted in SHH medulloblastoma]
 	{
 	Core pathways genetically targeted in SHH medulloblastoma.
 	Summary of \gls{scnas} affecting components of Shh signaling, TP53 signaling, and RTK/PI3K signaling are depicted. Colours reflect the frequency by which the respective genes are targeted by focal or broad events in SHH medulloblastomas (red for amplification, blue for deletion). Significance values indicate the prevalence with which each pathway is targeted in SHH vs. non-SHH cases (Fisher's exact test).
 	}
 	\label{fig:shh-pathways}
-\end{SCfigure}
+\end{figure}
 
 \begin{SCfigure}[5][b]
 	\centering
-	\includegraphics[width=0.3\textwidth]{fig/magic-cn/group3-pathways.pdf}
+	\includegraphics[width=0.5\textwidth]{fig/magic-cn/group3-pathways.pdf}
 	\caption[TGF$\beta$ signaling is recurrently disrupted by \gls{scnas} in Group3]
 	{
 	TGF$\beta$ signaling is recurrently disrupted by \gls{scnas} in Group3.
@@ -273,13 +273,11 @@ SHH medulloblastoma, which is characterized by activation of Shh signaling \cite
 	\label{fig:group3-pathways}
 \end{SCfigure}
 
-\clearpage
-
 The signaling pathways involved in Group3 and Group4 medulloblastomas are less well understood, as suggested by their names. Nonetheless, at the copy-number level, distinct pathways were dysregulated in Group3 and Group4 (appendix figure not shown). Group3 tumours are characterized by amplification of \gene{MYC} and \gene{OTX2}, which occur in a mutually exclusive pattern (appendix figure not shown). This observation is consistent with the tendency of the two oncogenic transcription factors to bind the same promoter regions \citeref{bunt11}. Further, the TGF$\beta$ signaling pathway is frequently disrupted by \gls{scnas} in Group3 (\citefig{group3-pathways}). Conversely, the NF-$\kappa$B pathway appear to genetically targeted in Group 4 medulloblastomas (\citefig{group4-dels-igv}).
 
 \begin{SCfigure}[2]
 	\centering
-	\includegraphics[width=0.2\textwidth]{fig/magic-cn/group4-dels-igv.pdf}
+	\includegraphics[width=0.3\textwidth]{fig/magic-cn/group4-dels-igv.pdf}
 	\caption[NF-$\kappa$B pathway is recurrently targeted in Group4]
 	{
 	NF-$\kappa$B pathway is recurrently targeted in Group4.
@@ -290,15 +288,11 @@ The signaling pathways involved in Group3 and Group4 medulloblastomas are less w
 
 While \gene{MYC} amplification is a known pivotal player Group3, our data indicated that others genes in close proximity to the \gene{MYC} locus may also play cooperative roles. This locus was frequently disrupted by a multitude of high-level amplicons (appendix figure not shown) as well as massively genomic rearrangements termed chromothripsis (\citefig{chromothr_myc_wgs}). As a consequence of these events, the adjacent \gene{PVT1} gene and miR-1204 are frequently co-amplified with \gene{MYC}. Moreover, amplifications of the \gene{MYC}/\gene{PVT1} locus frequently result in the formation of fusion transcripts. Concurrent with MYC-PTV1 fusion expression, miR-1204 (hosted in PTV1) is upregulated (appendix figure not shown). \gene{MYC}, \gene{PVT1}, and miR-1204 all have been previously shown to play independent functional roles in other tumours \citeref{guan07,carramusa07,huppi08,barsotti12}, and may synergistically promote tumourigenesis.
 
-The most prevalent focal gain (and previously neglected) in Group4 was the somatic tandem duplication of the \gene{SNCAIP} gene (appendix figure not shown). SNCAIP expression is highly elevated in Group4 medulloblastomas (\citefig{sncaip-expr}). In fact, \gene{SNCAIP} duplication is further restricted to the Group4$\alpha$ and may play a functional role in this medulloblastoma subtype (\citefig{group4-alpha-beta}).
-
-
-\clearpage
-
+The most prevalent focal gain in Group4 was the somatic tandem duplication of the \gene{SNCAIP} gene \citeref{shih12}. SNCAIP expression is highly elevated in Group4 medulloblastomas (\citefig{sncaip-expr}). In fact, \gene{SNCAIP} duplication is restricted to the Group4$\alpha$ and may play a functional role in this medulloblastoma subtype (\citefig{group4-alpha-beta}).
 
 \begin{figure}[t]
 	\begin{center}
-		\includegraphics[width=0.6\textwidth]{fig/magic-cn/chromothr_myc_ai.pdf}
+		\includegraphics[width=\textwidth]{fig/magic-cn/chromothr_myc_ai.pdf}
 	\end{center}
 	\caption[A multitude of amplicons disrupt the \gene{MYC}/\gene{PVT1} locus]
 	{
@@ -310,7 +304,7 @@ The most prevalent focal gain (and previously neglected) in Group4 was the somat
 
 \begin{figure}[b]
 	\begin{center}
-		\includegraphics[width=0.7\textwidth]{fig/magic-cn/chromothr_myc_wgs.pdf}
+		\includegraphics[width=\textwidth]{fig/magic-cn/chromothr_myc_wgs.pdf}
 	\end{center}
 	\caption[Chromothripsis disrupts the \gene{MYC}/\gene{PVT1} locus.]
 	{
@@ -322,11 +316,9 @@ The most prevalent focal gain (and previously neglected) in Group4 was the somat
 	\label{fig:chromothr_myc_wgs}
 \end{figure}
 
-\clearpage
-
 \begin{figure}[t]
 	\begin{center}
-		\includegraphics[width=0.8\textwidth]{fig/magic-cn/sncaip-expr.pdf}
+		\includegraphics[width=\textwidth]{fig/magic-cn/sncaip-expr.pdf}
 	\end{center}
 	\caption[\gene{SNCAIP} is a Group4 signature gene]
 	{
@@ -339,7 +331,7 @@ The most prevalent focal gain (and previously neglected) in Group4 was the somat
 
 \begin{figure}[b]
 	\begin{center}
-		\includegraphics[width=0.7\textwidth]{fig/magic-cn/group4-alpha-beta.pdf}
+		\includegraphics[width=\textwidth]{fig/magic-cn/group4-alpha-beta.pdf}
 	\end{center}
 	\caption[\gene{SNCAIP} duplication is restricted to one subtype of Group4]
 	{
@@ -355,22 +347,22 @@ The most prevalent focal gain (and previously neglected) in Group4 was the somat
 
 \section{Discussion}
 
-This study raised several bioinformatic challenges particularly due to the lack of germline samples. Due to current and historical practices, the medulloblastoma samples amassed in this study were often not paired with germline samples. Owing to the rarity of large germline copy-number variants (spanning $> 1$ Mbp or $> 10$ probes) in control population \citeref{shih12}, somatic \gls{cna} and germline variants can be distinguished. We also dismissed copy-number variants observed in both cases and controls at high frequency ($> 90$\%). Idenitified likely germline copy-number variants were removed from copy-number profiles along with the breakpoints they introduced. Despite our best efforts, some likely germline events and hybridization artifacts (unrelated to submission batch but possibly related to reagent lot) remain in the copy-number profiles of the samples. Nonetheless, with additional post-processing, careful curation, focus on high frequency events, and integration with multiple sources of evidence, we successfully identified recurrently disrupted genomic loci, though we caution against the individual use of each tumour copy-number profile for future studies. The poor interpretability of individual copy-number events in a single tumour sample stems from non-systematic hybridization biases, poor sample DNA quality, the general genomic instability of some samples, and the notion that most genetic events during cancer evolution do not contribute to cancer cell survival and tumour formation. In light of these limitations, we prioritized genomic events observed frequently across multiple samples. Furthermore, we splitted samples into more homogeneous groups in order to identify such events above a background rate. Indeed, we discovered significantly more recurrent \gls{cna} when the samples were split by subgroup than when they were analyzed together, enforcing the utility of regarding medulloblastoma as four distinct diseases. To emphasize, we discovered patterns hidden in complex genomic profiles of tumours by contrasting biological similar groups of samples.
+This study raised several bioinformatic challenges particularly due to the lack of germline samples. Due to current and historical practices, the medulloblastoma samples amassed in this study were often not paired with germline samples. Owing to the rarity of large germline copy-number variants (spanning $> 1$ Mbp or $> 10$ probes) in control population \citeref{shih12}, somatic \gls{cna} and germline variants can be distinguished. We also dismissed copy-number variants observed in both cases and controls at high frequency ($> 90$\%). Identified likely germline copy-number variants were removed from copy-number profiles along with the breakpoints they introduced. Despite our best efforts, some likely germline events and hybridization artifacts (unrelated to submission batch but possibly related to reagent lot) remain in the copy-number profiles of the samples. Nonetheless, with additional post-processing, careful curation, focus on high frequency events, and integration with multiple sources of evidence, we successfully identified recurrently disrupted genomic loci, though we caution against the individual use of each tumour copy-number profile for future studies. The poor interpretability of individual copy-number events in a single tumour sample stems from non-systematic hybridization biases, poor sample DNA quality, the general genomic instability of some samples, and the notion that most genetic events during cancer evolution do not contribute to cancer cell survival and tumour formation. In light of these limitations, we prioritized genomic events observed frequently across multiple samples. Furthermore, we split samples into more homogeneous groups in order to identify such events above a background rate. Indeed, we discovered significantly more recurrent \gls{cna} when the samples were split by subgroup than when they were analyzed together, enforcing the utility of regarding medulloblastoma as four distinct diseases. To emphasize, we discovered patterns hidden in complex genomic profiles of tumours by contrasting biological similar groups of samples.
 
-Another common issue that arises in cancer genomics studies is the role that genomic instability plays in tumour formation, progression, or recurrence. We considered different types of genomic instability separately and jointly, but we did not identify any significant and reproducible association between aneuploidy, frequent structural variations, or chromothripsis with patient survival (data not shown). We contend that genomic instability in itself does not impact outcome, though the underlying cause or the consequent disruption of specific genes may affect tumour aggressiveness. For example, \gene{TP53} mutation may conduce to chromothripsis, but only the former portends poor outcome in multivariate survival analyses. Chromothripsis does not exclusively occur in \gene{TP53} mutated cases; thus, it may be associated with mutations in other DNA damage response or repair genes, not all of which may contribute to tumour resistance against chemotherapy or radiotherapy. Further, chromothripsis in SHH medulloblastoma often results in amplification of \gene{GLI2}, but only the latter is independently prognostic for poor survival \citeref{shih14}. These findings in our medullobalstoma cohort contrast the association of chromothripsis with poorer survival (by univariate instead of multivariate analysis) in neuroblastoma \citeref{molenaar12}. Further, our pattern of chromothripsis incidence also contrasts that of a smaller cohort of medulloblastoma \citeref{rausch12}, in which the authors observed significantly higher frequency of chromothripsis in SHH medulloblastoma. In contrast, the incidence of chromothripsis is fairly uniform across SHH, Group3, and Group4 medulloblastomas and significantly depleted in WNT medulloblastoma, These results could be due to characteristic differences between the two cohorts of medulloblastoma examined. Both studies used the same method and algorithm to identify chromothripsis (the same researcher processed the raw SNP array data and made the chromothripsis calls in both studies). Given these discrepancies across studies, the interaction among competing covariates may obscure meaningful interpretation, and recall biases in retrospective studies may skew distributions of specific variables in studies with small sample sizes.
+Another common issue that arises in cancer genomics studies is the role that genomic instability plays in tumour formation, progression, or recurrence. We considered different types of genomic instability separately and jointly, but we did not identify any significant and reproducible association between aneuploidy, frequent structural variations, or chromothripsis with patient survival (data not shown). We contend that genomic instability in itself does not impact outcome, though the underlying cause or the consequent disruption of specific genes may affect tumour aggressiveness. For example, \gene{TP53} mutation may conduce to chromothripsis, but only the former portends poor outcome in multivariate survival analyses. Chromothripsis does not exclusively occur in \gene{TP53} mutated cases; thus, it may be associated with mutations in other DNA damage response or repair genes, not all of which may contribute to tumour resistance against chemotherapy or radiotherapy. Further, chromothripsis in SHH medulloblastoma often results in amplification of \gene{GLI2}, but only the latter is independently prognostic for poor survival \citeref{shih14}. These findings in our medulloblastoma cohort contrast the association of chromothripsis with poorer survival (by univariate instead of multivariate analysis) in neuroblastoma \citeref{molenaar12}. Further, our pattern of chromothripsis incidence also contrasts that of a smaller cohort of medulloblastoma \citeref{rausch12}, in which the authors observed significantly higher frequency of chromothripsis in SHH medulloblastoma. In contrast, the incidence of chromothripsis is fairly uniform across SHH, Group3, and Group4 medulloblastomas and significantly depleted in WNT medulloblastoma, These results could be due to characteristic differences between the two cohorts of medulloblastoma examined. Both studies used the same method and algorithm to identify chromothripsis (the same researcher processed the raw SNP array data and made the chromothripsis calls in both studies). Given these discrepancies across studies, the interaction among competing covariates may obscure meaningful interpretation, and recall biases in retrospective studies may skew distributions of specific variables in studies with small sample sizes.
 
-Notwithstanding the technical, biological, and statistical challenges, we have successfully identified recurrent amplifications and deletions of genes that converge in specific signaling pathways contributing to tumourigenesis within different molecular subgroups of medulloblastoma. WNT medulloblastoma is surprisingly devoid of recurrent genomic aberrations aside from chr6 loss and \gene{CTNNB1} activating mutation. While the functional consequence of chr6 is unclear, the high frequency of \gene{CTNNB1} mutation suggest that activated \gls{wnt} signaling may be the predominant tumourgenic mechanism in WNT medulloblastoma. Similarly, recurrent \gls{cna} events converge on and conspire to activate \gls{shh} signaling in SHH medulloblastoma. In a subset of SHH cases, TP53 signaling and \gls{pi3k} signaling are also recurrently disrupted by \gls{cna}, and the latter may be a candidate pathway for therapeutic intervention against tumours with aberrations upstream of the drug target. The dominant theme in Group3 medulloblastoma is recurrent dysruption of signaling of the super \gls{tgfb} family; in particular, \gls{cna} converge on activation of activin signaling, and this pathway may be the first candidate pathway for therapeutic intervention in this aggressive subgroup. While no signaling pathway is recurrently dysregulated in Group4 medulloblastoma, tandem duplications of \gene{SNCAIP} is frequently observed and may play an important role in the pathogenesis of Group4 medulloblastoma. Taken together, copy-number profiling of medulloblastoma samples have led to the discovery of several frequently disrupted genes and pathways that may serve as candidates for targeted therapeutic intervention.
+Notwithstanding the technical, biological, and statistical challenges, we have successfully identified recurrent amplifications and deletions of genes that converge in specific signaling pathways contributing to tumourigenesis within different molecular subgroups of medulloblastoma. WNT medulloblastoma is surprisingly devoid of recurrent genomic aberrations aside from chr6 loss and \gene{CTNNB1} activating mutation. While the functional consequence of chr6 is unclear, the high frequency of \gene{CTNNB1} mutation suggest that activated \gls{wnt} signaling may be the predominant tumourigenic mechanism in WNT medulloblastoma. Similarly, recurrent \gls{cna} events converge on and conspire to activate \gls{shh} signaling in SHH medulloblastoma. In a subset of SHH cases, TP53 signaling and \gls{pi3k} signaling are also recurrently disrupted by \gls{cna}, and the latter may be a candidate pathway for therapeutic intervention against tumours with aberrations upstream of the drug target. The dominant theme in Group3 medulloblastoma is recurrent disruption of signaling of the super \gls{tgfb} family; in particular, \gls{cna} converge on activation of activin signaling, and this pathway may be the first candidate pathway for therapeutic intervention in this aggressive subgroup. While no signaling pathway is recurrently dysregulated in Group4 medulloblastoma, tandem duplications of \gene{SNCAIP} is frequently observed and may play an important role in the pathogenesis of Group4 medulloblastoma. Taken together, copy-number profiling of medulloblastoma samples have led to the discovery of several frequently disrupted genes and pathways that may serve as candidates for targeted therapeutic intervention.
 
 The disparate patterns of recurrent \gls{cna} among the medulloblastoma subgroups support the distinct etiologies of the subgroups but also raises questions regarding the origin of the molecular subgroups of medulloblastoma. Most recurrent \gls{cna} were enriched (observed at higher frequency) in specific subgroups but were not exclusively found in one subgroup. Further, unsupervised clustering by copy-number profiles produced groups that showed only modest agreement with the molecular subgroups of medulloblastoma. These results taken together suggest that the \gls{cna} events do not determine the molecular subgroups, though they may modulate the expression patterns of the subgroups. In contrast, DNA methylation patterns can identify without supervision four medulloblastoma classes that show high concordance with the molecular subgroups identified by expression patterns \citeref{hovestadt13, schwalbe13}. These results indicate that the epigenetic landscape in the cell of origin controls the expression patterns of the developing tumour and may also provide the contexts that favours specific genomic aberrations, thus shaping different genomic landscapes for each molecular subgroup of medulloblastoma.
 
 The Myc family of proto-oncogenes is amplified in a curious pattern across the medulloblastoma subgroups and pose the question regarding whether and how epigenetic patterns influence amplification patterns of the Myc family, comprising \gene{MYC}, \gene{MYCN}, and \gene{MYCL}. These homologous genes were found to be amplified in lymphoma, neuroblastoma, and lung carcinoma, respectively; these observations possibly points to functional differences in Myc family proteins in diverse cancer types. Similarly, Myc family genes are amplified in a non-random pattern in medulloblastoma: \gene{MYC} is amplified predominately (albeit not exclusively) in Group3, \gene{MYCN} is amplified preferentially in SHH and Group4 medulloblastomas, and rare \gene{MYCL} amplifications are observed only in SHH medulloblastoma. At the expression level, most medulloblastomas of either WNT or Group3 subgroup MYC independent of amplification. Similarly, SHH medulloblastomas express MYCN at a higher level than other subgroups and normal cerebellums even without \gene{MYCN} amplification. 
 In neuroblastoma, \gene{MYCN} amplification is found in about 20\% of cases \citeref{brodeur84, olenaar12}, but amplification of \gene{MYC} or \gene{MYCL} is very rarely observed \citeref{molenaar12}. These observations raise the question of why \gene{MYC}, \gene{MYCN}, and \gene{MYCL} is preferentially dysregulated in one cancer type or subtype vs. another. Conceivably, Myc family genes could interact with different sets of co-transcription factors, drive different transcriptional programs, and cooperate with dysregulation of other signaling pathways in promoting tumour formation. Accordingly, the amplification of different Myc family genes could modulate the expression patterns of the medulloblastoma subgroups.
 
-A alternative hypothesis is that differential accessibilities at genomic loci in the cell of origin govern which of the three human Myc family gene is amplified. Under this model, \gene{MYCN} amplification preferrentially occur in SHH medulloblastoma because \gene{MYCN} is expressed in the cell of origin for SHH medulloblastoma (e.g. external granule neural precursor) during normal development, rendering the genomic locus accessible to such enzymes as deaminases (e.g. \gene{AICDA}, \gene{APOBEC}), which initiate double-strand breaks that ultimately lead to DNA rearrangement. Similarly, \gene{MYC} amplification may preferrentially occur in Group3 medulloblastoma because the \gene{MYC} locus is permissible to structural rearrangement. In other words, the observed patterns of Myc family gene amplification arise mainly due to variations in accessibility of these genomic loci in different cells of origin instead of functional differences among Myc family members. Consistent with this model, MYCN is functionally redundant with MYC, and knock-in of \gene{MYCN} into the \gene{MYC} locus rescues the loss of \gene{MYC} in mouse development, cell growth, and cell differentiation \citeref{malynn00}. \gene{MYC} and \gene{MYCN} double knock-out mice exhibit much more severe phenotype in neurogensis than either one alone \citeref{wey10}. Further, \gene{MYC} and \gene{MYCN} are interchangeable in promoting tumour formation. \gene{MYCN} coding region can substitute for that of \gene{MYC} in transformation of pro-B cell \citeref{gostissa09}. Similarly, MYC can cooperative with SHH ligand to enhance formation of SHH medulloblastoma in a virus-induced mouse tumour model, despite that \gene{MYC} amplification is rarely observed in human SHH medulloblastoma \citeref{rao03, shih12}. Therefore, Myc family genes may indeed encode functionally similar proteins in promoting medulloblastoma formation.
+A alternative hypothesis is that differential accessibilities at genomic loci in the cell of origin govern which of the three human Myc family gene is amplified. Under this model, \gene{MYCN} amplification preferentially occur in SHH medulloblastoma because \gene{MYCN} is expressed in the cell of origin for SHH medulloblastoma (e.g. external granule neural precursor) during normal development, rendering the genomic locus accessible to such enzymes as deaminases (e.g. \gene{AICDA}, \gene{APOBEC}), which initiate double-strand breaks that ultimately lead to DNA rearrangement. Similarly, \gene{MYC} amplification may preferentially occur in Group3 medulloblastoma because the \gene{MYC} locus is permissible to structural rearrangement. In other words, the observed patterns of Myc family gene amplification arise mainly due to variations in accessibility of these genomic loci in different cells of origin instead of functional differences among Myc family members. Consistent with this model, MYCN is functionally redundant with MYC, and knock-in of \gene{MYCN} into the \gene{MYC} locus rescues the loss of \gene{MYC} in mouse development, cell growth, and cell differentiation \citeref{malynn00}. \gene{MYC} and \gene{MYCN} double knock-out mice exhibit much more severe phenotype in neurogenesis than either one alone \citeref{wey10}. Further, \gene{MYC} and \gene{MYCN} are interchangeable in promoting tumour formation. \gene{MYCN} coding region can substitute for that of \gene{MYC} in transformation of pro-B cell \citeref{gostissa09}. Similarly, MYC can cooperative with SHH ligand to enhance formation of SHH medulloblastoma in a virus-induced mouse tumour model, despite that \gene{MYC} amplification is rarely observed in human SHH medulloblastoma \citeref{rao03, shih12}. Therefore, Myc family genes may indeed encode functionally similar proteins in promoting medulloblastoma formation.
 
 Despite being an important player in transforming normals cells into cancer or in inducing pluripotency in differentiated cells, a Myc family
-gene may exert different effects in different tumour contexts. In Group3 medulloblastoma, \gene{MYC} amplification is associated with poorer survival. However, \gene{MYCN} amplification is associated with poorer survival only in SHH medulloblastoma but not in Group4 medulloblastoma. The amplification of a Myc family gene is thus not universally associated with poorer outcome, and the function of Myc in medulloblastoma may be modulated by cooperating dysruption of other pathways in the tumour initiating cell and by extracellular signals in the context of neural development.
+gene may exert different effects in different tumour contexts. In Group3 medulloblastoma, \gene{MYC} amplification is associated with poorer survival. However, \gene{MYCN} amplification is associated with poorer survival only in SHH medulloblastoma but not in Group4 medulloblastoma. The amplification of a Myc family gene is thus not universally associated with poorer outcome, and the function of Myc in medulloblastoma may be modulated by cooperating disruption of other pathways in the tumour initiating cell and by extracellular signals in the context of neural development.
 
-The story of the Myc family illustrates a broader theme of how genomic alterations lead to different subgroups medulloblastoma. \gene{MYC} amplifications can drive tumour formation, but only in the suitable cellular context and other co-occuring mutations \citeref{rao03, pei12}. Indeed, \gene{MYC} and \gene{SHH} overexpression are sufficient to induce tumour formation in the external granule layer of the cerebellum but not in the cerebrum. Accordingly, MYC overexpression likely do not create Group3 medulloblastoma. Rather, the (possibly multiple) cells of origin and cooperating alterations provide the necessary context for the amplification of \gene{MYC} and consequent induction of medulloblastoma, and the cell of origin govern the molecular subgroup of the resulting tumour. Similarly, \gene{MYCN} amplification is a common mechanism of tumourigenesis in subsets of SHH and Group4 medulloblastoma cases, and it does not define a molecular subgroup by itself. Indeed, gene amplification of the Myc family does not define a molecular entity, as the medulloblastoma subgroup are defined by epigenetic and expression profiles, and the Myc family members lead to disparate outcomes in different medulloblastoma subgroups. In experimental models, Myc family overexpression, along with cooperating mutations, can likely transform multiple cells of origin, and the subgroup of the resulting tumour would likely be determined by the cellular origin rather than the Myc family member. More generally, tumour of specific subtypes arise due to interaction between genetics and context. The cellular origin provides the permissive context for genomic alterations to exert their effects, and the nuclear organization, epigenetic landscape, chromatin architecture within the cell of origin likely influence the accessibility of genomic loci and shape the mutational landscape of the cancer cell \citeref{polak15}.
+The story of the Myc family illustrates a broader theme of how genomic alterations lead to different subgroups medulloblastoma. \gene{MYC} amplifications can drive tumour formation, but only in the suitable cellular context and other co-occurring mutations \citeref{rao03, pei12}. Indeed, \gene{MYC} and \gene{SHH} overexpression are sufficient to induce tumour formation in the external granule layer of the cerebellum but not in the cerebrum. Accordingly, MYC overexpression likely do not create Group3 medulloblastoma. Rather, the (possibly multiple) cells of origin and cooperating alterations provide the necessary context for the amplification of \gene{MYC} and consequent induction of medulloblastoma, and the cell of origin govern the molecular subgroup of the resulting tumour. Similarly, \gene{MYCN} amplification is a common mechanism of tumourigenesis in subsets of SHH and Group4 medulloblastoma cases, and it does not define a molecular subgroup by itself. Indeed, gene amplification of the Myc family does not define a molecular entity, as the medulloblastoma subgroup are defined by epigenetic and expression profiles, and the Myc family members lead to disparate outcomes in different medulloblastoma subgroups. In experimental models, Myc family overexpression, along with cooperating mutations, can likely transform multiple cells of origin, and the subgroup of the resulting tumour would likely be determined by the cellular origin rather than the Myc family member. More generally, tumour of specific subtypes arise due to interaction between genetics and context. The cellular origin provides the permissive context for genomic alterations to exert their effects, and the nuclear organization, epigenetic landscape, chromatin architecture within the cell of origin likely influence the accessibility of genomic loci and shape the mutational landscape of the cancer cell \citeref{polak15}.
 
-In summary, medulloblastoma subgroups are characterized by distinct genomic alterations that dysregulated disparate signaling pathways. The mutational profiles do not define each subgroup; instead, they are shaped by the molecular and cellular context within each subgroup, and the functional consequences of the mutations may also on the molecular subgroups. Hence, genes and pathways that are recurrently dysrupted by genomic alterations within each subgroup likely play pivotal roles in the formation and perhaps maintenance of the tumours, and such genes and pathways serve as prime candidates for design of rational, targeted therapuetic intervention.
+In summary, medulloblastoma subgroups are characterized by distinct genomic alterations that dysregulated disparate signaling pathways. The mutational profiles do not define each subgroup; instead, they are shaped by the molecular and cellular context within each subgroup, and the functional consequences of the mutations may also on the molecular subgroups. Hence, genes and pathways that are recurrently disrupted by genomic alterations within each subgroup likely play pivotal roles in the formation and perhaps maintenance of the tumours, and such genes and pathways serve as prime candidates for design of rational, targeted therapeutic intervention.
