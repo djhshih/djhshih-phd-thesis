@@ -19,6 +19,98 @@ Gene function may be disrupted constitutively (\emphterm{knocked out}). Homozygo
 A transgenic construct may also be integrated (randomly) into the genome to express a gene. For example, the \gene{Neurod2-Smo}\high{+/W539L} mouse has the \gene{Neurod2-Smo}\high{W539L} construct integrated into genome once (later mapped to chr14) \citeref{hatton08}, the activated Smo (with a substitution mutation from trytophan to leucine at residue 539) is expressed under the promoter of \gene{Neurod2}. The Cre recombination system may also be used to conditonally express a gene using a more complex design, such as the \gene{CAGGS-CreER};\gene{Rosa26-SMO}\high{W535L} mouse \citeref{mao06}. In this mouse, the human \gene{SMO} gene with an activating \high{W535L} mutation is knocked into the ubiquitously expressed \gene{Rosa26} locus, whose official symbol is Gt(ROSA)26Sor. (This human \gene{SMO} gene is known as SmoM2 \citeref{xie98} and corresponds to mouse \gene{Smo}\high{W539L}, which is known as SmoA1 \citeref{hallahan04}.) However, since a floxed polyadenylation stop sequence cassette is placed upstream of the \gene{SMO}\high{W535L} gene, the latter is only expressed subsequent to Cre-mediated deletion of the cassette. Cre is expressed here under the synthetic CAGGS promoter (which drives high-level, generalized expression), and its activity is (somewhat) tamoxifen-dependent because it is fused to the estrogen receptor. Therefore, the expression of \gene{SMO}\high{W535L} is ultimately controlled by the administration of tamoxifen (at least in design).
 
 
+\section{Signaling Pathways}
+\label{sec:signal-pathways}
+
+\subsection{\gls{wnt} signaling (CTNNB1-dependent)}
+
+%\begin{figure}[H]
+%	\begin{center}
+%		%\includegraphics[width=\textwidth]{fig/pathway/wnt-pathway.pdf}
+%	\end{center}
+%	\caption[CTNNB1-dependent Wnt signaling pathway]
+%	{
+%		CTNNB1-dependent Wnt signaling pathway.
+		In the absence of WNT ligand, CTNNB1 ($\beta$-catenin) is continuously marked for degradation by the CTNNB1 destruction complex, consisting of AXIN, APC, GSK, and CSNK1A1 (CK1). GSK and CSNK1A1 primes CTNNB1 by phosphorylation, which leads for ubiquinylation by the CUL1-containing E3 ligase complex and subsequent complete degradation by the proteome. Upon binding of WNT to FZD, DVL1 is activated via an unknown mechanism, and DVL1 phosphorylates LRP5/6, which then sequesters AXIN and frees CTNNB1 from the destruction complex. CTNNB1 accumulates in the cytoplasm and translocate to the nucleus to activate target genes such as \gene{MYC}, \gene{CCND1}, and \gene{AXIN2}. Two \gene{AXIN} genes exists in humans: \gene{AXIN1} and \gene{AXIN2}. GSK consists of two subunits: GSK3A and GSK3B (catalytic). CTNNB1 regulate expression in concert with the TCF/LEF family of co-transcription factors, such as TCF7, TCF7L1, TCF7L2, and LEF1. WNT signaling also activates many other pathways independently of CTNNB1; these pathways include: planar cell polarity, WNT-Ca\high{2+}, and others. Both WNT and FZD encompass a large family of proteins.
+%	}
+%	\label{fig:wnt-pathway}
+%\end{figure}
+
+
+\subsection{\gls{shh} signaling}
+
+%\begin{figure}[H]
+%	\begin{center}
+%		%\includegraphics[width=\textwidth]{fig/pathway/shh-pathway.pdf}
+%	\end{center}
+%	\caption[\gls{shh} signaling pathway]
+%	{
+%		Shh signaling pathway.
+		GLI transcription factors, including GLI1, GLI2, and GLI3, are downstream effectors of \gls{shh} signaling. The proteome can completely degrade GLI proteins or proteolytically process them into activators or repressors forms. depending on the post-translational modifications on the full-length GLI proteins. GLI1 and GLI2 predominantly function in the activator form and activates transcription, while GLI3 mainly functions in the repressor form and represses transcription. \gls{shh} signaling modulate the marks on full-length GLI, thereby influencing downstream transcription.
+		In the absence of SHH ligand, SMO activity is repressed by PTCH. Upon SHH binding to PTCH, this repression is relieved, leading to active SMO signaling, which favours the processing of GLI into the active form; consequently, transcription of target genes including cell cycle genes (\gene{CCND1} and \gene{CCNE1}), \gene{MYC}, and negative regulators of Shh signaling (\gene{PTCH1} and \gene{HHIP}).
+		The precise mechanism whereby SMO (indirectly) activates GLI is not conserved between fly and mammals and remains unknown in mammals. Four proteins bind to and regulate GLI processing: KIF7, SUFU, SPOP, and BTRC. Both KIF7 and SUFU are negative regulators of Shh signaling via unclear mechanisms. The role of SUFU remains contentious; possible roles include: nuclear export of GLI, protection of GLI from degradation, recruitment of GLI3 for processing into the repressor form. Conversely, SPOP and BTRC ($beta$TRCP) serve to recognize GLI and they function as subunits of E3 ligase complexes, which mark (ubiquitinates) GLI for proteolytic processing by the proteome. The CUL1 containing complex is also known as the Skp, Collin1, F-box (SCF) complex, Via BTRC-mediated recognition, this complex ubiquitinates many other proteins, including CTNNB1 from the Wnt pathway.
+		Mammals have three hedgehog ligands: DHH, IHH, and SHH. PTCH encompasses PTCH1 and PTCH2. PKA is a tetramer composed of two catalytic subunits (protein family includes PRKACA, PRKACB, and PRKACG) and two regulatory subunits (protein family includes PRKAR1A, PRKAR1B, PRKAR2A, and PRKAR2B).
+%	}
+%	\label{fig:shh-pathway}
+%\end{figure}
+
+
+\subsection{Notch signaling}
+
+%\begin{figure}[H]
+%	\begin{center}
+%		%\includegraphics[width=\textwidth]{fig/pathway/notch-pathway.pdf}
+%	\end{center}
+%	\caption[Notch signaling pathway]
+%	{
+%		Notch signaling pathway.
+		When NOTCH binds DLL expressed on the surface of an adjacent cell, NOTCH is extracellularly cleaved by ADAM10 or ADAM17 (TACE), and it is subsequently cleaved intracellularly by the gamma-secretase/presenilin complex. This proteolytic event releases the NOTCH intracellular domain (NICD) from the cell surface, allowing it to translocate to the nucleus in order to activate transcription of target genes such as \gene{MYC}, \gene{HES}, \gene{CDKN1A}, \gene{CCND3}. Mammals have four Notch family members, NOTCH1, NOTCH2, NOTCH3, NOTCH4, and these receptors can bind the ligands, DLL1, DLL3, DLL4, JAG1, JAG2. 
+%	}
+%	\label{fig:notch-pathway}
+%\end{figure}
+
+
+\subsection{\gls{pi3k} signaling}
+
+%\begin{figure}[H]
+%	\begin{center}
+%		%\includegraphics[width=\textwidth]{fig/pathway/pi3k-pathway.pdf}
+%	\end{center}
+%	\caption[PI3K signaling pathway]
+%	{
+%		PI3K signaling pathway.
+		Kinases from the PI3K family phosphorylate PIP\low{2} to produce PIP\low{3}, which serves as the intermediate signaling molecule for many pathways. One well-studied binding target for PIP\low{3} is AKT1, which in turn inhibits apoptosis and promotes cell cycle progression. PI3K signaling is activated downstream of many cell-surface receptors, including receptor tyrosine kinases, cytokine receptors, integrins, and G-protein coupled receptors.
+		PTEN is a negative regulator of PI3K signaling and functions by dephosphorylating PIP\low{3} to form PIP\low{2}. 
+%	}
+%	\label{fig:pi3k-pathway}
+%\end{figure}
+
+
+%\subsection{\gls{egfr} signaling}
+%
+%\gls{egfr} signaling is important in medulloblastoma.
+%
+%Lack of ERBB2 protein expression in tumour is associated with favourable survival under standard treatment \citeref{gajjar04}, suggesting ERBB2 inhibition may be effective alone or in combination with conventional chemotherapy.
+%
+%However, "Lapatinib was well-tolerated in children with recurrent or CNS malignancies, but did not inhibit target in tumor and had little single agent activity." \citeref{fouladi13}.
+%
+%
+%\begin{figure}[H]
+%	\begin{center}
+%		%\includegraphics[width=\textwidth]{fig/pathway/egfr-pathway.pdf}
+%	\end{center}
+%	\caption[Egfr signaling pathway]
+%	{
+%		Egfr signaling pathway.
+%		ERBB2 has multiple roles: it can function as co-receptor, it can recruit ligand, and it can dimerize and activate signaling in the absence of ligand.
+%	}
+%	\label{fig:egfr-pathway}
+%\end{figure}
+
+
+% Developmental and oncogenic effects of insulin-like growth factor-I in Ptc1+/- mouse cerebellum \citeref{tanori10}.
+
+
 \section{Classification}
 \label{sec:classification}
 
