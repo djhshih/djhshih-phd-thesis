@@ -98,7 +98,7 @@ Define $c_t$ as the number of correctly classified samples and $n_t$ as the numb
 n_t = \sum_i I(x_i \le t)
 \]
 \[
-c_t = \sum_i I(x_i \le t \; \cap \; i \in \mathbb{C})
+c_t = \sum_i I(x_i \le t \; \wedge \; i \in \mathbb{C})
 \]
 where $i$ iterates over samples, $I(\cdot)$ is the indicator function, $\mathbb{C}$ is the set of correctly classified samples.
 Cumulative accuracies were calculated for each sample age year bin $t$ as $y_t = c_t / n_t$, and $y_t$ was fitted as a 5-parameter logistic function of $t$, using the implementation in the drc v2.1 R package:
