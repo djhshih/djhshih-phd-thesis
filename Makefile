@@ -18,5 +18,5 @@ clean:
 	rm -rf self.aux ref.aux *.bbl
 
 purge:
-	rm -rf thesis.pdf *.dvi *.aux *.blg *.bbl *.log
+	rm -rf thesis.pdf *.dvi *.aux *.blg *.bbl *.log *.acn *.acr *.alg *.lot *.lof *.toc *.ist
 
