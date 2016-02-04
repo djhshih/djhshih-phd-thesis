@@ -1,0 +1,13 @@
+*.acr
+*.alg
+*.aux
+*.bbl
+*.blg
+*.ist
+*.lof
+*.log
+*.lot
+*.acn
+*.synctex.gz
+*.toc
+.DS_Store
